@@ -81,13 +81,13 @@ if (isset($_POST['login-btn'])) {
             if (password_verify($password, $user['password'])) { // if password matches
                 $stmt->close();
 
-                $_SESSION['id'] = $user['id'];
+                $_SESSION['id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['verified'] = $user['verified'];
                 $_SESSION['message'] = 'You are logged in!';
                 $_SESSION['type'] = 'alert-success';
-                header('location: index.php');
+                header('location: verify_checker.php');
                 exit(0);
             } else { // if password does not match
                 $errors['login_fail'] = "Wrong username / password";
