@@ -47,7 +47,7 @@
                   </ul>
                   <!-- Button -->
                   <div class="menu-btn">
-                    <a href="reservation.html" class="btn palatin-btn">Make a Reservation</a>
+                    <a href="login.php" class="btn palatin-btn">Make a Reservation</a>
                   </div>
                 </div>
                 <!-- Nav End -->
