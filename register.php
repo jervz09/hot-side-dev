@@ -59,7 +59,7 @@ include 'controllers/authController.php' ?>
                   <label class="form-label" for="passwordConf">Confirm Password</label>
                 </div>
                 <div class="pt-1 mb-4">
-                  <button type="submit" name="signup-btn" class="btn btn-lg btn-block palatin-btn">Login</button>
+                  <button type="submit" name="signup-btn" class="btn btn-lg btn-block palatin-btn">Register</button>
                 </div>
                   <p>Already have an account? <a href="login.php">Login</a></p>
                 </p>
