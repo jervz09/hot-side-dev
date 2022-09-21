@@ -23,7 +23,7 @@ include 'controllers/authController.php' ?>
                 </div>
 
                 <div class="col-sm-3">
-                  <h3 class="form-name">Log in</h3>
+                  <h3 class="form-name">Register</h3>
                 </div>
             </div>
 

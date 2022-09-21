@@ -14,15 +14,23 @@ include 'controllers/authController.php' ?>
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 text-black">
-            <div class="px-5 ms-xl-4">
-              <img src="img/core-img/black-logo.png" alt="" width="80px">
-              <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
+                 
+          <div class="row">
+                <div class="col-sm-3">
+                  <img class="small-logo" src="img/core-img/black-logo.png" alt="" width="80px">
+                    <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
+                </div>
+
+                <div class="col-sm-3">
+                  <h3 class="form-name">Log in</h3>
+                </div>
             </div>
+
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
-              <form style="width: 23rem;padding-top: 20%;" action="login.php" method="post">
-              
+              <form action="login.php" method="post"> 
+
               <?php if (count($errors) > 0): ?> 
-                <div class="alert alert-danger mt-50"> 
+                <div class="alert alert-danger error-message"> 
                   <?php foreach ($errors as $error): ?> 
                   <li> 
                     <?php echo $error; ?> 
@@ -30,8 +38,6 @@ include 'controllers/authController.php' ?>
                   <?php endforeach;?> 
                 </div> 
               <?php endif;?> 
-
-                <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
                 <div class="form-outline mb-4">
                   <input name="username" type="email" id="email" class="form-control form-control-lg" />
                   <label class="form-label" for="email">Email address</label>
