@@ -47,8 +47,7 @@ include 'controllers/authController.php' ?>
                   <label class="form-label" for="password">Password</label>
                 </div>
                 <div class="pt-1 mb-4">
-                  <!-- <button class="btn btn-info btn-lg btn-block" type="button">Login</button> -->
-                  <button type="submit" name="login-btn" class="btn btn-lg btn-block">Login</button>
+                  <button type="submit" name="login-btn" class="btn btn-lg btn-block palatin-btn">Login</button>
                 </div>
                 <p class="small mb-5 pb-lg-2">
                   <a class="text-muted" href="#!">Forgot password?</a>
