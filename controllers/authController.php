@@ -5,7 +5,7 @@ $username = "";
 $email = "";
 $errors = [];
 
-$conn = new mysqli('localhost', 'root', '', 'hot-side');
+include 'db_con.php';
 
 // SIGN UP USER
 if (isset($_POST['signup-btn'])) {
