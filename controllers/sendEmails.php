@@ -3,8 +3,6 @@ require_once './vendor/autoload.php';
 
 // Create the Transport
 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-
-// $transport = (new Swift_SmtpTransport('localhost', 25))
     ->setUsername("hotsiderestobar@gmail.com")
     ->setPassword("qysjhgunwmyfqqda");
 
@@ -27,7 +25,7 @@ function sendVerificationEmail($userEmail, $token)
           font-size: 1.3em;
         }
         a {
-          background: #592f80;
+          background: #2b898b;
           text-decoration: none;
           padding: 8px 15px;
           border-radius: 5px;
@@ -38,8 +36,8 @@ function sendVerificationEmail($userEmail, $token)
 
     <body>
       <div class="wrapper">
-        <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
-        <a href="http://localhost/controllers/verify_email.php?token=' . $token . '">Verify Email!</a>
+      <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
+      <a href="http://localhost/controllers/verify_email.php?token=' . $token . '">Verify Email!</a>
       </div>
     </body>
 
