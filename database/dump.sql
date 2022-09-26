@@ -1,4 +1,6 @@
-CREATE TABLE `users` (
+CREATE DATABASE IF NOT EXISTS `hot-side`;
+
+CREATE TABLE IF NOT EXISTS `hot-side`.`users` (
     `user_id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `username` VARCHAR(50) NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
@@ -12,7 +14,7 @@ CREATE TABLE `users` (
     `role_id` TINYINT(1) NOT NULL DEFAULT '0'
 );
 
-CREATE TABLE IF NOT EXISTS `table_list` (
+CREATE TABLE IF NOT EXISTS `hot-side`.`table_list` (
     `table_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `table_no` INTEGER NOT NULL,
     `name` INTEGER NOT NULL,
@@ -23,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `table_list` (
     `is_delete` INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS `reservation_list` (
+CREATE TABLE IF NOT EXISTS `hot-side`.`reservation_list` (
     `reservation_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `user_id` INT(11) NOT NULL,
     `table_id` INTEGER NOT NULL,
@@ -33,12 +35,12 @@ CREATE TABLE IF NOT EXISTS `reservation_list` (
     `is_delete` INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS `role_list` (
+CREATE TABLE IF NOT EXISTS `hot-side`.`role_list` (
     `role_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `role_name` VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `contact_list` (
+CREATE TABLE IF NOT EXISTS `hot-side`.`contact_list` (
     `contact_id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `address` VARCHAR(50) NOT NULL,
     `phone number` VARCHAR(50) NOT NULL,
