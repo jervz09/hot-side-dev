@@ -24,6 +24,8 @@
                 echo "Query failed: " . mysqli_error($conn);
             }
         } while (mysqli_more_results($conn) && mysqli_next_result($conn)); // while there are more results
+        
+        echo "Success";
     } else {
         echo "First query failed..." . mysqli_error($conn);
     }
