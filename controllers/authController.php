@@ -44,15 +44,16 @@ if (isset($_POST['signup-btn'])) {
             $user_id = $stmt->insert_id;
             $stmt->close();
 
-            // TO DO: send verification email to user
+            // send verification email to user
             sendVerificationEmail($email, $token);
-
+            // Saving details on session
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['verified'] = false;
             $_SESSION['message'] = 'You are logged in!';
             $_SESSION['type'] = 'alert-success';
+            // redirect index.php
             header('location: index.php');
         } else {
             $_SESSION['error_msg'] = "Database error: Could not register user";
@@ -60,14 +61,16 @@ if (isset($_POST['signup-btn'])) {
     }
 }
 
-// LOGIN
+// LOGIN user
 if (isset($_POST['login-btn'])) {
+    // checking if username and password are not empty
     if (empty($_POST['username'])) {
         $errors['username'] = 'Username or email required';
     }
     if (empty($_POST['password'])) {
         $errors['password'] = 'Password required';
     }
+    
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -81,6 +84,7 @@ if (isset($_POST['login-btn'])) {
             if (password_verify($password, $user['password'])) { // if password matches
                 $stmt->close();
 
+                // Saving details on session
                 $_SESSION['id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
@@ -89,6 +93,7 @@ if (isset($_POST['login-btn'])) {
                 $_SESSION['type'] = 'alert-success';
                 header('location: verify_checker.php');
                 exit(0);
+
             } else { // if password does not match
                 $errors['login_fail'] = "Wrong username / password";
             }
