@@ -24,7 +24,8 @@ if (isset($_POST['signup-btn'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $token = bin2hex(random_bytes(50)); // generate unique token
+    // $token = bin2hex(random_bytes(50)); // generate unique token
+    $otp = random_int(100000, 999999);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
     // Check if email already exists
@@ -35,9 +36,9 @@ if (isset($_POST['signup-btn'])) {
     }
 
     if (count($errors) === 0) {
-        $query = "INSERT INTO users SET username=?, email=?, token=?, password=?";
+        $query = "INSERT INTO users SET username=?, email=?, otp=?, password=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('ssss', $username, $email, $token, $password);
+        $stmt->bind_param('ssss', $username, $email, $otp, $password);
         $result = $stmt->execute();
 
         if ($result) {
@@ -45,7 +46,7 @@ if (isset($_POST['signup-btn'])) {
             $stmt->close();
 
             // send verification email to user
-            sendVerificationEmail($email, $token);
+            sendVerificationEmail($email, $otp);
             // Saving details on session
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
