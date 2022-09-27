@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `hot-side`.`users` (
     `contact_no` VARCHAR(12) NOT NULL,
     `verified` TINYINT(1) NOT NULL DEFAULT '0',
     `token` VARCHAR(255) DEFAULT NULL,
+    `otp` INT(6) DEFAULT NULL,
     `password` VARCHAR(255) NOT NULL,
     `role_id` TINYINT(1) NOT NULL DEFAULT '0'
 );
