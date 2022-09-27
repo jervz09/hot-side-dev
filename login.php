@@ -1,6 +1,6 @@
 <?php
-// echo isset($_POST['login-btn']);
-include 'controllers/authController.php' ?>
+  include 'controllers/authController.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <?php include('head.php')?>
@@ -13,7 +13,7 @@ include 'controllers/authController.php' ?>
     <section class="vh-100">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-6 text-black">
+          <div class="col-sm-6 text-black font-cursive">
                  
           <div class="row">
                 <div class="col-sm-3">
