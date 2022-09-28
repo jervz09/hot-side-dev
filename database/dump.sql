@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `hot-side`.`reservation_list` (
     `reservation_id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `user_id` INT(11) NOT NULL,
     `table_id` INTEGER NOT NULL,
+    `menu_id` INTEGER NOT NULL,
     `datetime` TIMESTAMP NOT NULL,
     `status` INTEGER NOT NULL DEFAULT 0,
     `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -49,4 +50,14 @@ CREATE TABLE IF NOT EXISTS `hot-side`.`contact_list` (
     `facebook_link` VARCHAR(50) NOT NULL,
     `twitter_link` VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS `hot-side`.`menu_list` (
+    `menu_id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `type` VARCHAR(50) NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `price` INT(11) NOT NULL,
+    `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `is_delete` INTEGER NOT NULL DEFAULT 0
+);
+
 
