@@ -96,9 +96,15 @@ background: #555;
     padding: 0px 2px !important;
 }
 #fp-canvas-container{
+    border: 1px solid #cccccc;
     height:50vh;
     width:calc(100%);
     position:relative;
+}
+#fp-canvas-container:hover{
+    box-shadow: #505050 0 0 10px 0px;
+    -webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
 }
 .fp-img,.fp-canvas,.fp-canvas-2{
     position:absolute;
@@ -118,7 +124,7 @@ background: #555;
 }
 .fp-canvas {
     z-index: 2;
-    background: #0000000d;
+    background: #0443ff0d;
     cursor: crosshair;
 }
 #fp-map{
@@ -127,4 +133,7 @@ background: #555;
 area:hover {
     background: #0000004d;
     color: #fff !important;
+}
+#create_table {
+    float: right;
 }
