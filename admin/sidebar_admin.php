@@ -31,7 +31,7 @@
             <i class="fas fa-fw fa-list"></i>
             <span>Menu List</span></a>
     </li>
-<!-- 
+<!--
     <li class="nav-item">
         <a class="nav-link" href="index.php?page=price_list">
             <i class="fas fa-fw fa-money-bill"></i>
@@ -64,7 +64,7 @@
             <i class="fas fa-fw fa-users"></i>
             <span>Admin List</span></a>
     </li>
-    
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -82,7 +82,7 @@
     <li class="nav-item">
         <a class="nav-link" href="index.php?page=f_plan">
             <i class="fas fa-fw fa-image"></i>
-            <span>Floor Plan</span></a>
+            <span>Upload Floor Plan</span></a>
     </li>
 
     <!-- Divider -->

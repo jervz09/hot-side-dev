@@ -5,7 +5,6 @@
     }
 </style>
 <div class="container-fluid">
-
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Floor Plan</h1>
@@ -18,10 +17,11 @@
             </button>
         </div>
     </div>
-
-    <div class="card-body">
-        <div class="col-md-12">
-            <img src="./uploads/floorplan.png?v=<?php echo time() ?>" alt="Floor Plan" id="fp-img-main" class="w-100">
+    <div class="row box-shadow-hover">
+        <div class="card-body">
+            <div class="col-md-12">
+                <img src="./uploads/floorplan.png?v=<?php echo time() ?>" alt="Floor Plan" id="fp-img-main" class="w-100">
+            </div>
         </div>
     </div>
 </div>
