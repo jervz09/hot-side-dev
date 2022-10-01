@@ -4,7 +4,7 @@
     require_once("../controllers/db_con.php");
     include("head_admin.php");
     include("helper/main.php");
-    $b = new database();
+    $db = new database();
     $tbl = "";
 ?>
 <body id="page-top">

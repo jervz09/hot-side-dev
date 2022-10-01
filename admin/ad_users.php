@@ -22,8 +22,8 @@
                     </thead>
                     <tbody>
                         <?php
-                            $b->select("users","*","role_id = 1");
-                            $result = $b->sql;
+                            $db->select("users","*","role_id = 1");
+                            $result = $db->sql;
                             if ($result->num_rows > 0) {
                             // output data of each row
                             while ($row = mysqli_fetch_assoc($result)) {

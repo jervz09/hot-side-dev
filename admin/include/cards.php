@@ -44,7 +44,14 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Reserved Tables Today</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                                $db->select("reservation_list","count(*) as count");
+                                $result = $db->sql;
+                                $row = mysqli_fetch_assoc($result)['count'];
+                                echo $row;
+                            ?>
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-table fa-2x text-gray-300"></i>
@@ -62,7 +69,14 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 No. of Users</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php
+                                $db->select("users","count(*) as count");
+                                $result = $db->sql;
+                                $row = mysqli_fetch_assoc($result)['count'];
+                                echo $row;
+                            ?>
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>

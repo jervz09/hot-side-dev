@@ -29,12 +29,12 @@
                         </tr>
                     </tfoot> -->
                     <tbody>
-                        <?php 
-                            $b->select("users","*");
-                            $result = $b->sql;
+                        <?php
+                            $db->select("users","*");
+                            $result = $db->sql;
                             if ($result->num_rows > 0) {
                             // output data of each row
-                            while ($row = mysqli_fetch_assoc($result)) { 
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 $role = ($row['role_id'] == '1') ? "Admin" : "User";
                                 echo "<tr>
                                         <td class ='align-center p-1'>" . $row["username"] . "</td>
