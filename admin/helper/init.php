@@ -4,7 +4,7 @@ Class Actions {
     public $que;
     private $servername='localhost';
     private $username='root';
-    private $password='root';
+    private $password='';
     private $dbname='hot-side';
     private $result=array();
     private $mysqli='';
