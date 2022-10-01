@@ -1,0 +1,59 @@
+CREATE DATABASE  IF NOT EXISTS `hot-side` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `hot-side`;
+-- MariaDB dump 10.19  Distrib 10.4.26-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: hot-side
+-- ------------------------------------------------------
+-- Server version	10.4.26-MariaDB-1:10.4.26+maria~ubu1804-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `table_list`
+--
+
+DROP TABLE IF EXISTS `table_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `table_list` (
+  `table_id` int(11) NOT NULL AUTO_INCREMENT,
+  `table_no` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `coordinates` text NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_delete` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`table_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `table_list`
+--
+
+LOCK TABLES `table_list` WRITE;
+/*!40000 ALTER TABLE `table_list` DISABLE KEYS */;
+INSERT INTO `table_list` VALUES (1,1,'Table No 1','Good for 3 person','0.7762669962917181, 0.4298245614035088, 0.8817470127729707, 0.5797448165869219',0,'2022-10-01 08:33:14',0),(2,2,'Table No 2','VIP','0.7779151215492377, 0.75518341307815, 0.8817470127729707, 0.9146730462519936',1,'2022-10-01 08:59:11',0),(3,3,'Table No 3','Good For 2','0.5436241610738255, 0.7647527910685805, 0.6554809843400448, 0.9082934609250398',1,'2022-10-01 11:15:37',0);
+/*!40000 ALTER TABLE `table_list` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-10-02  0:56:59
