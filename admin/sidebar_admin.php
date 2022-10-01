@@ -23,6 +23,20 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
+        Reservation
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="index.php?page=reserved_list">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Reservation List</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
         Menu
     </div>
 
