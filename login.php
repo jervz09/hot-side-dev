@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php include('head.php')?>
-  
+
   <link rel="stylesheet" href="css/login_style.css">
   <body>
     <!-- Preloader Start -->
@@ -14,11 +14,10 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 text-black font-cursive">
-                 
+
           <div class="row">
                 <div class="col-sm-3">
                   <img class="small-logo" src="img/core-img/black-logo.png" alt="" width="80px">
-                    <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
                 </div>
 
                 <div class="col-sm-3">
@@ -27,23 +26,23 @@
             </div>
 
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
-              <form action="login.php" method="post"> 
-
-              <?php if (count($errors) > 0): ?> 
-                <div class="alert alert-danger error-message"> 
-                  <?php foreach ($errors as $error): ?> 
-                  <li> 
-                    <?php echo $error; ?> 
-                  </li> 
-                  <?php endforeach;?> 
-                </div> 
-              <?php endif;?> 
+              <form action="login.php" method="post" autocomplete="OFF">
+              <!-- Display if exists error. or  other msg alert-->
+              <?php if (count($errors) > 0): ?>
+                <div class="alert alert-danger error-message">
+                  <?php foreach ($errors as $error): ?>
+                  <li>
+                    <?php echo $error; ?>
+                  </li>
+                  <?php endforeach;?>
+                </div>
+              <?php endif;?>
                 <div class="form-outline mb-4">
-                  <input name="username" type="email" id="email" class="form-control form-control-lg" />
+                  <input name="username" type="email" id="email" class="form-control form-control-lg" required />
                   <label class="form-label" for="email">Email address</label>
                 </div>
                 <div class="form-outline mb-4">
-                  <input name="password" type="password" id="password" class="form-control form-control-lg" />
+                  <input name="password" type="password" id="password" class="form-control form-control-lg" required/>
                   <label class="form-label" for="password">Password</label>
                 </div>
                 <div class="pt-1 mb-4">
@@ -63,7 +62,7 @@
         </div>
       </div>
     </section>
-    
+
     <?php include('js_import.php')?>
   </body>
 </html>

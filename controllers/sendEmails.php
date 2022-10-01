@@ -2,6 +2,15 @@
 require_once './vendor/autoload.php';
 
 // Create the Transport
+/*
+ * Example:
+ * <code>
+ * $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'tls'))
+ *   ->setAuthMode('XOAUTH2')
+ *   ->setUsername('YOUR_EMAIL_ADDRESS')
+ *   ->setPassword('YOUR_ACCESS_TOKEN');
+ * </code>
+ */
 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
     ->setUsername("hotsiderestobar@gmail.com") //official email
     ->setPassword("qysjhgunwmyfqqda"); //generated token password from gmail

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php include('head.php')?>
-  
+
   <link rel="stylesheet" href="css/login_style.css">
   <body>
     <!-- Preloader Start -->
@@ -27,20 +27,19 @@
             </div>
 
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
-              <form action="register.php" method="post"> 
+              <form action="register.php" method="post" autocomplete="OFF">
 
-              <?php if (count($errors) > 0): ?> 
-                <div class="alert alert-danger error-message"> 
-                  <?php foreach ($errors as $error): ?> 
-                  <li> 
-                    <?php echo $error; ?> 
-                  </li> 
-                  <?php endforeach;?> 
-                </div> 
-              <?php endif;?> 
+              <!-- Display if exists error. or  other msg alert-->
+              <?php if (count($errors) > 0): ?>
+                <div class="alert alert-danger error-message">
+                  <?php foreach ($errors as $error): ?>
+                  <li>
+                    <?php echo $error; ?>
+                  </li>
+                  <?php endforeach;?>
+                </div>
+              <?php endif;?>
 
-                
-              
                 <div class="form-outline mb-4">
                   <input name="username" type="text" id="username" class="form-control form-control-lg" />
                   <label class="form-label" for="username">Username</label>
@@ -71,7 +70,7 @@
         </div>
       </div>
     </section>
-    
+
     <?php include('js_import.php')?>
   </body>
 </html>

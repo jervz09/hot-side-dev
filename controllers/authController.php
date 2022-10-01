@@ -24,9 +24,13 @@ if (isset($_POST['signup-btn'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
+
     // $token = bin2hex(random_bytes(50)); // generate unique token
-    $otp = random_int(100000, 999999);
+
+    $otp = random_int(100000, 999999); // Example: return 192345
+
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
+    // Example Encrypt : $2y$10$MOb52LbEqPoxWs6c9EhnHOW18eGQT3WNgU7xpTa2wBn.NsUUFCSZS
 
     // Check if email already exists
     $sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
@@ -40,6 +44,7 @@ if (isset($_POST['signup-btn'])) {
         $stmt = $conn->prepare($query);
         $stmt->bind_param('ssss', $username, $email, $otp, $password);
         $result = $stmt->execute();
+        printf("Error: %s.\n", $stmt->error);
 
         if ($result) {
             $user_id = $stmt->insert_id;
@@ -54,9 +59,10 @@ if (isset($_POST['signup-btn'])) {
             $_SESSION['verified'] = false;
             $_SESSION['message'] = 'You are logged in!';
             $_SESSION['type'] = 'alert-success';
-            // redirect index.php
-            header('location: index.php');
+            // redirect verify_checker.php
+            header('location: verify_checker.php');
         } else {
+            $_errors['msg'] = "Error";
             $_SESSION['error_msg'] = "Database error: Could not register user";
         }
     }
@@ -71,14 +77,14 @@ if (isset($_POST['login-btn'])) {
     if (empty($_POST['password'])) {
         $errors['password'] = 'Password required';
     }
-    
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (count($errors) === 0) {
         $query = "SELECT * FROM users WHERE username=? OR email=? LIMIT 1";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('ss', $username, $username);
+        $stmt->bind_param('ss', $username, $username); // ss means `String String`
         if ($stmt->execute()) {
             $result = $stmt->get_result();
             $user = $result->fetch_assoc();
