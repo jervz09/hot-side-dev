@@ -16,18 +16,18 @@
                         <span class="labels" data-on="ON" data-off="OFF" id="draw"></span>
                     </label>
                     <!-- <button class="btn btn-primary rounded-0" id="draw"> Draw to Map Table</button> -->
-                    <button class="btn btn-primary rounded-0 d-none" id="create_table"> Create Table</button>
-                    <button class="btn btn-dark rounded-0 d-none" id="cancel"> Cancel</button>
+                    <button class="btn btn-primary d-none" id="create_table"> Create Table</button>
+                    <button class="btn btn-dark d-none" id="cancel"> Cancel</button>
                   </div>
                 </div>
-                <div id="fp-canvas-container">
+                <div id="fp-canvas-container" class="box-shadow-hover">
                   <img src="./uploads/floorplan.png" alt="Floor Plan" class='fp-img' id="fp-img" usemap="#fp-map">
                   <map name="fp-map" id="fp-map" class=""></map>
                   <canvas class="fp-canvas d-none" id="fp-canvas"></canvas>
                 </div>
               </div>
               <div class="col-md-5">
-                <table class="table table-hover table-striped table-bordered">
+                <table class="table table-hover table-striped table-bordered box-shadow-hover">
                   <colgroup>
                     <col width="10%">
                     <col width="75%">
@@ -39,7 +39,7 @@
                       <th class="text-center pl-0 pr-30 p-2">Action</th>
                     </tr>
                   </thead>
-                  <tbody> <?php 
+                  <tbody> <?php
                     $sql = "SELECT * FROM `table_list` order by table_no asc";
                     $qry = $conn->query($sql);
                     $tbl = array();
@@ -59,23 +59,18 @@
                             Action
                         </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item edit_data" data-id='
-                                    <?php echo $row['table_id'] ?>' href="javascript:void(0)">Edit </a>
-                                <a class="dropdown-item delete_data" data-id='
-                                    <?php echo $row['table_id'] ?>' data-name='
-                                    <?php echo $row['table_no']." - ".$row['name'] ?>' href="javascript:void(0)">Delete </a>
+                                <a class="dropdown-item edit_data" data-id='<?php echo $row['table_id'] ?>' href="javascript:void(0)">Edit </a>
+                                <a class="dropdown-item delete_data" data-id='<?php echo $row['table_id'] ?>' data-name='
+                                    <?php echo $row['name'] ?>' href="javascript:void(0)">Delete </a>
                             </div>
                         </div>
                       </th>
                     </tr> <?php endwhile; ?> </tbody>
                 </table>
               </div>
-              <!-- <a href="reservation.html" class="btn palatin-btn">Make a Reservation</a> -->
             </div>
           </div>
         </div>
       </div>
 </div>
 
-    <!-- <a href="reservation.html" class="btn palatin-btn">Make a Reservation</a> -->
-    

@@ -8,7 +8,7 @@
     <form action="" id="fp-form">
         <div class="form-group">
             <label for="fp" class="control-label">Floor Plan Image</label>
-            <input type="file" name="fp" class="form-control form-control-sm rounded-0" id="fp" onchange="readURL(this)" accept="image/png, image/jpeg, image/jpg" required>
+            <input type="file" name="fp" class="form-control form-control-sm p-1x" id="fp" onchange="readURL(this)" accept="image/png, image/jpeg, image/jpg" required>
         </div>
         <div class="form-group text-center">
             <img src="./uploads/floorplan.png" alt="Floor Plan Image" id="img-fp">
@@ -35,10 +35,10 @@
             var _this = $(this)
             var _el = $('<div>')
                 _el.addClass('pop_msg')
-            $('#uni_modal button').attr('disabled',true)
-            $('#uni_modal button[type="submit"]').text('submitting form...')
+            $('#universal_modal button').attr('disabled',true)
+            $('#universal_modal button[type="submit"]').text('submitting form...')
             $.ajax({
-                url:'./actions.php?a=save_floorplan',
+                url:'././helper/init.php?a=save_floorplan',
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,
@@ -52,13 +52,13 @@
                     _el.text("An error occurred.")
                     _this.prepend(_el)
                     _el.show('slow')
-                     $('#uni_modal button').attr('disabled',false)
-                     $('#uni_modal button[type="submit"]').text('Save')
+                     $('#universal_modal button').attr('disabled',false)
+                     $('#universal_modal button[type="submit"]').text('Save')
                 },
                 success:function(resp){
                     if(resp.status == 'success'){
                         _el.addClass('alert alert-success')
-                        $('#uni_modal').on('hide.bs.modal',function(){
+                        $('#universal_modal').on('hide.bs.modal',function(){
                             location.reload()
                         })
                         if("<?php echo isset($department_id) ?>" != 1)
@@ -71,8 +71,8 @@
                     _el.hide()
                     _this.prepend(_el)
                     _el.show('slow')
-                     $('#uni_modal button').attr('disabled',false)
-                     $('#uni_modal button[type="submit"]').text('Save')
+                     $('#universal_modal button').attr('disabled',false)
+                     $('#universal_modal button[type="submit"]').text('Save')
                 }
             })
         })

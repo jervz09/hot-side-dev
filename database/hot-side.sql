@@ -1,3 +1,10 @@
+use `hot-side`;
+DROP TABLE contact_list;
+DROP TABLE reservation_list;
+DROP TABLE role_list;
+DROP TABLE table_list;
+DROP TABLE users;
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/

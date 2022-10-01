@@ -20,21 +20,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <!-- <tfoot>
-                        <tr>
-                            <th>Type</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot> -->
                     <tbody>
-                        <?php 
+                        <?php
                             $b->select("users","*","role_id = 1");
                             $result = $b->sql;
                             if ($result->num_rows > 0) {
                             // output data of each row
-                            while ($row = mysqli_fetch_assoc($result)) { 
+                            while ($row = mysqli_fetch_assoc($result)) {
                                 $role = ($row['role_id'] == '1') ? "Admin" : "User";
                                 echo "<tr>
                                         <td class ='align-center p-1'>" . $row["username"] . "</td>

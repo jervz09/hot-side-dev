@@ -11,19 +11,17 @@
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"> -->
 
 <!-- Custom styles for this template-->
 <!-- Custom styles for this page -->
 <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-<link href="../css/hotside-admin.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/php_style.css" rel="stylesheet">
 
 <link rel="stylesheet" href="../vendor/select2/css/select2.min.css">
 <link rel="stylesheet" href="../vendor/summernote/summernote-lite.css">
+<link href="../css/hotside-admin.min.css" rel="stylesheet">
 
 
 </head>
@@ -37,6 +35,6 @@
 }
 .bg-gradient-primary{
     background-color:#2b898b;
-    background-image: linear-gradient(180deg,#2b898b 10%,#091e42 100%);
+    background-image: linear-gradient(180deg,#2b898b 10%,#0f4748 100%);
 }
 </style>

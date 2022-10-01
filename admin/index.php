@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
     require_once("../controllers/db_con.php");
     include("head_admin.php");
     include("helper/main.php");
@@ -8,7 +8,7 @@
     $tbl = "";
 ?>
 <body id="page-top">
-<!-- <?php include('../php/preloader.php')?> -->
+<?php include('../php/preloader.php')?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -36,19 +36,6 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                    <p>
-                    <a href="#">
-                        Copyright &copy; <script>document.write(new Date().getFullYear());</script>
-                    </p>
-                    </div>
-                </div>
-            </footer> -->
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -60,27 +47,8 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <?php include("unimodal.php")?>
+    <?php include("modal_container.php")?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.js"></script>
@@ -94,36 +62,54 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin-2.min.js"></script>
-    <!-- <script src="../js/active.js"></script> -->
-    <!-- <script src="../js/plugins/plugins.js"></script> -->
+    <script src="../js/active.js"></script>
 
     <!-- Page level plugins -->
     <script src="../vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../js/chartjs/chart-area-demo.js"></script>
-    <script src="../js/chartjs/chart-pie-demo.js"></script>
     <!-- Page level plugins -->
     <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
+
     <!-- Page level custom scripts -->
     <script src="../js/chartjs/datatables-demo.js"></script>
     <script src="../js/script.js"></script>
-    
-    <script>
-        
-        $(function(){
-            $('#update_fp').click(function(){
-                uni_modal('Update Floor Plan Image',"updating_fplan.php")
-            })
 
+    <!-- <script>
+        $('#logout_session').click(function(){
+            $('#logoutModal button').attr('disabled',true)
+            $.ajax({
+                url:'././helper/init.php?a=logout',
+                method:'POST',
+                dataType:'JSON',
+                error:err=>{
+                    console.log(err)
+                    alert("an error occurred.")
+                    $('#confirm_modal button').attr('disabled',false)
+                },
+                success:function(resp){
+                    if(resp.status == 'success'){
+                        location.reload()
+                    }else{
+                        alert("An error occurred.")
+                        $('#confirm_modal button').attr('disabled',false)
+                    }
+                }
+            })
         })
-        
-    </script>
-    <?php 
-        if($page == "t_settings"){
-            include('manage_table_js.php');
+    </script> -->
+    <?php
+        switch($page){
+            case 't_settings':
+                include('./include/manage_table_js.php');
+            break;
+            case 'f_plan':
+                include('./include/f_plan_js.php');
+            break;
+            default:
+                include('./include/sales_area_graph.php');
+                include('./include/menu_type_pie.php');
+            break;
         }
     ?>
 

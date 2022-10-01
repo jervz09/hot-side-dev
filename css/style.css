@@ -2304,3 +2304,17 @@ img {
   .toggle input:checked~.labels::before {
 	opacity: 1;
   }
+
+  .box-shadow-hover:hover{
+	box-shadow: #505050 0 0 10px 0px;
+    -webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+  }
+
+  .text-bold{
+	font-weight: bold;
+  }
+
+  .p-1x{
+	padding: 1px !important;
+  }

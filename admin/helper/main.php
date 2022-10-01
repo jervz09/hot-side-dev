@@ -1,9 +1,9 @@
-<?php 
+<?php
     class database{
         public $que;
         private $servername='localhost';
         private $username='root';
-        private $password='';
+        private $password='root';
         private $dbname='hot-side';
         private $result=array();
         private $mysqli='';
@@ -25,7 +25,7 @@
             $args = array();
 
             foreach ($para as $key => $value) {
-                $args[] = "$key = '$value'"; 
+                $args[] = "$key = '$value'";
             }
 
             $sql="UPDATE  $table SET " . implode(',', $args);
