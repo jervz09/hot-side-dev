@@ -7,7 +7,6 @@
 <div class="container-fluid">
     <form action="" id="fp-form">
         <div class="form-group">
-            <label for="fp" class="control-label">Floor Plan Image</label>
             <input type="file" name="fp" class="form-control form-control-sm p-1x" id="fp" onchange="readURL(this)" accept="image/png, image/jpeg, image/jpg" required>
         </div>
         <div class="form-group text-center">
