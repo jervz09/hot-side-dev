@@ -1,3 +1,14 @@
+<style>
+  area.fw-bolder.text-muted {
+    background-color: #1383854d;
+  }
+  area.fw-bolder.text-muted:hover {
+    color: #256e6e !important;
+    box-shadow: 1px 1px 3px 0px #032e2e;
+    -webkit-transition-duration: 500ms;
+	  transition-duration: 500ms;
+  }
+</style>
 <div class="container-fluid">
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
