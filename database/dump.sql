@@ -60,4 +60,20 @@ CREATE TABLE IF NOT EXISTS `hot-side`.`menu_list` (
     `is_delete` INTEGER NOT NULL DEFAULT 0
 );
 
+CREATE TABLE `menu_variation` (
+  `variation_id`  INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `menu_id` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_delete` INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE `sales` (
+  `sales_id`  INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `menu_id` INT(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_delete` INTEGER NOT NULL DEFAULT 0
+);
+
 
