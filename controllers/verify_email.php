@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = new mysqli('localhost', 'root', '', 'hot-side');
+require_once('db_con.php');
 
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
