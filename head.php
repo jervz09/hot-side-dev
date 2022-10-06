@@ -1,3 +1,20 @@
+<?php
+    include("./controllers/db_con.php");
+    
+    $reserved_page = $_SERVER['REQUEST_URI'] == "/hotside-dev/reservation.php";
+    $index_page = "index.php";
+    $calendar_page = "#calendar_area";
+    $about_us_page = "#about_us_area";
+    $contact_page = "#contact_area";
+
+    if($reserved_page){
+        $index_page = "index.php";
+        $calendar_page = "index.php#calendar_area";
+        $about_us_page = "index.php#about_us_area";
+        $contact_page = "index.php#contact_area";
+    }
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">

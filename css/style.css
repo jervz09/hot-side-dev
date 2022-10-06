@@ -6,9 +6,12 @@
 @import url(./owl.carousel.min.css);
 @import url(./animate.css);
 @import url(./magnific-popup.css);
-@import url(./font-awesome.min.css);
+@import url(../vendor/fontawesome-free/css/all.min.css);
 @import url(./nice-select.css);
 @import url(./travel-icon.css);
+@import url(./calendar.css);
+@import url(./theme.css);
+@import url(./spinner.css);
 
 @font-face {
 	font-family: 'FuturaLT-Book';
@@ -2318,3 +2321,24 @@ img {
   .p-1x{
 	padding: 1px !important;
   }
+
+  #calendar {
+    min-height: 700px;
+    min-width: 375px;
+    position: relative;
+  }
+
+td.details_tbl{
+    padding: 2px 1px 2px 5px !important;
+}
+
+.btn-group-xs>.btn, .btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+li.inside {
+    height: 52px;
+}

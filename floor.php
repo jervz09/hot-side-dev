@@ -5,10 +5,14 @@
     #calendar_area {
       padding-top: 160px;
     }
+    .calendar .days li {
+      min-height: 0;
+      cursor: pointer;
+    }
   </style>
   <body>
     <!-- Preloader Start -->
-    <?php include('php/preloader.php')?>
+    <!-- <?php include('php/preloader.php')?> -->
     <!-- Preloader End -->
 
     <!-- ##### Header Area Start ##### -->
@@ -16,7 +20,7 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Calendar Area Start ##### -->
-    <?php include('php/event_calendar.php')?>
+    <?php include('php/floor.php')?>
     <!-- ##### Calendar Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->

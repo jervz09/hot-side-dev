@@ -31,7 +31,6 @@
                     area.addClass('fw-bolder text-muted')
                     area.css({
                         'position':'absolute',
-                        // 'border':"1px solid blue",
                         'height':height+'px',
                         'width':width+'px',
                         'top':y+'px',

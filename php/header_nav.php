@@ -6,7 +6,7 @@
         <!-- Menu -->
         <nav class="classy-navbar justify-content-between" id="palatinNav">
           <!-- Nav brand -->
-          <a href="index.html" class="nav-brand">
+          <a href="index.php" class="nav-brand">
             <img src="img/core-img/logo.png" alt="" style="
                         width: 80px;
                         margin: 0px 0px 0px 65px;
@@ -33,21 +33,22 @@
             <div class="classynav">
               <ul>
                 <li>
-                  <a href="#header_area">Home</a>
+                  <a href="<?php echo $index_page;?>">Home</a>
                 </li>
                 <li>
-                  <a href="#calendar_area">Calendar</a>
+                  <a href="<?php echo $calendar_page;?>">Calendar</a>
                 </li>
                 <li>
-                  <a href="#about_us_area">About Us</a>
+                  <a href="<?php echo $about_us_page;?>">About Us</a>
                 </li>
                 <li>
-                  <a href="#contact_area">Contact</a>
+                  <a href="<?php echo $contact_page;?>">Contact</a>
                 </li>
               </ul>
               <!-- Button -->
               <div class="menu-btn">
-                <a href="#" class="btn palatin-btn" href="#" data-toggle="modal" data-target="#logoutModal">Make a Reservation</a>
+                <!-- <a href="#calendar" class="btn palatin-btn" data-toggle="modal" data-target="#reservation_modal">Make a Reservation</a> -->
+                <a href="events.php" class="btn palatin-btn">My Reservation</a>
               </div>
             </div>
             <!-- Nav End -->
