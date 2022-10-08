@@ -22,7 +22,8 @@
     <!-- Add the evo-calendar.js for.. obviously, functionality! -->
     <script src="vendor/event-calendar-evo/evo-calendar/js/evo-calendar.min.js"></script>
 
-    <!-- Calendar Data js -->
+    <script src="vendor/alertify/alertify.js"></script>
+
     <script>
 
     let s_table = ""
@@ -79,4 +80,14 @@
             map_tbls()
         })
     })
+
+    $('button.success').click(function() {
+        // alertify.alert('Alert Message!', function(){ alertify.success('Ok'); });
+        alertify.success('Ok');
+    });
+
+    $('button.alert').click(function() {
+        // alertify.set({ delay: 1700 });
+        alertify.error("Error notification");  
+    });
     </script>

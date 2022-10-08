@@ -37,4 +37,6 @@
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.css" />
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.midnight-blue.css" />
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/alertify/css/alertify.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/semantic.min.css" /> -->
 </head>
