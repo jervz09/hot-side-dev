@@ -5,7 +5,7 @@
       <div class="about-text">
         <div class="section-heading m-0">
           <div class="line-"></div>
-          <h2>Calendar</h2>
+          <h2>Reservation</h2>
         </div>
       </div>
     </div>
@@ -67,14 +67,14 @@ $tbl = array();
             </div>
         </div>
     </div>
-    <div class="col-6 mt-3">
+    <div class="col-4 mt-3">
+        <div id="datetimepicker12"></div>
+    </div>
+    <div class="col-2 mt-3">
         <div class="row">
-            <div id="calendar">
-            </div>
+            <button id="to_reserve" class="btn palatin-btn">Reserve</button>
         </div>
     </div>
   </div>
 </div>
 </section>
-
-

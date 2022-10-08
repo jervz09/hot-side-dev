@@ -35,6 +35,7 @@
     <?php include('js_import.php')?>
 
     <script>
+
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -43,26 +44,28 @@
           });
         });
       });
-      // $("#calendar").evoCalendar({
-      //   theme: 'Midnight Blue',
-      //   calendarEvents: [
-      //     {
-      //       id: 'bHay68s', // Event's ID (required)
-      //       name: "New Year", // Event name (required)
-      //       date: "Octover/3/2022", // Event date (required)
-      //       type: "holiday", // Event type (required)
-      //       everyYear: true // Same event every year (optional)
-      //     },
-      //     {
-      //       name: "Vacation Leave",
-      //       badge: "02/13 - 02/15", // Event badge (optional)
-      //       date: ["Octover/4/2022", "Octover/7/2022"], // Date range
-      //       description: "Vacation leave for 3 days.", // Event description (optional)
-      //       type: "event",
-      //       color: "#63d867" // Event custom color (optional)
-      //     }
-      //   ]
-      // });
     </script>
+
+   <script type="text/javascript">
+      $(function () {
+          $('#datetimepicker12').datetimepicker({
+              inline: true,
+              sideBySide: true
+          });
+
+          $('#to_reserve').on("click", function(e){
+            timepicker_hour = $('.timepicker-hour').text()
+            timepicker_minute = $('.timepicker-minute').text()
+            togglePeriod=$('[data-action="togglePeriod"]').text()
+            if(!s_table){
+              alert("Select table is required");
+            }else{
+              s_date = $('td.active').text()
+              alert(`selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`)
+            }
+          });
+      });
+   </script>
+
   </body>
 </html>

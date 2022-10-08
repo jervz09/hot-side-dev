@@ -12,15 +12,17 @@ export const Calendar = (id) => ({
     onDateClick(e) {
         StopEventPropagation(e);
         const el = e.srcElement;
-        alert(el.textContent); 
+        // alert(el.textContent); 
         console.log('click'); 
         console.log(el);
+        el.style.backgroundColor = 'green';
     },
     onEventClick(e) {
         StopEventPropagation(e);
         const el = e.srcElement;
         alert(el.textContent); 
         console.log('click'); 
+        alert("event")
         console.log(el); 
     },
     bindData(events) {
@@ -32,7 +34,7 @@ export const Calendar = (id) => ({
     },
     renderEvents() {    
         if (!this.data || this.data.length<=0) return;
-        const lis = this.el.querySelectorAll(`.${this.id} .days .inside`);
+        const lis = this.el.querySelectorAll(`.inside`);
         let y = this.el.querySelector('.month-year .year').innerText;
         let m = lis[0].querySelector('.date').getAttribute('month');
         lis.forEach((li)=>{
@@ -84,7 +86,7 @@ export const Calendar = (id) => ({
             const d = moment().year(this.y).month(this.m).date(1); //first date of month
             const now = moment();
             const frgCal = document.createRange().createContextualFragment(`
-            <div class="calendar noselect p-5">
+            <div class="calendar noselect pl-5 pr-5">
                 <div class="month-year-btn d-flex justify-content-center align-items-center mb-2">
                     <a class="prev-month"><i class="fas fa-caret-left fa-lg m-3"></i></a>
                     <div class="month-year d-flex justify-content-center align-items-center">
@@ -107,16 +109,17 @@ export const Calendar = (id) => ({
             const isSameDate = (d1, d2) => d1.format('YYYY-MM-DD') == d2.format('YYYY-MM-DD');
             let frgWeek;
             d.day(-1); //move date to the oldest Sunday, so that it lines up with the calendar layout
+            let _today = d
             for(let i=0; i<5; i++){ //loop thru 35 boxes on the calendar month
                 frgWeek = document.createRange().createContextualFragment(`
                 <ol class="days list-unstyled" week="${d.week()}">
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
-                    <li class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
+                    <li id="${_today.format('YYYY-MM-DD')}" class="${d.add(1,'d'),this.m != d.month()?' outside':'inside'}${isSameDate(d,now)?' today':''}"><div month="${d.month()}" class="date">${d.format('D')}</div><div class="events"></div></li>
                 </ol>
                 `);
                 frgCal.querySelector('.calendar').appendChild(frgWeek);

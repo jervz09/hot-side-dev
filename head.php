@@ -1,6 +1,8 @@
 <?php
     include("./controllers/db_con.php");
-    
+
+    $reserved_disp = "";
+
     $reserved_page = $_SERVER['REQUEST_URI'] == "/hotside-dev/reservation.php";
     $index_page = "index.php";
     $calendar_page = "#calendar_area";
@@ -12,6 +14,10 @@
         $calendar_page = "index.php#calendar_area";
         $about_us_page = "index.php#about_us_area";
         $contact_page = "index.php#contact_area";
+    }
+
+    if ($_SERVER['REQUEST_URI'] == "/hotside-dev/floor.php"){
+        $reserved_disp = 'style="visibility: hidden;"';
     }
 ?>
 
@@ -30,4 +36,5 @@
     <!-- Add the evo-calendar.css for styling -->
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.css" />
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.midnight-blue.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 </head>
