@@ -33,8 +33,4 @@
 	font-weight: normal;
 	font-style: normal;
 }
-.bg-gradient-primary{
-    background-color:#2b898b;
-    background-image: linear-gradient(180deg,#2b898b 10%,#0f4748 100%);
-}
 </style>

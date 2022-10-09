@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'sendEmails.php';
 $username = "";
 $email = "";
@@ -15,6 +14,15 @@ if (isset($_POST['signup-btn'])) {
     if (empty($_POST['email'])) {
         $errors['email'] = 'Email required';
     }
+    if (empty($_POST['first_name'])) {
+        $errors['first_name'] = 'First Name required';
+    }
+    if (empty($_POST['last_name'])) {
+        $errors['last_name'] = 'Last Name required';
+    }
+    if (empty($_POST['contact_no'])) {
+        $errors['contact_no'] = 'Contact Number required';
+    }
     if (empty($_POST['password'])) {
         $errors['password'] = 'Password required';
     }
@@ -24,6 +32,9 @@ if (isset($_POST['signup-btn'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $contact_no = $_POST['contact_no'];
 
     // $token = bin2hex(random_bytes(50)); // generate unique token
 
@@ -40,9 +51,9 @@ if (isset($_POST['signup-btn'])) {
     }
 
     if (count($errors) === 0) {
-        $query = "INSERT INTO users SET username=?, email=?, otp=?, password=?";
+        $query = "INSERT INTO users SET username=?, first_name=?, last_name=?, contact_no=?, email=?, otp=?, password=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('ssss', $username, $email, $otp, $password);
+        $stmt->bind_param('sssssss', $username, $first_name, $last_name, $contact_no, $email, $otp, $password);
         $result = $stmt->execute();
         printf("Error: %s.\n", $stmt->error);
 
@@ -51,16 +62,18 @@ if (isset($_POST['signup-btn'])) {
             $stmt->close();
 
             // send verification email to user
-            sendVerificationEmail($email, $otp);
+            // sendVerificationEmail($email, $otp);
             // Saving details on session
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
+            $_SESSION['first_name'] = $first_name;
+            $_SESSION['last_name'] = $last_name;
             $_SESSION['email'] = $email;
             $_SESSION['verified'] = false;
             $_SESSION['message'] = 'You are logged in!';
             $_SESSION['type'] = 'alert-success';
             // redirect verify_checker.php
-            header('location: verify_checker.php');
+            header('location: index.php');
         } else {
             $_errors['msg'] = "Error";
             $_SESSION['error_msg'] = "Database error: Could not register user";
@@ -98,7 +111,7 @@ if (isset($_POST['login-btn'])) {
                 $_SESSION['verified'] = $user['verified'];
                 $_SESSION['message'] = 'You are logged in!';
                 $_SESSION['type'] = 'alert-success';
-                header('location: verify_checker.php');
+                header('location: index.php');
                 exit(0);
 
             } else { // if password does not match
