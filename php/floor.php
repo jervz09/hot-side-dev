@@ -1,4 +1,4 @@
-<section id="calendar_area" class="about-us-area">
+<section id="calendar_area" class="about-us-area mb-10">
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-12">
@@ -68,17 +68,17 @@ $tbl = array();
         </div>
     </div>
     <div class="col-4 mt-3">
-        <div id="datetimepicker12"></div>
+        <div id="datetime_picker_reserve"></div>
     </div>
     <div class="col-2 mt-3">
         <div class="row">
             <button id="to_reserve" class="btn palatin-btn">Reserve</button>
-            <div>
+            <!-- <div>
                 <button class="button large round success">Success notification</button>
             </div>
             <div>
                 <button class="button large round alert">Error notification</button>
-            </div>
+            </div> -->
         </div>
     </div>
   </div>

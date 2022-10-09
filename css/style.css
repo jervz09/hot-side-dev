@@ -539,7 +539,7 @@ img {
 	position: relative;
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.63);
-	border-bottom: 2px solid rgba(203, 134, 112, 0.63);
+	border-bottom: 2px solid rgba(112, 197, 203, 0.63);
 }
 
 .header-area .palatin-main-menu .classy-nav-container {
@@ -550,7 +550,7 @@ img {
 	-webkit-transition-duration: 300ms;
 	transition-duration: 300ms;
 	background-color: transparent;
-	height: 150px;
+	/* height: 150px; */
 	padding: 0;
 }
 
@@ -674,8 +674,8 @@ img {
 	top: 0;
 	left: 0;
 	z-index: 9999;
-	background-color: #000;
-	box-shadow: 0 5px 50px 15px rgba(0, 0, 0, 0.2);
+	background-color: #393e46;
+	box-shadow: 0 5px 50px 15px rgb(0 0 0 / 20%);
 }
 
 .header-area .is-sticky .palatin-main-menu .classy-navbar {
@@ -2323,7 +2323,7 @@ img {
   }
 
   #calendar {
-    min-height: 700px;
+    /* min-height: 700px; */
     min-width: 375px;
     position: relative;
   }

@@ -3,12 +3,12 @@
   <?php include('head.php')?>
   <style>
     #calendar_area {
-      padding-top: 160px;
+      padding: 120px 0;
     }
-    .calendar .days li {
+    /* .calendar .days li {
       min-height: 0;
       cursor: pointer;
-    }
+    } */
   </style>
   <body>
     <!-- Preloader Start -->
@@ -34,6 +34,8 @@
 
     <?php include('js_import.php')?>
 
+    <?php include('php/reserve_js.php')?>
+
     <script>
 
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -48,7 +50,7 @@
 
    <script type="text/javascript">
       $(function () {
-          $('#datetimepicker12').datetimepicker({
+          $('#datetime_picker_reserve').datetimepicker({
               inline: true,
               sideBySide: true
           });

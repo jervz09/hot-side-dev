@@ -57,14 +57,15 @@
           {
             id: 'bHay68s', // Event's ID (required)
             name: "New Year", // Event name (required)
-            date: "January/1/2020", // Event date (required)
+            date: "January/1/2022", // Event date (required)
             type: "holiday", // Event type (required)
             everyYear: true // Same event every year (optional)
           },
           {
+            id: 'bHa2y68s', // Event's ID (required)
             name: "Vacation Leave",
             badge: "02/13 - 02/15", // Event badge (optional)
-            date: ["February/13/2020", "February/15/2020"], // Date range
+            date: ["February/13/2022", "February/15/2022"], // Date range
             description: "Vacation leave for 3 days.", // Event description (optional)
             type: "event",
             color: "#63d867" // Event custom color (optional)

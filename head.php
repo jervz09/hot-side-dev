@@ -1,23 +1,22 @@
 <?php
     include("./controllers/db_con.php");
 
+    //setup for default value
     $reserved_disp = "";
-
-    $reserved_page = $_SERVER['REQUEST_URI'] == "/hotside-dev/reservation.php";
+    $reserved_page = $_SERVER['REQUEST_URI'] == "/hotside-dev/reserve.php";
     $index_page = "index.php";
     $calendar_page = "#calendar_area";
     $about_us_page = "#about_us_area";
     $contact_page = "#contact_area";
 
     if($reserved_page){
+        $reserved_disp = 'style="visibility: hidden;"'; //Hide btn-reservation
+
+        //redirect index(Landing Page)
         $index_page = "index.php";
         $calendar_page = "index.php#calendar_area";
         $about_us_page = "index.php#about_us_area";
         $contact_page = "index.php#contact_area";
-    }
-
-    if ($_SERVER['REQUEST_URI'] == "/hotside-dev/floor.php"){
-        $reserved_disp = 'style="visibility: hidden;"';
     }
 ?>
 
@@ -36,7 +35,8 @@
     <!-- Add the evo-calendar.css for styling -->
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.css" />
     <link rel="stylesheet" type="text/css" href="vendor/event-calendar-evo/evo-calendar/css/evo-calendar.midnight-blue.css" />
+    <!-- Datetime Picker -->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <!-- Alertify for notification -->
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/alertify.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/semantic.min.css" /> -->
 </head>

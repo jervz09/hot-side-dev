@@ -48,7 +48,7 @@
               <!-- Button -->
               <div class="menu-btn" <?=$reserved_disp?>>
                 <!-- <a href="#calendar" class="btn palatin-btn" data-toggle="modal" data-target="#reservation_modal">Make a Reservation</a> -->
-                <a href="floor.php" class="btn palatin-btn">My Reservation</a>
+                <a href="reserve.php" class="btn palatin-btn">My Reservation</a>
               </div>
             </div>
             <!-- Nav End -->

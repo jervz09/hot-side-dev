@@ -1,0 +1,53 @@
+<script>
+    var tbl = $.parseJSON('<?php echo json_encode($tbl) ?>')
+    function map_tbls(){
+        if(Object.keys(tbl).length > 0){
+
+            $('#fp-map').html('')
+
+            Object.keys(tbl).map(k=>{
+                var data = tbl[k]
+                var area = $("<area shape='rect'>")
+                    area.attr('href',"javascript:void(0)")
+                var perc = data.coordinates
+                perc = perc.replace(" ",'')
+                perc = perc.split(",")
+                var x = $('#fp-img').width() * perc[0];
+                var y = $('#fp-img').height() * perc[1];
+                var width = ($('#fp-img').width() * perc[2]) - x;
+                var height = ($('#fp-img').height() * perc[3]) - y;
+                area.attr('area-id',data.table_no)
+                area.attr('coords',x+", "+y+", "+width+", "+height)
+                area.text("#"+data.table_no)
+                area.addClass('fw-bolder text-muted')
+                area.css({
+                    'position':'absolute',
+                    // 'border':"1px solid blue",
+                    'height':height+'px',
+                    'width':width+'px',
+                    'top':y+'px',
+                    'left':x+'px',
+                    'display':'flex',
+                    'text-align':'center',
+                    'justify-content':'center',
+                    'align-items':'center',
+                })
+                $('#fp-map').append(area)
+                area.click(function(){
+                    console.log(this)
+                    // universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
+                    $("[shape='rect']").removeClass("selected-table")
+                    $(`[area-id="${data.table_no}"]`).addClass("selected-table");
+                    s_table = data.table_no
+                })
+            })
+        }
+    }
+    $(function(){
+        map_tbls()
+        $(window).on('resize',function(){
+            map_tbls()
+        })
+    })
+
+</script>
