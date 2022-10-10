@@ -1,6 +1,7 @@
 <?php
+    session_start();
     include("./controllers/db_con.php");
-
+    include('session/checker.php');
     //setup for default value
     $reserved_disp = "";
     $reserved_page = $_SERVER['REQUEST_URI'] == "/hotside-dev/reserve.php";
@@ -39,4 +40,6 @@
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <!-- Alertify for notification -->
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/alertify.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/bootstrap.css" />
+
 </head>

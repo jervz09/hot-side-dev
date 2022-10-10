@@ -29,14 +29,4 @@
     let s_table = ""
     let s_date = ""
     let timepicker_hour = timepicker_minute = ""
-
-    $('button.success').click(function() {
-        // alertify.alert('Alert Message!', function(){ alertify.success('Ok'); });
-        alertify.success('Ok');
-    });
-
-    $('button.alert').click(function() {
-        // alertify.set({ delay: 1700 });
-        alertify.error("Error notification");
-    });
     </script>

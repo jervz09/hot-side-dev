@@ -1,76 +1,95 @@
-<?php
-  include 'controllers/authController.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php include('head.php')?>
+<?php
+    session_start();
+	include 'controllers/authController.php';
+	include 'head_form.php';
+?>
 
-  <link rel="stylesheet" href="css/login_style.css">
-  <body>
-    <!-- Preloader Start -->
-    <?php include('php/preloader.php')?>
-    <!-- Preloader End -->
-    <section class="vh-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 text-black font-cursive">
+<body class="bg-gradient-primary">
 
-            <div class="row">
-                <div class="col-sm-3">
-                  <img class="small-logo" src="img/core-img/black-logo.png" alt="" width="80px">
-                    <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
-                </div>
+    <div class="container">
 
-                <div class="col-sm-3">
-                  <h3 class="form-name">Register</h3>
+        <div class="card o-hidden border-0 shadow-sm my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form action="register.php" method="post" class="user">
+                                <!-- Display if exists error. or  other msg alert-->
+                                <?php if (count($errors) > 0): ?>
+                                    <div class="alert alert-danger error-message">
+                                    <?php foreach ($errors as $error): ?>
+                                    <li>
+                                        <?php echo $error; ?>
+                                    </li>
+                                    <?php endforeach;?>
+                                    </div>
+                                <?php endif;?>
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control form-control-user focus-brand"
+                                            placeholder="Username">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" name="first_name" class="form-control form-control-user focus-brand"
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" name="last_name" class="form-control form-control-user focus-brand"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control form-control-user focus-brand"
+                                        placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="contact_no" class="form-control form-control-user focus-brand"
+                                        placeholder="Contact No">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" name="password" class="form-control form-control-user"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="passwordConf" class="form-control form-control-user"
+                                            placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                <button type="submit" name="signup-btn" class="btn btn-primary btn-user btn-block">Register Account</button>
+                                <hr>
+                            </form>
+                            <hr>
+
+                            <div class="text-center">
+                                <a class="small" href="login.php">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                 </div>
             </div>
-
-            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
-              <form action="register.php" method="post" autocomplete="OFF">
-
-              <!-- Display if exists error. or  other msg alert-->
-              <?php if (count($errors) > 0): ?>
-                <div class="alert alert-danger error-message">
-                  <?php foreach ($errors as $error): ?>
-                  <li>
-                    <?php echo $error; ?>
-                  </li>
-                  <?php endforeach;?>
-                </div>
-              <?php endif;?>
-
-                <div class="form-outline mb-4">
-                  <input name="username" type="text" id="username" class="form-control form-control-lg" />
-                  <label class="form-label" for="username">Username</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input name="email" type="email" id="email" class="form-control form-control-lg" />
-                  <label class="form-label" for="email">Email</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input name="password" type="password" id="password" class="form-control form-control-lg" />
-                  <label class="form-label" for="password">Password</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input name="passwordConf" type="password" id="passwordConf" class="form-control form-control-lg" />
-                  <label class="form-label" for="passwordConf">Confirm Password</label>
-                </div>
-                <div class="pt-1 mb-4">
-                  <button type="submit" name="signup-btn" class="btn btn-lg btn-block palatin-btn">Register</button>
-                </div>
-                  <p>Already have an account? <a href="login.php">Login</a></p>
-                </p>
-              </form>
-            </div>
-          </div>
-          <div class="col-sm-6 px-0 d-none d-sm-block">
-            <img src="img/blog-img/3.jpg" alt="Login image" class="w-100 vh-100 bg-image-left-sticky" />
-          </div>
         </div>
-      </div>
-    </section>
 
-    <?php include('js_import.php')?>
-  </body>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
 </html>

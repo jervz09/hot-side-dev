@@ -1,68 +1,89 @@
-<?php
-  include 'controllers/authController.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php include('head.php')?>
+<?php
+    session_start();
+	include 'controllers/authController.php';
+	include 'head_form.php';
+?>
 
-  <link rel="stylesheet" href="css/login_style.css">
-  <body>
-    <!-- Preloader Start -->
-    <?php include('php/preloader.php')?>
-    <!-- Preloader End -->
-    <section class="vh-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 text-black font-cursive">
+<body class="bg-gradient-primary">
 
-          <div class="row">
-                <div class="col-sm-3">
-                  <img class="small-logo" src="img/core-img/black-logo.png" alt="" width="80px">
-                </div>
+	<div class="container">
 
-                <div class="col-sm-3">
-                  <h3 class="form-name">Log in</h3>
-                </div>
-            </div>
+		<!-- Outer Row -->
+		<div class="row justify-content-center">
 
-            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
-              <form action="login.php" method="post" autocomplete="OFF">
-              <!-- Display if exists error. or  other msg alert-->
-              <?php if (count($errors) > 0): ?>
-                <div class="alert alert-danger error-message">
-                  <?php foreach ($errors as $error): ?>
-                  <li>
-                    <?php echo $error; ?>
-                  </li>
-                  <?php endforeach;?>
-                </div>
-              <?php endif;?>
-                <div class="form-outline mb-4">
-                  <input name="username" type="email" id="email" class="form-control form-control-lg" required />
-                  <label class="form-label" for="email">Email address</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input name="password" type="password" id="password" class="form-control form-control-lg" required/>
-                  <label class="form-label" for="password">Password</label>
-                </div>
-                <div class="pt-1 mb-4">
-                  <button type="submit" name="login-btn" class="btn btn-lg btn-block palatin-btn">Login</button>
-                </div>
-                <p class="small mb-5 pb-lg-2">
-                  <a class="text-muted" href="#!">Forgot password?</a>
-                </p>
-                <p>Don't have an account? <a href="register.php" class="link-info">Register here</a>
-                </p>
-              </form>
-            </div>
-          </div>
-          <div class="col-sm-6 px-0 d-none d-sm-block">
-            <img src="img/blog-img/3.jpg" alt="Login image" class="w-100 vh-100 bg-image-left-sticky" />
-          </div>
-        </div>
-      </div>
-    </section>
+			<div class="col-xl-10 col-lg-12 col-md-9">
 
-    <?php include('js_import.php')?>
-  </body>
+				<div class="card o-hidden border-0 shadow-sm my-5">
+					<div class="card-body p-0">
+						<!-- Nested Row within Card Body -->
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="p-5">
+									<div class="text-center">
+										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+									</div>
+									<form action="login.php" class="user" method="post" autocomplete="OFF">
+
+									<!-- Display if exists error. or  other msg alert-->
+									<?php if (count($errors) > 0): ?>
+										<div class="alert alert-danger error-message">
+										<?php foreach ($errors as $error): ?>
+										<li>
+											<?php echo $error; ?>
+										</li>
+										<?php endforeach;?>
+										</div>
+									<?php endif;?>
+
+										<div class="form-group">
+											<label class="form-label" for="email">Email address</label>
+											<input name="username" type="email" id="email"
+												class="form-control form-control-user focus-brand" required />
+										</div>
+										<div class="form-group">
+											<label class="form-label" for="password">Password</label>
+											<input name="password" type="password" id="password" class="form-control form-control-user focus-brand" required/>
+										</div>
+										<!-- <div class="form-group">
+											<div class="custom-control custom-checkbox small">
+												<input type="checkbox" class="custom-control-input" id="customCheck">
+												<label class="custom-control-label" for="customCheck">Remember
+													Me</label>
+											</div>
+										</div> -->
+										<button type="submit" name="login-btn" class="btn btn-primary btn-user btn-block">Login</button>
+										<hr>
+									</form>
+									<hr>
+									<div class="text-center">
+										<a class="small" href="register.php">Create an Account!</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
 </html>

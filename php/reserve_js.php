@@ -1,4 +1,28 @@
 <script>
+     $(function () {
+          $('#datetime_picker_reserve').datetimepicker({
+              inline: true,
+              sideBySide: true
+          });
+
+          $('#to_reserve').on("click", function(e){
+            timepicker_hour = $('.timepicker-hour').text()
+            timepicker_minute = $('.timepicker-minute').text()
+            togglePeriod=$('[data-action="togglePeriod"]').text()
+            if(!s_table){
+                alertify.error("Please select a table");
+            }else{
+              s_date = $('td.active').text()
+              selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
+              alertify.success(selected_msg)
+            }
+          });
+      });
+
+    $('button.success').click(function() {
+        alertify.success('Submitted. Wait for approval.');
+    });
+
     var tbl = $.parseJSON('<?php echo json_encode($tbl) ?>')
     function map_tbls(){
         if(Object.keys(tbl).length > 0){

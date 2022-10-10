@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php include('head.php')?>
+
   <style>
     #calendar_area {
       padding: 120px 0;
+    }
+    #fp-canvas-container{
+        height:50vh;
+        width:calc(100%);
+        position:relative;
+    }
+    .fp-img,.fp-canvas,.fp-canvas-2{
+        position:absolute;
+        width:calc(100%);
+        height:calc(100%);
+        top:0;
+        left:0;
+        z-index: 1;
+    }
+    #fp-map{
+        position:absolute;
+        top:0;
+        left:0;
+        z-index: 1;
+        width:calc(100%);
+        height:calc(100%);
+    }
+    .fp-canvas {
+        z-index: 2;
+        background: #0000000d;
+        cursor: crosshair;
+    }
+    #fp-map{
+        z-index: 1;
+    }
+    area:hover {
+        background: #0000004d;
+        color: #fff !important;
     }
     /* .calendar .days li {
       min-height: 0;
@@ -12,7 +46,7 @@
   </style>
   <body>
     <!-- Preloader Start -->
-    <!-- <?php include('php/preloader.php')?> -->
+    <?php include('php/preloader.php')?>
     <!-- Preloader End -->
 
     <!-- ##### Header Area Start ##### -->
@@ -47,27 +81,5 @@
         });
       });
     </script>
-
-   <script type="text/javascript">
-      $(function () {
-          $('#datetime_picker_reserve').datetimepicker({
-              inline: true,
-              sideBySide: true
-          });
-
-          $('#to_reserve').on("click", function(e){
-            timepicker_hour = $('.timepicker-hour').text()
-            timepicker_minute = $('.timepicker-minute').text()
-            togglePeriod=$('[data-action="togglePeriod"]').text()
-            if(!s_table){
-              alert("Select table is required");
-            }else{
-              s_date = $('td.active').text()
-              alert(`selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`)
-            }
-          });
-      });
-   </script>
-
   </body>
 </html>
