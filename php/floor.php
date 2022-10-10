@@ -61,7 +61,7 @@ $tbl = array();
     <div class="col-6 mt-3">
         <div class="row">
             <div id="fp-canvas-container">
-                <img src="./admin/uploads/floorplan.png" alt="Floor Plan" class='fp-img border p-1' id="fp-img" usemap="#fp-map">
+                <img src="./admin/helper/uploads/floorplan.png" alt="Floor Plan" class='fp-img border p-1' id="fp-img" usemap="#fp-map">
                 <map name="fp-map" id="fp-map" class="">
                 </map>
             </div>

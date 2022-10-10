@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 <div id="fp-canvas-container" class="box-shadow-hover">
-                  <img src="./uploads/floorplan.png" alt="Floor Plan" class='fp-img' id="fp-img" usemap="#fp-map">
+                  <img src="./helper/uploads/floorplan.png" alt="Floor Plan" class='fp-img' id="fp-img" usemap="#fp-map">
                   <map name="fp-map" id="fp-map" class=""></map>
                   <canvas class="fp-canvas d-none" id="fp-canvas"></canvas>
                 </div>

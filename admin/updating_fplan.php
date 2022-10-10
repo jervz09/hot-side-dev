@@ -10,7 +10,7 @@
             <input type="file" name="fp" class="form-control form-control-sm p-1x" id="fp" onchange="readURL(this)" accept="image/png, image/jpeg, image/jpg" required>
         </div>
         <div class="form-group text-center">
-            <img src="./uploads/floorplan.png" alt="Floor Plan Image" id="img-fp">
+            <img src="./helper/uploads/floorplan.png" alt="Floor Plan Image" id="img-fp">
         </div>
     </form>
 </div>

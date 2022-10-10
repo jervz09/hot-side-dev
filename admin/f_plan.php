@@ -20,7 +20,7 @@
     <div class="row box-shadow-hover">
         <div class="card-body">
             <div class="col-md-12">
-                <img src="./uploads/floorplan.png?v=<?php echo time() ?>" alt="Floor Plan" id="fp-img-main" class="w-100">
+                <img src="./helper/uploads/floorplan.png?v=<?php echo time() ?>" alt="Floor Plan" id="fp-img-main" class="w-100">
             </div>
         </div>
     </div>
