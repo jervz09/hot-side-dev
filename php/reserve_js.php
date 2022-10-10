@@ -12,9 +12,10 @@
             if(!s_table){
                 alertify.error("Please select a table");
             }else{
-              s_date = $('td.active').text()
-              selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
-              alertify.success(selected_msg)
+                s_date = $('td.active').text()
+                // selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
+                // $('#reservation_modal').modal('show');
+                // alertify.success(selected_msg)
             }
           });
       });

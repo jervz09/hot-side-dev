@@ -25,7 +25,6 @@
 										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 									</div>
 									<form action="login.php" class="user" method="post" autocomplete="OFF">
-
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
 										<div class="alert alert-danger error-message">
@@ -38,21 +37,14 @@
 									<?php endif;?>
 
 										<div class="form-group">
-											<label class="form-label" for="email">Email address</label>
-											<input name="username" type="email" id="email"
+											<label class="form-label" for="username">Username or Email Address</label>
+											<input name="username" type="text" id="username"
 												class="form-control form-control-user focus-brand" required />
 										</div>
 										<div class="form-group">
 											<label class="form-label" for="password">Password</label>
 											<input name="password" type="password" id="password" class="form-control form-control-user focus-brand" required/>
 										</div>
-										<!-- <div class="form-group">
-											<div class="custom-control custom-checkbox small">
-												<input type="checkbox" class="custom-control-input" id="customCheck">
-												<label class="custom-control-label" for="customCheck">Remember
-													Me</label>
-											</div>
-										</div> -->
 										<button type="submit" name="login-btn" class="btn btn-primary btn-user btn-block">Login</button>
 										<hr>
 									</form>

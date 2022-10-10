@@ -50,6 +50,8 @@
 
     <?php include("modal_container.php")?>
 
+    <script src="../vendor/jquery-ui-1.13.2/external/jquery/jquery.js"></script>
+    <script src="../vendor/jquery-ui-1.13.2/jquery-ui.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -74,6 +76,8 @@
     <!-- Page level custom scripts -->
     <script src="../js/chartjs/datatables-demo.js"></script>
     <script src="../js/script.js"></script>
+    
+    
 
     <!-- <script>
         $('#logout_session').click(function(){

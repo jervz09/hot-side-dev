@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="../vendor/summernote/summernote-lite.css">
 <link href="../css/hotside-admin.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+
 
 </head>
 <style>

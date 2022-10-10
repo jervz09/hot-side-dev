@@ -1,6 +1,7 @@
 
 <!-- <script src="../vendor/select2/js/select2.min.js"></script> -->
 <!-- <script src="../vendor/summernote/summernote-lite.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
 <script>
         var px1_perc=0,py1_perc=0,px2_perc=0,py2_perc=0;
@@ -11,14 +12,17 @@
         var isDraw = false;
         var isOff = true;
         var tbl = $.parseJSON('<?php echo json_encode($tbl) ?>')
+
+        var map_tables = {};
         function map_tbls(){
             if(Object.keys(tbl).length > 0){
                 $('#fp-map').html('')
 
                 Object.keys(tbl).map(k=>{
                     var data = tbl[k]
-                    var area = $("<area shape='rect'>")
+                    var area = $("<area class='draggable' shape='rect'>")
                         area.attr('href',"javascript:void(0)")
+                        area.attr('data-id',data.id)
                     var perc = data.coordinates
                     perc = perc.replace(" ",'')
                     perc = perc.split(",")
@@ -139,6 +143,20 @@
                     universal_modal("Map Table","manage_table.php?x="+px1_perc+"&y="+py1_perc+"&w="+px2_perc+"&h="+py2_perc)
                 }
             })
+            $(".draggable").draggable({
+                stop: function(event, ui) {
+                    console.log($(this).data("id"))
+                    console.log($(event.target).width() + " x " + $(event.target).height());
+                    console.log(ui.position.top + " x " + ui.position.left);
+                }
+            });
+
+            //
+            $("area").each(function() {
+                map_tables[$(this).attr("data-id")] = $(this).val();
+            });
+
+            console.log(map_tables);
 
         })
         function delete_data($id){

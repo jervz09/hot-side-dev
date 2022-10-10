@@ -42,4 +42,6 @@
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/alertify.css" />
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/bootstrap.css" />
 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+
 </head>

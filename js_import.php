@@ -23,7 +23,8 @@
     <script src="vendor/event-calendar-evo/evo-calendar/js/evo-calendar.js"></script>
 
     <script src="vendor/alertify/alertify.js"></script>
-
+    
+    <script src="vendor/jquery-ui-1.13.2/jquery-ui.js"></script>
     <script>
 
     let s_table = ""

@@ -62,7 +62,7 @@ if (isset($_POST['signup-btn'])) {
             $stmt->close();
 
             // send verification email to user
-            // sendVerificationEmail($email, $otp);
+            sendVerificationEmail($email, $otp);
             // Saving details on session
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
@@ -73,7 +73,7 @@ if (isset($_POST['signup-btn'])) {
             $_SESSION['message'] = 'You are logged in!';
             $_SESSION['type'] = 'alert-success';
             // redirect verify_checker.php
-            header('location: index.php');
+            header('location: verify_check.php');
         } else {
             $_errors['msg'] = "Error";
             $_SESSION['error_msg'] = "Database error: Could not register user";
@@ -111,7 +111,7 @@ if (isset($_POST['login-btn'])) {
                 $_SESSION['verified'] = $user['verified'];
                 $_SESSION['message'] = 'You are logged in!';
                 $_SESSION['type'] = 'alert-success';
-                header('location: index.php');
+                header('location: verify_check.php');
                 exit(0);
 
             } else { // if password does not match
@@ -122,4 +122,37 @@ if (isset($_POST['login-btn'])) {
             $_SESSION['type'] = "alert-danger";
         }
     }
+}
+
+if (isset($_POST['verify-btn'])) {
+    $otp_user = $_POST["dig-1"].$_POST["dig-2"].$_POST["dig-3"].$_POST["dig-4"].$_POST["dig-5"].$_POST["dig-6"];
+    echo $otp_user;
+    $sql = "SELECT * FROM users WHERE otp='$otp_user' LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        $query = "UPDATE users SET verified=1 WHERE otp='$otp_user'";
+
+        if (mysqli_query($conn, $query)) {
+            $_SESSION['id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['verified'] = true;
+            $_SESSION['message'] = "Your email address has been verified successfully";
+            $_SESSION['type'] = 'alert-success';
+            header('location: index.php');
+            exit(0);
+        }
+    } else {
+        $errors['otp_failed'] = "Incorrect OTP";
+    }
+}
+function hintEmail($email){
+    $stars = 4; // Min Stars to use
+	$at = strpos($email,'@');
+	if($at - 2 > $stars){
+        $stars = $at - 2;
+    }
+	return substr($email,0,1) . str_repeat('*',$stars) . substr($email,$at - 1);
 }
