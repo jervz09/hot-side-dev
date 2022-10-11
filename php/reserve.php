@@ -38,7 +38,7 @@
                             <div class="lib-header-seperator"></div>
                         </div>
                         <div class="lib-row lib-desc">
-                        Tart and refreshing seafood ceviche spritzed with citrus, tender pork meatballs in spicy coconut sauce, charred chicken skewers lacquered with sweet and savory glazes—the array of Filipino bar snacks and small dishes known as "Pulutan" are the definitive pairing for a cold beer, wine cooler or cocktail.
+                            Pulutan na this. With Shot Puno
                         </div>
                     </div>
                 </div>
