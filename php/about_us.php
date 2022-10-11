@@ -5,9 +5,9 @@
         <div class="about-text text-center mb-100">
             <div class="section-heading text-center">
             <div class="line-"></div>
-            <h2>A place to remember</h2>
+            <h2 class="text-secondary">A place to remember</h2>
             </div>
-            <p>Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
+            <p class="text-secondary">Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
             <div class="about-key-text text-left">
             <h6>
                 <span class="fa fa-check"></span> Where every flavor tells a story.

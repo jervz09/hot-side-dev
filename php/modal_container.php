@@ -26,61 +26,99 @@
                 </button>
             </div>
             <div class="modal-body">
-
             <form>
-            <div class="row ">
-                <div class="col">
-                <div class="form-outline">
-                    <input type="text" id="first_name" class="form-control" />
-                    <label class="form-label" for="first_name">First name</label>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="yournameForm" class="form-control form-control-lg"
+                        value="<?=$_SESSION['first_name'].$_SESSION['last_name']?>" readonly />
+                    <label class="form-label" for="yournameForm" style="margin-left: 0px;">
+                        Your Name
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
                 </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="emailForm" class="form-control form-control-lg"
+                        value="<?=$_SESSION['email']?>" readonly />
+                    <label class="form-label" for="emailForm" style="margin-left: 0px;">
+                        Email Address
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
                 </div>
-                <div class="col">
-                <div class="form-outline">
-                    <input type="text" id="last_name" class="form-control" />
-                    <label class="form-label" for="last_name">Last name</label>
+
+                <!-- Contact input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="contactNoForm" class="form-control form-control-lg"
+                        value="<?=$_SESSION['contact_no']?>" />
+                    <label class="form-label" for="contactNoForm" style="margin-left: 0px;">
+                        Contact No
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
                 </div>
+
+                <!-- Address input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="addressForm" class="form-control form-control-lg"
+                        value="<?=$_SESSION['address']?>" />
+                    <label class="form-label" for="addressForm" style="margin-left: 0px;">
+                        Address
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Text input -->
-            <div class="form-outline ">
-                <input type="email" id="email" class="form-control" />
-                <label class="form-label" for="email">Company name</label>
-            </div>
+                <!-- Landmark input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="landmarkForm" class="form-control form-control-lg"
+                        value="<?=$_SESSION['landmark']?>" />
+                    <label class="form-label" for="landmarkForm" style="margin-left: 0px;">
+                        Landmark
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
+                </div>
 
-            <!-- Text input -->
-            <div class="form-outline ">
-                <input type="text" id="form6Example4" class="form-control" />
-                <label class="form-label" for="form6Example4">Address</label>
-            </div>
+                <!-- Landmark input -->
+                <div class="form-outline mb-4">
+                    <textarea id="adtlForm" class="form-control form-control-lg" id="note" rows="3"></textarea>
+                    <label class="form-label" for="landmarkForm" style="margin-left: 0px;">
+                        Additional information
+                    </label>
+                    <div class="form-notch">
+                        <div class="form-notch-leading" style="width: 9px;"></div>
+                        <div class="form-notch-middle" style="width: 71.2px;"></div>
+                        <div class="form-notch-trailing"></div>
+                    </div>
+                </div>
 
-            <!-- Email input -->
-            <div class="form-outline ">
-                <input type="email" id="form6Example5" class="form-control" />
-                <label class="form-label" for="form6Example5">Email</label>
-            </div>
-
-            <!-- Number input -->
-            <div class="form-outline ">
-                <input type="number" id="form6Example6" class="form-control" />
-                <label class="form-label" for="form6Example6">Phone</label>
-            </div>
-
-            <!-- Message input -->
-            <div class="form-outline ">
-                <textarea class="form-control" id="note" rows="4"></textarea>
-                <label class="form-label" for="note">Additional information</label>
-            </div>
-
+            <hr>
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block ">Place order</button>
+            <button type="submit" class="btn btn-primary btn-block ">Reserve</button>
         </form>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" if="logout_session" href="../logout.php">Logout</a>
+                <button class="btn btn-secondary cancel-modal-reserve" type="button" data-dismiss="modal">Cancel</button>
+                <!-- <a class="btn btn-primary" if="logout_session" href="../logout.php">Logout</a> -->
             </div>
         </div>
     </div>

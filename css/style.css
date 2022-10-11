@@ -45,7 +45,7 @@ h6 {
 }
 
 p {
-	color: #7d7d7d;
+	color: #c3c3c3;
 	font-size: 14px;
 	line-height: 2.1;
 	font-weight: 400;
@@ -206,12 +206,13 @@ img {
 	height: 2px;
 	background-color: #2b898b;
 	display: block;
-	margin-bottom: 40px;
+	margin: 10px 0px;
+	/* margin-bottom: 40px; */
 }
 
 .section-heading h2 {
 	font-size: 48px;
-	color: #363636;
+	color: #212121;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1572,7 +1573,7 @@ img {
 	position: relative;
 	z-index: 1;
 	background-color: #363636;
-	padding-bottom: 40px;
+	padding-bottom: 20px;
 }
 
 .footer-area .footer-widget-area p {

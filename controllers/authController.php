@@ -108,6 +108,11 @@ if (isset($_POST['login-btn'])) {
                 $_SESSION['id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['first_name'] = $user['first_name'];
+                $_SESSION['last_name'] = $user['last_name'];
+                $_SESSION['contact_no'] = $user['contact_no'];
+                $_SESSION['address'] = $user['address'];
+                $_SESSION['landmark'] = $user['landmark'];
                 $_SESSION['verified'] = $user['verified'];
                 $_SESSION['message'] = 'You are logged in!';
                 $_SESSION['type'] = 'alert-success';

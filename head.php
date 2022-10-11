@@ -31,6 +31,8 @@
     <title>Hot Side</title>
     <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico">
+    <!-- MDB -->
+    <!-- <link rel="stylesheet" href="css/mdb.min.css" /> -->
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Add the evo-calendar.css for styling -->
@@ -43,5 +45,6 @@
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/bootstrap.css" />
 
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
-
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.lite.min.css" integrity="sha512-Eu5EEZpsrO6niYlnhT+ITom/YVGoIZGEsbAvZ+gUJsO3Xaq9+hX4vZnbecMn/Cq5KOdmNOdehu/U80111W9xsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link rel="stylesheet" href="css/custom_style.css" />
 </head>

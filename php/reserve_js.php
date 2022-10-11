@@ -14,12 +14,15 @@
             }else{
                 s_date = $('td.active').text()
                 // selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
-                // $('#reservation_modal').modal('show');
+                $('#reservation_modal').modal('show');
                 // alertify.success(selected_msg)
             }
           });
       });
 
+    $('.cancel-modal-reserve').click(function() {
+        $('#reservation_modal').modal('hide');
+    })
     $('button.success').click(function() {
         alertify.success('Submitted. Wait for approval.');
     });
@@ -73,6 +76,13 @@
         $(window).on('resize',function(){
             map_tbls()
         })
+    })
+
+    $('#date-picker-container').hide();
+
+    $('#next_datepicker').click(function(){
+        $('#floor-plan-container').hide();
+        $('#date-picker-container').show();
     })
 
 </script>

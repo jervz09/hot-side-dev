@@ -2,14 +2,19 @@
     <div class="container">
     <div class="row">
         <!-- Footer Widget Area -->
-        <div class="col-12 col-lg-6">
-        <div class="footer-widget-area mt-50">
-            <a href="#" class="d-block mb-5">
-            <img src="img/core-img/logo.png" alt="" style="width: 105px;">
-            </a>
-            <p>Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
+        <div class="col-12 col-lg-3">
+            <div class="footer-widget-area float-right mt-30">
+                <a href="#" class="d-block mb-5">
+                    <img src="img/core-img/logo.png" alt="" style="width: 100px;">
+                </a>
+            </div>
         </div>
+        <div class="col-12 col-lg-9">
+            <div class="footer-widget-area mt-30">
+                <p>Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
+            </div>
         </div>
+
         <!-- Footer Widget Area -->
         <!-- <div class="col-12 col-md-6 col-lg-6">
         <div class="footer-widget-area mt-50">
@@ -19,7 +24,7 @@
         </div> -->
         <!-- Copywrite Text -->
         <div class="col-12">
-        <div class="copywrite-text mt-30">
+        <div class="copywrite-text mt-10">
             <p>
             <a href="#">
                 Copyright &copy; <script>document.write(new Date().getFullYear());</script>

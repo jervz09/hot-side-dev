@@ -6,6 +6,8 @@
     <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- MDB -->
+    <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
     <!-- All Plugins js -->
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
@@ -23,7 +25,7 @@
     <script src="vendor/event-calendar-evo/evo-calendar/js/evo-calendar.js"></script>
 
     <script src="vendor/alertify/alertify.js"></script>
-    
+
     <script src="vendor/jquery-ui-1.13.2/jquery-ui.js"></script>
     <script>
 
