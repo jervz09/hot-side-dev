@@ -79,10 +79,32 @@
     })
 
     $('#date-picker-container').hide();
+    $('#reserved_confirm').hide();
+    $('#back_datepicker').hide();
 
     $('#next_datepicker').click(function(){
-        $('#floor-plan-container').hide();
-        $('#date-picker-container').show();
+        if(!s_table){
+            alertify.error("Please select Table.")
+        }else{
+            $('#floor-plan-container').hide();
+            $('#next_datepicker').hide();
+            $('#date-picker-container').show();
+            $('#reserved_confirm').show();
+            $('#back_datepicker').show();
+        }
     })
+
+    $('#back_datepicker').click(function(){
+        $('#floor-plan-container').show();
+        $('#next_datepicker').show();
+        $('#date-picker-container').hide();
+        $('#reserved_confirm').hide();
+        $('#back_datepicker').hide();
+    })
+
+    $('#reserved_confirm').click(function(){
+        $('#reserve_confirm_modal').modal('show');
+    })
+    // reserve_confirm_modal
 
 </script>

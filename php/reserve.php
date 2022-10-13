@@ -61,6 +61,8 @@
 
                 <div class="col-12" id="next_datepicker-container">
                     <button id="next_datepicker" class="btn btn-branding btn-lg float-right">Select For Date</button>
+                    <button id="back_datepicker" class="btn btn-branding btn-lg float-left">Select for Table</button>
+                    <button id="reserved_confirm" class="btn btn-branding btn-lg float-right">Reserve</button>
                 </div>
             </div>
         </div>

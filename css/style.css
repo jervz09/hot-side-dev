@@ -2357,3 +2357,7 @@ span.glyphicon.glyphicon-chevron-down,
 span.glyphicon.glyphicon-chevron-up {
     color: #2b898b;
 }
+
+.btn{
+	font-size: 14px;
+}

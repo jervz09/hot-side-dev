@@ -213,3 +213,24 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="reserve_confirm_modal" role='dialog'>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmation</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div>Are you sure to reserve Table No. 1 on Oct. 32, 2022 - 06:66 ?</div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-branding" id='confirm' onclick="">Yes</button>
+              <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+    </div>
+</div>
