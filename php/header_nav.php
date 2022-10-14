@@ -46,9 +46,21 @@
                 </li>
               </ul>
               <!-- Button -->
-              <div class="menu-btn" <?=$reserved_disp?>>
+              <div class="menu-btn">
                 <!-- <a href="#calendar" class="btn palatin-btn" data-toggle="modal" data-target="#reservation_modal">Make a Reservation</a> -->
-                <a href="reserve.php" class="btn palatin-btn">My Reservation</a>
+                <a href="login.php" class="btn palatin-btn" <?=$signed_user?>>Register</a>
+                <a href="login.php" class="btn palatin-btn" <?=$signed_user?>>Login</a>
+                <div class="dropdown">
+                  <!-- <a href="#" class="btn palatin-btn"><i class="fa fa-user"></i> Hotside User</a> -->
+                  <button class="btn palatin-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: -25px;">
+                  <i class="fa fa-user"></i> Hotside User
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item text-secondary" href="#">Profile Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-secondary" href="#">Logout</a>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Nav End -->

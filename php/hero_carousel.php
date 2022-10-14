@@ -12,7 +12,7 @@
                   <div class="line" data-animation="fadeInUp" data-delay="300ms"></div>
                   <h2 data-animation="fadeInUp" data-delay="500ms">Hot Side</h2>
                   <p data-animation="fadeInUp" data-delay="700ms">Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
-                  <a href="#" class="btn palatin-btn mt-50" data-animation="fadeInUp" data-delay="900ms">Read More</a>
+
                 </div>
               </div>
             </div>
@@ -30,7 +30,7 @@
                   <div class="line" data-animation="fadeInUp" data-delay="300ms"></div>
                   <h2 data-animation="fadeInUp" data-delay="500ms">Hot Side</h2>
                   <p data-animation="fadeInUp" data-delay="700ms">Hang over is temporary, Drunk stories are forever. Spend a night with your real friends here at Hotside Restobar!</p>
-                  <a href="#" class="btn palatin-btn mt-50" data-animation="fadeInUp" data-delay="900ms">Read More</a>
+
                 </div>
               </div>
             </div>
@@ -48,7 +48,7 @@
                   <div class="line" data-animation="fadeInUp" data-delay="300ms"></div>
                   <h2 data-animation="fadeInUp" data-delay="500ms">Hot Side</h2>
                   <p data-animation="fadeInUp" data-delay="700ms">Hot Side Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p>
-                  <a href="#" class="btn palatin-btn mt-50" data-animation="fadeInUp" data-delay="900ms">Read More</a>
+
                 </div>
               </div>
             </div>

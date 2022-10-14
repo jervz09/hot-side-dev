@@ -86,20 +86,20 @@
         if(!s_table){
             alertify.error("Please select Table.")
         }else{
-            $('#floor-plan-container').hide();
-            $('#next_datepicker').hide();
-            $('#date-picker-container').show();
-            $('#reserved_confirm').show();
-            $('#back_datepicker').show();
+            $('#floor-plan-container').hide("slow");
+            $('#next_datepicker').hide("slow");
+            $('#date-picker-container').show("slow");
+            $('#reserved_confirm').show("slow");
+            $('#back_datepicker').show("slow");
         }
     })
 
     $('#back_datepicker').click(function(){
-        $('#floor-plan-container').show();
-        $('#next_datepicker').show();
-        $('#date-picker-container').hide();
-        $('#reserved_confirm').hide();
-        $('#back_datepicker').hide();
+        $('#floor-plan-container').show("slow");
+        $('#next_datepicker').show("slow");
+        $('#date-picker-container').hide("slow");
+        $('#reserved_confirm').hide("slow");
+        $('#back_datepicker').hide("slow");
     })
 
     $('#reserved_confirm').click(function(){

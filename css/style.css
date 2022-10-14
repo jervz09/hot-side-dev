@@ -813,10 +813,13 @@ img {
 
 .single-hero-slide .hero-slides-content {
 	display: inline-block;
-	padding: 0px 50px 10px 50px;
-	background-color: rgba(0, 0, 0, 0.63);
-	border: 2px solid #2b898b;
-	text-align: center;
+    padding: 0px 50px 10px 50px;
+    background-color: rgba(0, 0, 0, 0.63);
+    border: 2px solid #2b898b;
+    text-align: center;
+    top: -190px;
+    position: relative;
+	height: 210px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -925,6 +928,7 @@ img {
 .book-now-form {
 	position: relative;
 	z-index: 1;
+	top: -75px;
 }
 
 .book-now-form form {
@@ -937,7 +941,7 @@ img {
 	align-items: center;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 120%;
 }
 
 .book-now-form form .form-group,
@@ -959,9 +963,9 @@ img {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 20%;
 	flex: 0 0 20%;
-	/* max-width: 20%;
-	width: 20%; */
-	height: 174px;
+	max-width: 20%;
+	width: 20%;
+	height: 100px;
 	background-color: #363636;
 	border-left: 2px solid #2b898b;
 	border-top: 2px solid #2b898b;
@@ -1049,7 +1053,7 @@ img {
 	background-color: #ffffff;
 	border-radius: 0;
 	margin-top: 2px;
-	box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 2px 18px 0 rgb(4 76 78 / 60%);
 	width: 100%;
 }
 
@@ -2217,7 +2221,7 @@ img {
 }
 
 .owl-stage-outer {
-	height: 700px;
+	height: 500px;
 }
 
 /* ====== The End ====== */
@@ -2360,4 +2364,9 @@ span.glyphicon.glyphicon-chevron-up {
 
 .btn{
 	font-size: 14px;
+}
+
+.nice-select .list{
+	max-height: 150px;
+	overflow-y: scroll !important;
 }

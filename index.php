@@ -14,6 +14,10 @@
     <?php include('php/hero_carousel.php')?>
     <!-- ##### Hero Area End ##### -->
 
+    <!-- ##### Book Now Area Start ##### -->
+    <?php include('php/reserve_area.php')?>
+    <!-- ##### Book Now Area End ##### -->
+
     <!-- ##### Calendar Area Start ##### -->
     <?php include('php/evo_calendar.php')?>
     <!-- ##### Calendar Area End ##### -->
