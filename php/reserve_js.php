@@ -107,4 +107,36 @@
     })
     // reserve_confirm_modal
 
+    $('.btn-circle').on('click',function(){
+        $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+
+        $(this).addClass('btn-info').removeClass('btn-default').blur();
+        $(this).tab('show');
+    });
+    $('.next-step, .prev-step').on('click', function (e){
+        console.log(e.target)
+        if ( $(e.target).hasClass('next-step') ){
+            $('[href="#'+ $(this).attr("next-id") +'"]').tab('show');
+            console.log($(this).attr("next-id"))
+        }else{
+            $('[href="#'+ $(this).attr("prev-id") +'"]').tab('show');
+            console.log($(this).attr("prev-id"))
+        }
+    });
+    // $('.next-step, .prev-step').on('click', function (e){
+    //     var $activeTab = $('.tab-pane.active');
+
+    //     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+
+    //     if ( $(e.target).hasClass('next-') ){
+    //             var nextTab = $activeTab.next('.tab-pane').attr('id');
+    //             console.log(nextTab)
+    //             $('[href="#'+ nextTab +'"]').addClass('btn-info').removeClass('btn-default');
+    //             $('[href="#'+ nextTab +'"]').tab('show');
+    //     }else{
+    //         var prevTab = $activeTab.prev('.tab-pane').attr('id');
+    //         $('[href="#'+ prevTab +'"]').addClass('btn-info').removeClass('btn-default');
+    //         $('[href="#'+ prevTab +'"]').tab('show');
+    //     }
+    // });
 </script>

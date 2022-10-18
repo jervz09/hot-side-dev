@@ -50,7 +50,7 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Calendar Area Start ##### -->
-    <?php include('php/reserve.php')?>
+    <?php include('php/step_to_order.php')?>
     <!-- ##### Calendar Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
