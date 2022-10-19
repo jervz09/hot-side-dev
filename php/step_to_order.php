@@ -29,67 +29,50 @@
   <div class="process">
    <div class="process-row nav nav-tabs">
     <div class="process-step">
-     <button type="button" class="btn btn-info btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-calendar-alt fa-3x"></i></button>
-     <p><small>Select<br />Date and Time</small></p>
+     <button type="button" class="btn btn-info btn-circle" data-toggle="tab" data-click-id="menu1" href="#menu1"><i class="fa fa-calendar-alt fa-3x"></i></button>
+     <p class="text-dark lh-1"><small>Select<br />Date and Time</small></p>
     </div>
     <div class="process-step">
-     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-image fa-3x"></i></button>
-     <p><small>Select<br />Available Tables</small></p>
+     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" data-click-id="menu2" href="#menu2"><i class="fa fa-image fa-3x"></i></button>
+     <p class="text-dark lh-1"><small>Select<br />Available Tables</small></p>
     </div>
     <div class="process-step">
-     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-utensils fa-3x"></i></button>
-     <p><small>Select<br />Menu</small></p>
+     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" data-click-id="menu3" href="#menu3"><i class="fa fa-utensils fa-3x"></i></button>
+     <p class="text-dark lh-1"><small>Select<br />Menu</small></p>
     </div>
     <div class="process-step">
-     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu4"><i class="fa fa-info fa-3x"></i></button>
-     <p><small>Review<br />Information</small></p>
+     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" data-click-id="menu4" href="#menu4"><i class="fa fa-info fa-3x"></i></button>
+     <p class="text-dark lh-1"><small>Review<br />Information</small></p>
     </div>
     <div class="process-step">
-     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu5"><i class="fa fa-check fa-3x"></i></button>
-     <p><small>Reserve</small></p>
+     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" data-click-id="menu5" href="#menu5"><i class="fa fa-check fa-3x"></i></button>
+     <p class="text-dark lh-1"><small>Reserve</small></p>
     </div>
    </div>
   </div>
-  <div class="tab-content">
-   <div id="menu1" class="tab-pane fade active in">
-    <h3>Menu 1</h3>
-    <p>Some content in menu 1.</p>
-    <ul class="list-unstyled list-inline pull-right">
-     <li><button type="button" class="btn btn-info next-step" next-id="menu2">Next <i class="fa fa-chevron-right"></i></button></li>
-    </ul>
-   </div>
-   <div id="menu2" class="tab-pane fade">
-    <h3>Menu 2</h3>
-    <p>Some content in menu 2.</p>
-    <ul class="list-unstyled list-inline pull-right">
-     <li><button type="button" class="btn btn-default prev-step" prev-id="menu1"><i class="fa fa-chevron-left"></i> Back</button></li>
-     <li><button type="button" class="btn btn-info next-step" next-id="menu3">Next <i class="fa fa-chevron-right"></i></button></li>
-    </ul>
-   </div>
+  </div>
+  <div class="tab-content col-12">
+
+  <div id="menu1" class="col col-12 tab-pane fade active in">
+    <?php include('php/step-1.php')?>
+  </div>
+  <div id="menu2" class="col col-12 tab-pane fade active in">
+    <?php include('php/step-2.php')?>
+  </div>
+
    <div id="menu3" class="tab-pane fade">
-    <h3>Menu 3</h3>
-    <p>Some content in menu 3.</p>
-    <ul class="list-unstyled list-inline pull-right">
-     <li><button type="button" class="btn btn-default prev-step" prev-id="menu2"><i class="fa fa-chevron-left"></i> Back</button></li>
-     <li><button type="button" class="btn btn-info next-step" next-id="menu4">Next <i class="fa fa-chevron-right"></i></button></li>
-    </ul>
+    <h3>Menu </h3>
+    <p>Some content in menu .</p>
    </div>
    <div id="menu4" class="tab-pane fade">
-    <h3>Menu 4</h3>
-    <p>Some content in menu 4.</p>
-    <ul class="list-unstyled list-inline pull-right">
-     <li><button type="button" class="btn btn-default prev-step" prev-id="menu3"><i class="fa fa-chevron-left"></i> Back</button></li>
-     <li><button type="button" class="btn btn-info next-step" next-id="menu5">Next <i class="fa fa-chevron-right"></i></button></li>
-    </ul>
+    <h3>Review</h3>
+    <p>Some content in Review.</p>
    </div>
    <div id="menu5" class="tab-pane fade">
-    <h3>Menu 5</h3>
-    <p>Some content in menu 5.</p>
-    <ul class="list-unstyled list-inline pull-right">
-     <li><button type="button" class="btn btn-default prev-step" prev-id="menu4"><i class="fa fa-chevron-left"></i> Back</button></li>
-     <li><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Done!</button></li>
-    </ul>
+    <h3>Reserve</h3>
+    <p>Some content in reserve.</p>
    </div>
   </div>
  </div>
 </div>
+</section>

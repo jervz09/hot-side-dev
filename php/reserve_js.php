@@ -62,7 +62,7 @@
                 })
                 $('#fp-map').append(area)
                 area.click(function(){
-                    console.log(this)
+                    // console.log(this)
                     // universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
                     $("[shape='rect']").removeClass("selected-table")
                     $(`[area-id="${data.table_no}"]`).addClass("selected-table");
@@ -78,29 +78,29 @@
         })
     })
 
-    $('#date-picker-container').hide();
-    $('#reserved_confirm').hide();
-    $('#back_datepicker').hide();
+    // $('#date-picker-container').hide();
+    // $('#reserved_confirm').hide();
+    // $('#back_datepicker').hide();
 
-    $('#next_datepicker').click(function(){
-        if(!s_table){
-            alertify.error("Please select Table.")
-        }else{
-            $('#floor-plan-container').hide("slow");
-            $('#next_datepicker').hide("slow");
-            $('#date-picker-container').show("slow");
-            $('#reserved_confirm').show("slow");
-            $('#back_datepicker').show("slow");
-        }
-    })
+    // $('#next_datepicker').click(function(){
+    //     if(!s_table){
+    //         alertify.error("Please select Table.")
+    //     }else{
+    //         $('#floor-plan-container').hide("slow");
+    //         $('#next_datepicker').hide("slow");
+    //         $('#date-picker-container').show("slow");
+    //         $('#reserved_confirm').show("slow");
+    //         $('#back_datepicker').show("slow");
+    //     }
+    // })
 
-    $('#back_datepicker').click(function(){
-        $('#floor-plan-container').show("slow");
-        $('#next_datepicker').show("slow");
-        $('#date-picker-container').hide("slow");
-        $('#reserved_confirm').hide("slow");
-        $('#back_datepicker').hide("slow");
-    })
+    // $('#back_datepicker').click(function(){
+    //     $('#floor-plan-container').show("slow");
+    //     $('#next_datepicker').show("slow");
+    //     $('#date-picker-container').hide("slow");
+    //     $('#reserved_confirm').hide("slow");
+    //     $('#back_datepicker').hide("slow");
+    // })
 
     $('#reserved_confirm').click(function(){
         $('#reserve_confirm_modal').modal('show');
@@ -108,21 +108,20 @@
     // reserve_confirm_modal
 
     $('.btn-circle').on('click',function(){
-        $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+        $('.btn-circle.btn-info').removeClass('btn-info').removeClass('active').addClass('btn-default');
 
         $(this).addClass('btn-info').removeClass('btn-default').blur();
         $(this).tab('show');
     });
-    $('.next-step, .prev-step').on('click', function (e){
-        console.log(e.target)
-        if ( $(e.target).hasClass('next-step') ){
-            $('[href="#'+ $(this).attr("next-id") +'"]').tab('show');
-            console.log($(this).attr("next-id"))
-        }else{
-            $('[href="#'+ $(this).attr("prev-id") +'"]').tab('show');
-            console.log($(this).attr("prev-id"))
-        }
-    });
+    $('[href="#menu1"]').tab('show');
+
+    // $('.next-step').click(function(){
+    //     $('.nav-tabs > .active').next('process-step').find('button').trigger('click');
+    // });
+
+    // $('.prev-step').click(function(){
+    //     $('.nav-tabs > .active').prev('process-step').find('button').trigger('click');
+    // });
     // $('.next-step, .prev-step').on('click', function (e){
     //     var $activeTab = $('.tab-pane.active');
 
@@ -131,11 +130,11 @@
     //     if ( $(e.target).hasClass('next-') ){
     //             var nextTab = $activeTab.next('.tab-pane').attr('id');
     //             console.log(nextTab)
-    //             $('[href="#'+ nextTab +'"]').addClass('btn-info').removeClass('btn-default');
+    //             $('[href="#'+ nextTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
     //             $('[href="#'+ nextTab +'"]').tab('show');
     //     }else{
     //         var prevTab = $activeTab.prev('.tab-pane').attr('id');
-    //         $('[href="#'+ prevTab +'"]').addClass('btn-info').removeClass('btn-default');
+    //         $('[href="#'+ prevTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
     //         $('[href="#'+ prevTab +'"]').tab('show');
     //     }
     // });
