@@ -14,17 +14,17 @@
 
 <section id="calendar_area" class="about-us-area mb-10">
 <div class="container">
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-12 col-lg-12">
       <div class="about-text">
         <div class="section-heading m-0">
           <div class="line-"></div>
           <h2 class="text-secondary">Menu</h2>
-          <!-- <button id="to_reserve" class="btn btn-branding btn-lg float-right">Reserve</button> -->
+          <button id="to_reserve" class="btn btn-branding btn-lg float-right">Reserve</button>
         </div>
       </div>
     </div>
-</div>
+  </div> -->
  <div class="row">
   <div class="process">
    <div class="process-row nav nav-tabs">
