@@ -1,141 +1,219 @@
 <script>
-     $(function () {
-          $('#datetime_picker_reserve').datetimepicker({
-              inline: true,
-              sideBySide: true
-          });
+	 $(function () {
+		  $('#datetime_picker_reserve').datetimepicker({
+			  inline: true,
+			  sideBySide: true
+		  });
 
-          $('#to_reserve').on("click", function(e){
-            timepicker_hour = $('.timepicker-hour').text()
-            timepicker_minute = $('.timepicker-minute').text()
-            togglePeriod=$('[data-action="togglePeriod"]').text()
-            if(!s_table){
-                alertify.error("Please select a table");
-            }else{
-                s_date = $('td.active').text()
-                // selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
-                $('#reservation_modal').modal('show');
-                // alertify.success(selected_msg)
-            }
-          });
-      });
+		  $('#to_reserve').on("click", function(e){
+			timepicker_hour = $('.timepicker-hour').text()
+			timepicker_minute = $('.timepicker-minute').text()
+			togglePeriod=$('[data-action="togglePeriod"]').text()
+			if(!s_table){
+				alertify.error("Please select a table");
+			}else{
+				s_date = $('td.active').text()
+				// selected_msg = `selected: table = ${s_table} , date = ${s_date}, time = ${timepicker_hour}:${timepicker_minute} ${togglePeriod}`
+				$('#reservation_modal').modal('show');
+				// alertify.success(selected_msg)
+			}
+		  });
+	  });
 
-    $('.cancel-modal-reserve').click(function() {
-        $('#reservation_modal').modal('hide');
-    })
-    $('button.success').click(function() {
-        alertify.success('Submitted. Wait for approval.');
-    });
+	$('.cancel-modal-reserve').click(function() {
+		$('#reservation_modal').modal('hide');
+	})
+	$('button.success').click(function() {
+		alertify.success('Submitted. Wait for approval.');
+	});
 
-    var tbl = $.parseJSON('<?php echo json_encode($tbl) ?>')
-    function map_tbls(){
-        if(Object.keys(tbl).length > 0){
+	// $('#date-picker-container').hide();
+	// $('#reserved_confirm').hide();
+	// $('#back_datepicker').hide();
 
-            $('#fp-map').html('')
+	// $('#next_datepicker').click(function(){
+	//     if(!s_table){
+	//         alertify.error("Please select Table.")
+	//     }else{
+	//         $('#floor-plan-container').hide("slow");
+	//         $('#next_datepicker').hide("slow");
+	//         $('#date-picker-container').show("slow");
+	//         $('#reserved_confirm').show("slow");
+	//         $('#back_datepicker').show("slow");
+	//     }
+	// })
 
-            Object.keys(tbl).map(k=>{
-                var data = tbl[k]
-                var area = $("<area shape='rect'>")
-                    area.attr('href',"javascript:void(0)")
-                var perc = data.coordinates
-                perc = perc.replace(" ",'')
-                perc = perc.split(",")
-                var x = $('#fp-img').width() * perc[0];
-                var y = $('#fp-img').height() * perc[1];
-                var width = ($('#fp-img').width() * perc[2]) - x;
-                var height = ($('#fp-img').height() * perc[3]) - y;
-                area.attr('area-id',data.table_no)
-                area.attr('coords',x+", "+y+", "+width+", "+height)
-                area.text("#"+data.table_no)
-                area.addClass('fw-bolder text-muted')
-                area.css({
-                    'position':'absolute',
-                    // 'border':"1px solid blue",
-                    'height':height+'px',
-                    'width':width+'px',
-                    'top':y+'px',
-                    'left':x+'px',
-                    'display':'flex',
-                    'text-align':'center',
-                    'justify-content':'center',
-                    'align-items':'center',
-                })
-                $('#fp-map').append(area)
-                area.click(function(){
-                    // console.log(this)
-                    // universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
-                    $("[shape='rect']").removeClass("selected-table")
-                    $(`[area-id="${data.table_no}"]`).addClass("selected-table");
-                    s_table = data.table_no
-                })
-            })
-        }
-    }
-    $(function(){
-        map_tbls()
-        $(window).on('resize',function(){
-            map_tbls()
-        })
-    })
+	// $('#back_datepicker').click(function(){
+	//     $('#floor-plan-container').show("slow");
+	//     $('#next_datepicker').show("slow");
+	//     $('#date-picker-container').hide("slow");
+	//     $('#reserved_confirm').hide("slow");
+	//     $('#back_datepicker').hide("slow");
+	// })
 
-    // $('#date-picker-container').hide();
-    // $('#reserved_confirm').hide();
-    // $('#back_datepicker').hide();
+	$('#reserved_confirm').click(function(){
+		$('#reserve_confirm_modal').modal('show');
+	})
+	// reserve_confirm_modal
 
-    // $('#next_datepicker').click(function(){
-    //     if(!s_table){
-    //         alertify.error("Please select Table.")
-    //     }else{
-    //         $('#floor-plan-container').hide("slow");
-    //         $('#next_datepicker').hide("slow");
-    //         $('#date-picker-container').show("slow");
-    //         $('#reserved_confirm').show("slow");
-    //         $('#back_datepicker').show("slow");
-    //     }
-    // })
+	$('.btn-circle').on('click',function(){
+		$('.btn-circle.btn-info').removeClass('btn-info').removeClass('active').addClass('btn-default');
 
-    // $('#back_datepicker').click(function(){
-    //     $('#floor-plan-container').show("slow");
-    //     $('#next_datepicker').show("slow");
-    //     $('#date-picker-container').hide("slow");
-    //     $('#reserved_confirm').hide("slow");
-    //     $('#back_datepicker').hide("slow");
-    // })
+		$(this).addClass('btn-info').removeClass('btn-default').blur();
+		$(this).tab('show');
+	});
+	$('[href="#menu1"]').tab('show');
 
-    $('#reserved_confirm').click(function(){
-        $('#reserve_confirm_modal').modal('show');
-    })
-    // reserve_confirm_modal
+	// $('.next-step').click(function(){
+	//     $('.nav-tabs > .active').next('process-step').find('button').trigger('click');
+	// });
 
-    $('.btn-circle').on('click',function(){
-        $('.btn-circle.btn-info').removeClass('btn-info').removeClass('active').addClass('btn-default');
+	// $('.prev-step').click(function(){
+	//     $('.nav-tabs > .active').prev('process-step').find('button').trigger('click');
+	// });
+	// $('.next-step, .prev-step').on('click', function (e){
+	//     var $activeTab = $('.tab-pane.active');
 
-        $(this).addClass('btn-info').removeClass('btn-default').blur();
-        $(this).tab('show');
-    });
-    $('[href="#menu1"]').tab('show');
+	//     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
 
-    // $('.next-step').click(function(){
-    //     $('.nav-tabs > .active').next('process-step').find('button').trigger('click');
-    // });
+	//     if ( $(e.target).hasClass('next-') ){
+	//             var nextTab = $activeTab.next('.tab-pane').attr('id');
+	//             console.log(nextTab)
+	//             $('[href="#'+ nextTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
+	//             $('[href="#'+ nextTab +'"]').tab('show');
+	//     }else{
+	//         var prevTab = $activeTab.prev('.tab-pane').attr('id');
+	//         $('[href="#'+ prevTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
+	//         $('[href="#'+ prevTab +'"]').tab('show');
+	//     }
+	// });
 
-    // $('.prev-step').click(function(){
-    //     $('.nav-tabs > .active').prev('process-step').find('button').trigger('click');
-    // });
-    // $('.next-step, .prev-step').on('click', function (e){
-    //     var $activeTab = $('.tab-pane.active');
+	var currentGfgStep, nextGfgStep, previousGfgStep;
+	var opacity;
+	var current = 1;
+	var steps = $("fieldset").length;
 
-    //     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+	setProgressBar(current);
 
-    //     if ( $(e.target).hasClass('next-') ){
-    //             var nextTab = $activeTab.next('.tab-pane').attr('id');
-    //             console.log(nextTab)
-    //             $('[href="#'+ nextTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
-    //             $('[href="#'+ nextTab +'"]').tab('show');
-    //     }else{
-    //         var prevTab = $activeTab.prev('.tab-pane').attr('id');
-    //         $('[href="#'+ prevTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
-    //         $('[href="#'+ prevTab +'"]').tab('show');
-    //     }
-    // });
+	$(".next-step").click(function () {
+
+		currentGfgStep = $(this).parent();
+		nextGfgStep = $(this).parent().next();
+
+		$("#progressbar li").eq($("fieldset")
+			.index(nextGfgStep)).addClass("active");
+
+		nextGfgStep.show();
+		currentGfgStep.animate({ opacity: 0 }, {
+			step: function (now) {
+				opacity = 1 - now;
+
+				currentGfgStep.css({
+					'display': 'none',
+					'position': 'relative'
+				});
+				nextGfgStep.css({ 'opacity': opacity });
+			},
+			duration: 500
+		});
+		setProgressBar(++current);
+		window.dispatchEvent(new Event('resize'));
+		console.log(s_table)
+	});
+
+	$(".previous-step").click(function () {
+
+		currentGfgStep = $(this).parent();
+		previousGfgStep = $(this).parent().prev();
+
+		$("#progressbar li").eq($("fieldset")
+			.index(currentGfgStep)).removeClass("active");
+
+		previousGfgStep.show();
+
+		currentGfgStep.animate({ opacity: 0 }, {
+			step: function (now) {
+				opacity = 1 - now;
+
+				currentGfgStep.css({
+					'display': 'none',
+					'position': 'relative'
+				});
+				previousGfgStep.css({ 'opacity': opacity });
+			},
+			duration: 500
+		});
+		setProgressBar(--current);
+		window.dispatchEvent(new Event('resize'));
+		console.log(s_table)
+	});
+
+	function setProgressBar(currentStep) {
+		var percent = parseFloat(100 / steps) * current;
+		percent = percent.toFixed();
+		$(".progress-bar")
+			.css("width", percent + "%")
+	}
+
+	$(".submit").click(function () {
+		return false;
+	})
+
+	var tbl = $.parseJSON('<?php echo json_encode($tbl) ?>')
+	function map_tbls(){
+		if(Object.keys(tbl).length > 0){
+
+			$('#fp-map').html('')
+
+			Object.keys(tbl).map(k=>{
+				var data = tbl[k]
+				var area = $("<area shape='rect'>")
+					area.attr('href',"javascript:void(0)")
+					area.attr('data-id',data.id)
+				var perc = data.coordinates
+				perc = perc.replace(" ",'')
+				perc = perc.split(",")
+				var x = $('#fp-img').width() * perc[0];
+				var y = $('#fp-img').height() * perc[1];
+				var width = ($('#fp-img').width() * perc[2]) - x;
+				var height = ($('#fp-img').height() * perc[3]) - y;
+				area.attr('area-id',data.table_no)
+				area.attr('coords',x+", "+y+", "+width+", "+height)
+				area.text("#"+data.table_no)
+				area.addClass('fw-bolder text-muted')
+				area.css({
+					'position':'absolute',
+					// 'border':"1px solid blue",
+					'height':height+'px',
+					'width':width+'px',
+					'top':y+'px',
+					'left':x+'px',
+					'display':'flex',
+					'text-align':'center',
+					'justify-content':'center',
+					'align-items':'center',
+				})
+				$('#fp-map').append(area)
+				area.click(function(){
+					// console.log(this)
+					// universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
+					$("[shape='rect']").removeClass("selected-table")
+					$(`[area-id="${data.table_no}"]`).addClass("selected-table");
+					s_table = data.table_no
+				})
+			})
+		}
+	}
+	map_tbls()
+	$(window).on('resize',function(){
+		map_tbls()
+	})
+	window.dispatchEvent(new Event('resize'));
+	var _date = new Date()
+	var today = _date.toISOString().split('T')[0];
+	var currentTime = _date.getHours() + ':' + _date.getMinutes();
+	currentTime = _date.toTimeString().substring(0,5);
+    document.getElementsByName("reserved_date")[0].setAttribute('min', today);
+	$('#reserved_date').val(today)
+	$('#reserved_time').val(currentTime)
 </script>

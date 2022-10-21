@@ -48,9 +48,9 @@
               <!-- Button -->
               <div class="menu-btn">
                 <!-- <a href="#calendar" class="btn palatin-btn" data-toggle="modal" data-target="#reservation_modal">Make a Reservation</a> -->
-                <a href="login.php" class="btn palatin-btn" <?=$signed_user?>>Register</a>
+                <a href="register.php" class="btn palatin-btn" <?=$signed_user?>>Register</a>
                 <a href="login.php" class="btn palatin-btn" <?=$signed_user?>>Login</a>
-                <div class="dropdown">
+                <div class="dropdown" <?=$not_signed_user?>>
                   <!-- <a href="#" class="btn palatin-btn"><i class="fa fa-user"></i> Hotside User</a> -->
                   <button class="btn palatin-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: -25px;">
                   <i class="fa fa-user"></i> Hotside User

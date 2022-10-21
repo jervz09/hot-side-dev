@@ -18,10 +18,12 @@
     <script src="js/script.js"></script>
 
     <script src="vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
     <!-- Add jQuery library (required) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script> -->
 
     <!-- Add the evo-calendar.js for.. obviously, functionality! -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script> -->
     <script src="vendor/event-calendar-evo/evo-calendar/js/evo-calendar.js"></script>
 
     <script src="vendor/alertify/alertify.js"></script>

@@ -9,10 +9,10 @@
     $calendar_page = "#calendar_area";
     $about_us_page = "#about_us_area";
     $contact_page = "#contact_area";
-
-    if($_SESSION['id']){
+    $not_signed_user = 'style="visibility: hidden;"';
+    if(@$_SESSION['id']){
         $signed_user = 'style="visibility: hidden;"'; //Hide btn-reservation
-
+        $not_signed_user = "";
         //redirect index(Landing Page)
         $index_page = "index.php";
         $calendar_page = "index.php#calendar_area";
@@ -42,7 +42,8 @@
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/alertify.css" />
     <link rel="stylesheet" type="text/css" href="vendor/alertify/css/themes/bootstrap.css" />
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"> -->
      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.20.0/css/mdb.lite.min.css" integrity="sha512-Eu5EEZpsrO6niYlnhT+ITom/YVGoIZGEsbAvZ+gUJsO3Xaq9+hX4vZnbecMn/Cq5KOdmNOdehu/U80111W9xsA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" href="css/custom_style.css" />
     <!-- Core Stylesheet -->
