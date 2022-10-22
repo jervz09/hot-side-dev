@@ -2391,3 +2391,73 @@ area {
 .process-step{display:table-cell;text-align:center;position:relative}
 /* .process-step p{margin-top:4px} */
 .btn-circle{width:80px;height:80px;text-align:center;font-size:12px;border-radius:50%}
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #2b898b;
+    border-color: #2b898b;
+}
+
+.item-price {
+    /* color: #ED6629; */
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 25.5px;
+    margin-bottom: 0;
+}
+
+.card-header, .border-bottom-dashed {
+    border-bottom: 1px dashed #ccc;
+}
+
+
+@media only screen and (max-width: 1440px){
+	.desktop-menu {
+		max-width: 22%;
+		flex: 22%;
+	}
+
+/* .col-md-3.desktop-view.desktop-menu {} */
+
+    .desktop-cart {
+        max-width: 28%;
+        flex: 28%;
+    }
+
+    div#scrollbar {
+        position: fixed;
+        width: 20%;
+    }
+
+    .col-md-3.desktop-view.desktop-cart {
+        padding-left: 0
+    }
+}
+
+@media only screen and (max-width: 991px){
+	.desktop-view {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.mobile-view {
+		display: block
+	}
+
+	.desktop-view {
+		display: none
+	}
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	/*  */
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	/*  */
+}

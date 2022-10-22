@@ -29,9 +29,15 @@
     <script src="vendor/alertify/alertify.js"></script>
 
     <script src="vendor/jquery-ui-1.13.2/jquery-ui.js"></script>
+    <!-- <script src="vendor/sticky-plugin.js"></script> -->
     <script>
 
     let s_table = ""
     let s_date = ""
     let timepicker_hour = timepicker_minute = ""
+    function preventSubmit(e) {
+        e.preventDefault();
+        someBug();
+        return false;
+    }
     </script>

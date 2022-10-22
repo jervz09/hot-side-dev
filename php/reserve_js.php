@@ -27,67 +27,6 @@
 		alertify.success('Submitted. Wait for approval.');
 	});
 
-	// $('#date-picker-container').hide();
-	// $('#reserved_confirm').hide();
-	// $('#back_datepicker').hide();
-
-	// $('#next_datepicker').click(function(){
-	//     if(!s_table){
-	//         alertify.error("Please select Table.")
-	//     }else{
-	//         $('#floor-plan-container').hide("slow");
-	//         $('#next_datepicker').hide("slow");
-	//         $('#date-picker-container').show("slow");
-	//         $('#reserved_confirm').show("slow");
-	//         $('#back_datepicker').show("slow");
-	//     }
-	// })
-
-	// $('#back_datepicker').click(function(){
-	//     $('#floor-plan-container').show("slow");
-	//     $('#next_datepicker').show("slow");
-	//     $('#date-picker-container').hide("slow");
-	//     $('#reserved_confirm').hide("slow");
-	//     $('#back_datepicker').hide("slow");
-	// })
-
-	$('#reserved_confirm').click(function(){
-		$('#reserve_confirm_modal').modal('show');
-	})
-	// reserve_confirm_modal
-
-	$('.btn-circle').on('click',function(){
-		$('.btn-circle.btn-info').removeClass('btn-info').removeClass('active').addClass('btn-default');
-
-		$(this).addClass('btn-info').removeClass('btn-default').blur();
-		$(this).tab('show');
-	});
-	$('[href="#menu1"]').tab('show');
-
-	// $('.next-step').click(function(){
-	//     $('.nav-tabs > .active').next('process-step').find('button').trigger('click');
-	// });
-
-	// $('.prev-step').click(function(){
-	//     $('.nav-tabs > .active').prev('process-step').find('button').trigger('click');
-	// });
-	// $('.next-step, .prev-step').on('click', function (e){
-	//     var $activeTab = $('.tab-pane.active');
-
-	//     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
-
-	//     if ( $(e.target).hasClass('next-') ){
-	//             var nextTab = $activeTab.next('.tab-pane').attr('id');
-	//             console.log(nextTab)
-	//             $('[href="#'+ nextTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
-	//             $('[href="#'+ nextTab +'"]').tab('show');
-	//     }else{
-	//         var prevTab = $activeTab.prev('.tab-pane').attr('id');
-	//         $('[href="#'+ prevTab +'"]').addClass('btn-info').addClass('active').removeClass('btn-default');
-	//         $('[href="#'+ prevTab +'"]').tab('show');
-	//     }
-	// });
-
 	var currentGfgStep, nextGfgStep, previousGfgStep;
 	var opacity;
 	var current = 1;
@@ -216,4 +155,17 @@
     document.getElementsByName("reserved_date")[0].setAttribute('min', today);
 	$('#reserved_date').val(today)
 	$('#reserved_time').val(currentTime)
+
+	$('.category-list a').click(function(e) {
+		$('.category-list a.active').removeClass('active');
+
+		// var $parent = $(this).parent();
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+	$(".head-step").sticky({topSpacing:105});
+	$(".booking-form").sticky({topSpacing:140});
+	// $(".summary_mobile_order").sticky({bottomSpacing:50});
+
 </script>
