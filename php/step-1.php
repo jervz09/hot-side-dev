@@ -10,6 +10,9 @@
                     <option>1 person</option>
                     <option>2 people</option>
                     <option>3 people</option>
+                    <option>4 people</option>
+                    <option>5 people</option>
+                    <option>6 people</option>
                   </select>
                 <span class="select-arrow"></span>
             </div>
@@ -31,7 +34,7 @@
         </div>
 
         <div class="form-btn">
-          <button class="submit-btn">Check availability</button>
+          <button class="submit-btn btn-branding">Check availability</button>
         </div>
       <!-- </form> -->
     </div>

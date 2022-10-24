@@ -290,7 +290,7 @@ h2{
 .booking-form .submit-btn {
 	display: inline-block;
 	color: #fff;
-	background-color: #1e62d8;
+	background-color: #2b898b;
 	font-weight: 700;
 	padding: 14px 30px;
 	border-radius: 4px;

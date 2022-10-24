@@ -27,7 +27,7 @@
 							<li id="step4"><strong>Review</strong></li>
 						</ul>
 						<div class="progress">
-							<div class="progress-bar"></div>
+							<div class="progress-bar progress-bar-animated progress-bar-striped bg-info" role="progressbar"></div>
 						</div> <br>
 						<fieldset>
 							<h2 class="head-step">Select Date and Time</h2>
