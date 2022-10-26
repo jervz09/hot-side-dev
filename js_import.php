@@ -15,6 +15,8 @@
     <!-- Moment js -->
     <script src="js/moment.js"></script>
 
+    <script src="js/stickysidebarscroll/sticky-sidebar-scroll.js"></script>
+
     <script src="js/script.js"></script>
 
     <script src="vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
@@ -29,6 +31,7 @@
     <script src="vendor/alertify/alertify.js"></script>
 
     <script src="vendor/jquery-ui-1.13.2/jquery-ui.js"></script>
+
     <!-- <script src="vendor/sticky-plugin.js"></script> -->
     <script>
 

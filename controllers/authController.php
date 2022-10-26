@@ -96,34 +96,40 @@ if (isset($_POST['login-btn'])) {
 
     if (count($errors) === 0) {
         $query = "SELECT * FROM users WHERE username=? OR email=? LIMIT 1";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('ss', $username, $username); // ss means `String String`
-        if ($stmt->execute()) {
-            $result = $stmt->get_result();
-            $user = $result->fetch_assoc();
-            if (password_verify($password, $user['password'])) { // if password matches
-                $stmt->close();
+        // $stmt = $conn->prepare($query);
+        if($stmt = $conn->prepare($query)) { // assuming $mysqli is the connection
+            $stmt->bind_param('ss', $username, $username); // ss means `String String`
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
+                if (password_verify($password, $user['password'])) { // if password matches
+                    $stmt->close();
 
-                // Saving details on session
-                $_SESSION['id'] = $user['user_id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['first_name'] = $user['first_name'];
-                $_SESSION['last_name'] = $user['last_name'];
-                $_SESSION['contact_no'] = $user['contact_no'];
-                $_SESSION['address'] = $user['address'];
-                $_SESSION['landmark'] = $user['landmark'];
-                $_SESSION['verified'] = $user['verified'];
-                $_SESSION['message'] = 'You are logged in!';
-                $_SESSION['type'] = 'alert-success';
-                header('location: verify_check.php');
-                exit(0);
+                    // Saving details on session
+                    $_SESSION['id'] = $user['user_id'];
+                    $_SESSION['username'] = $user['username'];
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['first_name'] = $user['first_name'];
+                    $_SESSION['last_name'] = $user['last_name'];
+                    $_SESSION['contact_no'] = $user['contact_no'];
+                    $_SESSION['address'] = $user['address'];
+                    $_SESSION['landmark'] = $user['landmark'];
+                    $_SESSION['verified'] = $user['verified'];
+                    $_SESSION['message'] = 'You are logged in!';
+                    $_SESSION['type'] = 'alert-success';
+                    header('location: verify_check.php');
+                    exit(0);
 
-            } else { // if password does not match
-                $errors['login_fail'] = "Wrong username / password";
+                } else { // if password does not match
+                    $errors['login_fail'] = "Wrong username / password";
+                }
+            } else {
+                $_SESSION['message'] = "Database error. Login failed!";
+                $_SESSION['type'] = "alert-danger";
             }
         } else {
-            $_SESSION['message'] = "Database error. Login failed!";
+            $error = $mysqli->errno . ' ' . $mysqli->error;
+            $_SESSION['error'] = $error;
             $_SESSION['type'] = "alert-danger";
         }
     }
