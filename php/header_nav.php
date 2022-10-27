@@ -8,8 +8,8 @@
           <!-- Nav brand -->
           <a href="index.php" class="nav-brand">
             <img src="img/core-img/logo.png" alt="" style="
-                        width: 80px;
-                        margin: 0px 0px 0px 65px;
+                        width: 70px;
+                        margin: 0px 0px 0px 5px;
                     ">
           </a>
           <!-- Navbar Toggler -->
@@ -52,8 +52,9 @@
                 <a href="login.php" class="btn palatin-btn" <?=$signed_user?>>Login</a>
                 <div class="dropdown" <?=$not_signed_user?>>
                   <!-- <a href="#" class="btn palatin-btn"><i class="fa fa-user"></i> Hotside User</a> -->
-                  <button class="btn palatin-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: -25px;">
-                  <i class="fa fa-user"></i> Hotside User
+                  <button class="btn palatin-btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: -25px;">
+                    <i class="fa fa-user"></i> Hotside User
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item text-secondary" href="#">Profile Settings</a>

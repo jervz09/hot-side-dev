@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3 desktop-view desktop-menu">
-    <div class="card booking-form p-2">
+    <div class="card category-list-container booking-form p-2">
       <div class="card-header"> Category </div>
       <div class="list-group category-list">
         <?php
@@ -11,7 +11,7 @@
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <a href='#". $row["type"] ."' class='btn list-group-item list-group-item-action'>". $row["type"] ."</a>
+                        <a href='#". decamelize($row["type"]) ."' class='btn list-group-item list-group-item-action'>". $row["type"] ."</a>
                     </tr>";
             }
             } else {
@@ -22,8 +22,8 @@
     </div>
   </div>
 
-  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-5 col-xl-5">
-  <?php
+  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-6 col-xl-6">
+    <?php
             $sql = "SELECT
                       m.menu_id,m.name,m.price,m.type,items.items
                     FROM
@@ -39,12 +39,11 @@
             $last_m_type = "";
             while($row = $result->fetch_assoc()) {
               if(!$last_m_type || $last_m_type != $row['type']){
-                echo $last_m_type;
                 if($last_m_type){
                   echo '</div>';
                 }
 
-                echo '<div id="'.$row["type"].'" class="card booking-form p-1">
+                echo '<div id="'.decamelize($row["type"]).'" class="card booking-form p-1">
                 <div class="card-body border-bottom-dashed pb-0 mb-0">
                   <h1 class="category-title text-left pb-0 mb-0">'.$row["type"].'</h1>
                   <p class="category-para text-left">'.$row["items"].' Items</p>
@@ -81,7 +80,7 @@
 
   </div>
 
-  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-4 col-xl-4">
+  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3">
     <div id="summary_order" class="summary_order card booking-form p-1">
       <div class="card-header py-3">
         <h5 class="mb-0">Summary</h5>
@@ -94,7 +93,9 @@
           <div id="cart" class="bg-white rounded">
             <div class="d-flex jusitfy-content-between align-items-center pb-2 border-bottom">
               <div class="item pr-2">
-                <img src="https://images.unsplash.com/photo-1569488859134-24b2d490f23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" width="80" height="80">
+                <img
+                  src="https://images.unsplash.com/photo-1569488859134-24b2d490f23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                  alt="" width="80" height="80">
                 <div class="number">2</div>
               </div>
               <div class="d-flex flex-column px-3">

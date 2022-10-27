@@ -555,7 +555,7 @@ img {
 	-webkit-transition-duration: 300ms;
 	transition-duration: 300ms;
 	background-color: transparent;
-	/* height: 150px; */
+	height: 80px;
 	padding: 0;
 }
 
@@ -580,7 +580,7 @@ img {
 .header-area .palatin-main-menu .classy-navbar .classynav ul li a {
 	text-transform: capitalize;
 	color: #ffffff;
-	font-size: 16px;
+	font-size: 15px;
 	background-color: transparent;
 }
 
@@ -624,7 +624,7 @@ img {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.header-area .palatin-main-menu .classy-navbar .classynav ul li ul li a {
-		padding: 0 20px;
+		padding: 0 10px;
 	}
 }
 
@@ -684,7 +684,7 @@ img {
 }
 
 .header-area .is-sticky .palatin-main-menu .classy-navbar {
-	height: 90px;
+	height: 70px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1586,14 +1586,14 @@ img {
 
 .footer-area .footer-widget-area p {
 	color: #cccccc;
-	font-size: 14px;
+	font-size: 13px;
 	margin-bottom: 0;
 }
 
 .footer-area .footer-widget-area .widget-title {
 	padding-top: 5px;
 	color: #ffffff;
-	font-weight: 200;
+	font-weight: 150;
 }
 
 .footer-area .footer-widget-area .subscribe-form {
@@ -1603,7 +1603,7 @@ img {
 
 .footer-area .footer-widget-area .subscribe-form input {
 	width: 100%;
-	height: 46px;
+	height: 40px;
 	background-color: transparent;
 	border: 2px solid #2b898b;
 	padding: 0 15px;
@@ -1614,10 +1614,10 @@ img {
 	-webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
 	width: 100%;
-	height: 46px;
+	height: 40px;
 	border: none;
 	font-size: 16px;
-	margin-top: 15px;
+	margin-top: 10px;
 	color: #ffffff;
 	cursor: pointer;
 	background-color: #2b898b;
@@ -2587,3 +2587,5 @@ tr.text-muted td{
         max-width: 100%;
     }
 }
+
+#continental:target { scroll-margin-top: 140px; }
