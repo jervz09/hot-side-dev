@@ -4,14 +4,14 @@
       <div class="card-header"> Category </div>
       <div class="list-group category-list">
         <?php
-            $sql = "SELECT * FROM menu_list";
+            $sql = "SELECT DISTINCT type FROM menu_list order by type";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <a href='#' class='btn list-group-item list-group-item-action'>Cras justo odio</a>
+                        <a href='#". $row["type"] ."' class='btn list-group-item list-group-item-action'>". $row["type"] ."</a>
                     </tr>";
             }
             } else {
@@ -21,36 +21,66 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-5 col-xl-5">
-    <div class="card booking-form p-1">
-      <div class="card-body border-bottom-dashed pb-0 mb-0">
-        <h1 class="category-title text-left pb-0 mb-0">Burger</h1>
-        <p class="category-para text-left">6 Items</p>
-      </div>
-      <div class="card-body bb-1 pb-3">
-        <div class="row">
-          <div class="col-md-9 col-7">
-            <h2 class="item-name text-left">Bombay Burger (with Fries)</h2>
-            <p class="item-para mb-2 text-left"></p>
-            <h3 class="item-price text-left">Pesos.139.00</h3>
-          </div>
-          <div class="col-md-3 col-5 price-area mb-2">
-            <div class="row  align-items-center">
-              <div class="col-md-12 text-center">
-                <!-- ngIf: m.ItemImage.length >= 1 -->
-              </div>
-              <div class="col-md-12 text-center">
-                <button class="add-item btn btn-branding">
-                  <i class="fa fa-plus" aria-hidden="true"></i> Add </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- </div> -->
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
+  <?php
+            $sql = "SELECT
+                      m.menu_id,m.name,m.price,m.type,items.items
+                    FROM
+                        `hot-side`.menu_list m
+                    INNER JOIN
+                        (select count(*) as items, type from menu_list group by type) items on items.type = m.type
+                    ORDER BY m.type";
+            $result = $conn->query($sql);
+            // echo($conn->errno . ' ' . $conn->error);
+            // var_dump($result);
+            if ($result->num_rows > 0) {
+            // output data of each row
+            $last_m_type = "";
+            while($row = $result->fetch_assoc()) {
+              if(!$last_m_type || $last_m_type != $row['type']){
+                echo $last_m_type;
+                if($last_m_type){
+                  echo '</div>';
+                }
+
+                echo '<div id="'.$row["type"].'" class="card booking-form p-1">
+                <div class="card-body border-bottom-dashed pb-0 mb-0">
+                  <h1 class="category-title text-left pb-0 mb-0">'.$row["type"].'</h1>
+                  <p class="category-para text-left">'.$row["items"].' Items</p>
+                </div>';
+              }
+                echo '
+                <div class="card-body bb-1 pb-3">
+                  <div class="row">
+                    <div class="col-md-9 col-7">
+                      <h2 class="item-name text-left">'.$row["name"].'</h2>
+                      <p class="item-para mb-2 text-left"></p>
+                      <h3 class="item-price text-left">₱ '.$row["price"].'</h3>
+                    </div>
+                    <div class="col-md-3 col-5 price-area mb-2">
+                      <div class="row  align-items-center">
+                        <div class="col-md-12 text-center">
+                        </div>
+                        <div class="col-md-12 text-center">
+                          <button data-id="'.$row["menu_id"].'" class="add-item btn btn-branding">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>';
+                // if(!$last_m_type || $last_m_type != $row['type']){
+                //   echo '</div>';
+                // }
+                $last_m_type = $row['type'];
+            }
+            echo '</div>';
+            }
+        ?>
+
   </div>
+
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-4 col-xl-4">
     <div id="summary_order" class="summary_order card booking-form p-1">
       <div class="card-header py-3">
