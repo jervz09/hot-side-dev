@@ -157,9 +157,13 @@ $('.category-list a').click(function(e) {
   e.preventDefault();
 });
 
-$('.close-icon').on('click', function() {
-  $(this).closest('.card-body').fadeOut();
-})
+const close_summary_item = (e) => {
+  console.log(e.closest('.card-body'))
+  $(e).closest('.card-body').hide('slow')
+  setTimeout(function() {
+    $(e).closest('.card-body').remove()
+  }, 1000);
+}
 
 
 // $(".head-step").sticky({topSpacing:105});
@@ -211,4 +215,27 @@ $('.close-icon').on('click', function() {
 // 		}
 // 	});
 // }
+
+
+let data_menu = $.parseJSON('<?=json_encode($data_menu)?>')
+console.log(data_menu)
+$('.add-item').click(function() {
+  let idx = $(this).attr("data-id")
+  let _content = $("#summary_order").find(`[menu-id='${idx}']`)
+  if (!_content.length) {
+    $.ajax({
+      url: 'php/summary-content.php',
+      type: "post",
+      data: {
+        data: data_menu[idx]
+      },
+      success: function(data) {
+        $("#summary_order").prepend(data);
+        $(".summary-body").show("slow");
+      }
+    });
+  } else {
+    _content.find(`.price_[${idx}]`)
+  }
+});
 </script>

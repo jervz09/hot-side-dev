@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3 desktop-view desktop-menu">
+    <div class="card-header"> Category </div>
     <div class="card category-list-container booking-form p-2">
-      <div class="card-header"> Category </div>
       <div class="list-group category-list">
         <?php
             $sql = "SELECT DISTINCT type FROM menu_list order by type";
@@ -33,11 +33,17 @@
                     ORDER BY m.type";
             $result = $conn->query($sql);
             // echo($conn->errno . ' ' . $conn->error);
-            // var_dump($result);
+            $data_menu = array();
             if ($result->num_rows > 0) {
-            // output data of each row
             $last_m_type = "";
             while($row = $result->fetch_assoc()) {
+              $formated_price = number_format((float)$row['price'], 2, '.', '');
+              $data_menu[$row['menu_id']] = array(
+                "id"=>$row['menu_id'],
+                "type"=>$row['type'],
+                "name"=>$row['name'],
+                "price"=>$formated_price
+              );
               if(!$last_m_type || $last_m_type != $row['type']){
                 if($last_m_type){
                   echo '</div>';
@@ -55,7 +61,7 @@
                     <div class="col-md-9 col-7">
                       <h2 class="item-name text-left">'.$row["name"].'</h2>
                       <p class="item-para mb-2 text-left"></p>
-                      <h3 class="item-price text-left">₱ '.$row["price"].'</h3>
+                      <h3 class="item-price text-left">₱ '.$formated_price.'</h3>
                     </div>
                     <div class="col-md-3 col-5 price-area mb-2">
                       <div class="row  align-items-center">
@@ -81,39 +87,15 @@
   </div>
 
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3">
+    <div class="card-header py-3">
+      <h5 class="mb-0">Summary</h5>
+    </div>
     <div id="summary_order" class="summary_order card booking-form p-1">
-      <div class="card-header py-3">
-        <h5 class="mb-0">Summary</h5>
-      </div>
-      <div class="card-body summary-body">
-        <span class="float-right clickable close-icon" data-effect="fadeOut">
-          <i class="fa fa-times"></i>
-        </span>
-        <div class="cart_container">
-          <div id="cart" class="bg-white rounded">
-            <div class="d-flex jusitfy-content-between align-items-center pb-2 border-bottom">
-              <div class="item pr-2">
-                <img
-                  src="https://images.unsplash.com/photo-1569488859134-24b2d490f23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                  alt="" width="80" height="80">
-                <div class="number">2</div>
-              </div>
-              <div class="d-flex flex-column px-3">
-                <b class="h5">BattleCreek Coffee</b>
-                <a href="#" class="h5 text-primary">C-770</a>
-                <div class="d-flex justify-content-around">
-                  <span class="fas fa-minus btn text-muted"></span>
-                  <span>2</span>
-                  <span class="fas fa-plus btn text-muted"></span>
-                </div>
-              </div>
-              <div class="ml-auto">
-                <b class="h5">$80.9</b>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <!-- start summary body -->
+
+      <!-- end summary body -->
+
       <div class="card-body">
         <div class="my-3">
           <input type="text" class="w-100 form-control text-center" placeholder="Gift Card or Promo Card">
