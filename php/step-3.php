@@ -93,29 +93,30 @@
     <div id="summary_order" class="summary_order card booking-form p-1">
 
       <!-- start summary body -->
-
+      <div class="card-body summary-body temp-body">
+      </div>
       <!-- end summary body -->
 
-      <div class="card-body">
-        <div class="my-3">
+      <div class="card-footer">
+        <!-- <div class="my-3">
           <input type="text" class="w-100 form-control text-center" placeholder="Gift Card or Promo Card">
-        </div>
-        <div class="d-flex align-items-center">
+        </div> -->
+        <!-- <div class="d-flex align-items-center">
           <div class="display-5">Subtotal</div>
-          <div class="ml-auto font-weight-bold">$80.9</div>
-        </div>
-        <div class="d-flex align-items-center py-2 border-bottom">
-          <div class="display-5">Shipping</div>
-          <div class="ml-auto font-weight-bold">$12.9</div>
-        </div>
+          <div class="ml-auto font-weight-bold">₱80.9</div>
+        </div> -->
+        <!-- <div class="d-flex align-items-center py-2 border-bottom">
+          <div class="display-5">Extra Fee</div>
+          <div class="ml-auto font-weight-bold">₱12.9</div>
+        </div> -->
         <div class="d-flex align-items-center py-2">
           <div class="display-5">Total</div>
           <div class="ml-auto d-flex">
-            <div class="text-primary text-uppercase px-3">usd</div>
-            <div class="font-weight-bold">$92.98</div>
+            <div class="text-primary text-uppercase px-3">PHP</div>
+            <div class="font-weight-bold" id="total_price">₱00.00</div>
           </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block"> Go to checkout </button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="alt_next_step_3"> Next Step </button>
       </div>
     </div>
   </div>

@@ -43,7 +43,7 @@
             <fieldset>
               <h2 class="head-step">Select Menu</h2>
               <?php include('php/step-3.php')?>
-              <input type="button" name="next-step" class="next-step" value="Next Step" />
+              <input type="button" id="next_step_3" name="next-step" class="next-step" value="Next Step" />
               <input type="button" name="previous-step" class="previous-step" value="Previous Step" />
             </fieldset>
             <fieldset>

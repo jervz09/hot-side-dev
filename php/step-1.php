@@ -6,7 +6,7 @@
         <div class="col-sm-12">
           <div class="form-group">
             <span class="form-label">Party Size</span>
-            <select class="form-control">
+            <select class="form-control" data-id="party_size">
               <option>1 person</option>
               <option>2 people</option>
               <option>3 people</option>
@@ -22,7 +22,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <span class="form-label">Date</span>
-            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="2022-09-01" required>
+            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="2022-10-01" required>
           </div>
         </div>
         <div class="col-sm-6">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="form-btn">
-        <button class="submit-btn btn-branding">Check availability</button>
+        <button class="submit-btn btn-branding" id="check_availability">Check availability</button>
       </div>
       <!-- </form> -->
     </div>
@@ -44,11 +44,8 @@
         <div class="col-sm-12">
           <!-- <span class="form-label">Available Tables</span> -->
           <table class="table">
-            <tbody>
-              <tr class="">
-                <td class="col top-border-brand text-left text-bold" style="width:70%">Available Tables : </th>
-                <td class="col top-border-brand text-center">4</td>
-              </tr>
+            <tbody data-id="available_tables">
+
               <!-- <tr><td>Available Tables</td><td>4</td></tr> -->
             </tbody>
           </table>

@@ -25,200 +25,225 @@ $(function() {
       // alertify.success(selected_msg)
     }
   });
-});
-$('.cancel-modal-reserve').click(function() {
-  $('#reservation_modal').modal('hide');
-})
-$('button.success').click(function() {
-  alertify.success('Submitted. Wait for approval.');
-});
-var currentGfgStep, nextGfgStep, previousGfgStep;
-var opacity;
-var current = 1;
-var steps = $("fieldset").length;
-setProgressBar(current);
-$(".next-step").click(function() {
-  currentGfgStep = $(this).parent();
-  nextGfgStep = $(this).parent().next();
-  $("#progressbar li").eq($("fieldset").index(nextGfgStep)).addClass("active");
-  nextGfgStep.show();
-  currentGfgStep.animate({
-    opacity: 0
-  }, {
-    step: function(now) {
-      opacity = 1 - now;
-      currentGfgStep.css({
-        'display': 'none',
-        'position': 'relative'
-      });
-      nextGfgStep.css({
-        'opacity': opacity
-      });
-    },
-    duration: 500
-  });
-  setProgressBar(++current);
-  window.dispatchEvent(new Event('resize'));
-  console.log(s_table)
-});
-$(".previous-step").click(function() {
-  currentGfgStep = $(this).parent();
-  previousGfgStep = $(this).parent().prev();
-  $("#progressbar li").eq($("fieldset").index(currentGfgStep)).removeClass("active");
-  console.log(previousGfgStep)
-  previousGfgStep.show();
-  currentGfgStep.animate({
-    opacity: 0
-  }, {
-    step: function(now) {
-      opacity = 1 - now;
-      currentGfgStep.css({
-        'display': 'none',
-        'position': 'relative'
-      });
-      previousGfgStep.css({
-        'opacity': opacity
-      });
-    },
-    duration: 500
-  });
-  setProgressBar(--current);
-  window.dispatchEvent(new Event('resize'));
-  console.log(s_table)
-});
 
-function setProgressBar(currentStep) {
-  var percent = parseFloat(100 / steps) * current;
-  percent = percent.toFixed();
-  $(".progress-bar").css("width", percent + "%")
-}
-$(".submit").click(function() {
-  return false;
-})
-var tbl = $.parseJSON('<?=json_encode($tbl)?>')
 
-function map_tbls() {
-  if (Object.keys(tbl).length > 0) {
-    $('#fp-map').html('')
-    Object.keys(tbl).map(k => {
-      var data = tbl[k]
-      var area = $("<area shape='rect'>")
-      area.attr('href', "javascript:void(0)")
-      area.attr('data-id', data.id)
-      var perc = data.coordinates
-      perc = perc.replace(" ", '')
-      perc = perc.split(",")
-      var x = $('#fp-img').width() * perc[0];
-      var y = $('#fp-img').height() * perc[1];
-      var width = ($('#fp-img').width() * perc[2]) - x;
-      var height = ($('#fp-img').height() * perc[3]) - y;
-      area.attr('area-id', data.table_no)
-      area.attr('coords', x + ", " + y + ", " + width + ", " + height)
-      area.text("#" + data.table_no)
-      area.addClass('fw-bolder text-muted')
-      area.css({
-        'position': 'absolute',
-        // 'border':"1px solid blue",
-        'height': height + 'px',
-        'width': width + 'px',
-        'top': y + 'px',
-        'left': x + 'px',
-        'display': 'flex',
-        'text-align': 'center',
-        'justify-content': 'center',
-        'align-items': 'center',
-      })
-      $('#fp-map').append(area)
-      area.click(function() {
-        // universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
-        $("[shape='rect']").removeClass("selected-table")
-        $(`[area-id="${data.table_no}"]`).addClass("selected-table");
-        s_table = data.table_no
-      })
-    })
+  $('.cancel-modal-reserve').click(function() {
+    $('#reservation_modal').modal('hide');
+  })
+  $('button.success').click(function() {
+    alertify.success('Submitted. Wait for approval.');
+  });
+  var currentGfgStep, nextGfgStep, previousGfgStep;
+  var opacity;
+  var current = 1;
+  var steps = $("fieldset").length;
+  setProgressBar(current);
+  $(".next-step").click(function() {
+    currentGfgStep = $(this).parent();
+    nextGfgStep = $(this).parent().next();
+    $("#progressbar li").eq($("fieldset").index(nextGfgStep)).addClass("active");
+    nextGfgStep.show();
+    currentGfgStep.animate({
+      opacity: 0
+    }, {
+      step: function(now) {
+        opacity = 1 - now;
+        currentGfgStep.css({
+          'display': 'none',
+          'position': 'relative'
+        });
+        nextGfgStep.css({
+          'opacity': opacity
+        });
+      },
+      duration: 500
+    });
+    setProgressBar(++current);
+    window.dispatchEvent(new Event('resize'));
+    console.log(s_table)
+  });
+  $(".previous-step").click(function() {
+    currentGfgStep = $(this).parent();
+    previousGfgStep = $(this).parent().prev();
+    $("#progressbar li").eq($("fieldset").index(currentGfgStep)).removeClass("active");
+    console.log(previousGfgStep)
+    previousGfgStep.show();
+    currentGfgStep.animate({
+      opacity: 0
+    }, {
+      step: function(now) {
+        opacity = 1 - now;
+        currentGfgStep.css({
+          'display': 'none',
+          'position': 'relative'
+        });
+        previousGfgStep.css({
+          'opacity': opacity
+        });
+      },
+      duration: 500
+    });
+    setProgressBar(--current);
+    window.dispatchEvent(new Event('resize'));
+    console.log(s_table)
+  });
+
+  function setProgressBar(currentStep) {
+    var percent = parseFloat(100 / steps) * current;
+    percent = percent.toFixed();
+    $(".progress-bar").css("width", percent + "%")
   }
-}
-map_tbls()
-$(window).on('resize', function() {
+  $(".submit").click(function() {
+    return false;
+  })
+  var tbl = $.parseJSON('<?=json_encode($tbl)?>')
+
+  function map_tbls() {
+    if (Object.keys(tbl).length > 0) {
+      $('#fp-map').html('')
+      Object.keys(tbl).map(k => {
+        var data = tbl[k]
+        var area = $("<area shape='rect'>")
+        area.attr('href', "javascript:void(0)")
+        area.attr('data-id', data.id)
+        var perc = data.coordinates
+        perc = perc.replace(" ", '')
+        perc = perc.split(",")
+        var x = $('#fp-img').width() * perc[0];
+        var y = $('#fp-img').height() * perc[1];
+        var width = ($('#fp-img').width() * perc[2]) - x;
+        var height = ($('#fp-img').height() * perc[3]) - y;
+        area.attr('area-id', data.table_no)
+        area.attr('coords', x + ", " + y + ", " + width + ", " + height)
+        area.text("#" + data.table_no)
+        area.addClass('fw-bolder text-muted')
+        area.css({
+          'position': 'absolute',
+          // 'border':"1px solid blue",
+          'height': height + 'px',
+          'width': width + 'px',
+          'top': y + 'px',
+          'left': x + 'px',
+          'display': 'flex',
+          'text-align': 'center',
+          'justify-content': 'center',
+          'align-items': 'center',
+        })
+        $('#fp-map').append(area)
+        area.click(function() {
+          // universal_modal('Table Reservation',"./php/manage_reservation.php?table_id="+data.id)
+          $("[shape='rect']").removeClass("selected-table")
+          $(`[area-id="${data.table_no}"]`).addClass("selected-table");
+          s_table = data.table_no
+        })
+      })
+    }
+  }
   map_tbls()
-})
-window.dispatchEvent(new Event('resize'));
-var _date = new Date()
-var today = _date.toISOString().split('T')[0];
-var currentTime = _date.getHours() + ':' + _date.getMinutes();
-currentTime = _date.toTimeString().substring(0, 5);
-// document.getElementsByName("reserved_date")[0].setAttribute('min', today);
-$('#reserved_date').val(today)
-$('#reserved_time').val(currentTime)
-$('.category-list a').click(function(e) {
-  $('.category-list a.active').removeClass('active');
-  // var $parent = $(this).parent();
-  $(this).addClass('active');
-  e.preventDefault();
+  $(window).on('resize', function() {
+    map_tbls()
+  })
+  window.dispatchEvent(new Event('resize'));
+  var _date = new Date()
+  var today = _date.toISOString().split('T')[0];
+  var currentTime = _date.getHours() + ':' + _date.getMinutes();
+  currentTime = _date.toTimeString().substring(0, 5);
+  // document.getElementsByName("reserved_date")[0].setAttribute('min', today);
+  $('#reserved_date').val(today)
+  $('#reserved_time').val(currentTime)
+  $('.category-list a').click(function(e) {
+    $('.category-list a.active').removeClass('active');
+    // var $parent = $(this).parent();
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+
+
+  // $(".head-step").sticky({topSpacing:105});
+  // $(".booking-form").sticky({topSpacing:140});
+  // $(".category-list-container").sticky({topSpacing:105});
+  // $(".summary_order").sticky({topSpacing:105});
+  // $.stickysidebarscroll(".head-step",{offset: {top: 105, bottom: 200}});
+  // $.stickysidebarscroll(".booking-form",{offset: {top: 140, bottom: 10}});
+  // var stickyPanelOptions = {
+  // 	topPadding: 105,
+  // 	afterDetachCSSClass: "",
+  // 	savePanelSpace: false,
+  // 	onDetached: function (detachedPanel, spacerPanel) {
+  // 		detachedPanel.html(detachedPanel.html() + " has been detached!");
+  // 		// spacerPanel.css("background-color", "#1000ff");
+  // 	},
+  // 	onReAttached: function (detachedPanel) {
+  // 		detachedPanel.html(detachedPanel.html().replace(" has been reAttached!", ""));
+  // 	},
+  // 	parentSelector: null
+  // };
+
+  // // multiple panel example (you could also use the class ".stickypanel" to select both)
+  // $(".category-list-container,.summary_order").stickyPanel(stickyPanelOptions);
+
+  // var $sticky = $('.category-list-container');
+  // var $stickyrStopper = $('.footer-area');
+  // if ($sticky.offset()) { // make sure ".sticky" element exists
+
+  // 	var generalSidebarHeight = $sticky.innerHeight();
+  // 	// var stickyTop = $('.category-list-container').offset().top;
+  // 	var stickyTop = 362.25;
+  // 	var stickOffset = 104;
+  // 	var stickyStopperPosition = $stickyrStopper.offset().top;
+  // 	var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+  // 	var diff = stopPoint + stickOffset;
+
+  // 	$(window).scroll(function(){ // scroll event
+  // 	var windowTop = $(window).scrollTop(); // returns number
+
+  // 		if (stickyTop < windowTop+stickOffset) {
+  // 			console.log(stickyTop)
+  // 			console.log(windowTop)
+  // 			console.log(stickOffset)
+  // 			$sticky.css({ position: 'fixed', top: stickOffset });
+  // 			$sticky.addClass('content_fixed');
+  // 		} else {
+  // 			$sticky.css({position: 'absolute', top: 'initial'});
+  // 		}
+  // 	});
+  // }
+
+
 });
 
-const close_summary_item = (e) => {
-  console.log(e.closest('.card-body'))
-  $(e).closest('.card-body').hide('slow')
-  setTimeout(function() {
-    $(e).closest('.card-body').remove()
-  }, 1000);
-}
+$("#alt_next_step_3").click(function () {
+  $("#next_step_3").click()
+})
+
+// Checking available tables
+
+$('#check_availability').click(function() {
+  $.ajax({
+    url: 'php/available_tables.php',
+    type: "post",
+    data: {
+      party_size: $("[data-id='party_size']").val(),
+      reserved_date: $("reserved_date").val(),
+      reserved_time: $("reserved_time").val()
+    },
+    success: function(data) {
+      console.log(data)
+      $("[data-id='available_tables']").html(data);
+      $("[data-id='tr_available_tables']").show("slow");
+    }
+  });
+
+});
 
 
-// $(".head-step").sticky({topSpacing:105});
-// $(".booking-form").sticky({topSpacing:140});
-// $(".category-list-container").sticky({topSpacing:105});
-// $(".summary_order").sticky({topSpacing:105});
-// $.stickysidebarscroll(".head-step",{offset: {top: 105, bottom: 200}});
-// $.stickysidebarscroll(".booking-form",{offset: {top: 140, bottom: 10}});
-// var stickyPanelOptions = {
-// 	topPadding: 105,
-// 	afterDetachCSSClass: "",
-// 	savePanelSpace: false,
-// 	onDetached: function (detachedPanel, spacerPanel) {
-// 		detachedPanel.html(detachedPanel.html() + " has been detached!");
-// 		// spacerPanel.css("background-color", "#1000ff");
-// 	},
-// 	onReAttached: function (detachedPanel) {
-// 		detachedPanel.html(detachedPanel.html().replace(" has been reAttached!", ""));
-// 	},
-// 	parentSelector: null
-// };
+// Ordering and adding on cart
 
-// // multiple panel example (you could also use the class ".stickypanel" to select both)
-// $(".category-list-container,.summary_order").stickyPanel(stickyPanelOptions);
-
-// var $sticky = $('.category-list-container');
-// var $stickyrStopper = $('.footer-area');
-// if ($sticky.offset()) { // make sure ".sticky" element exists
-
-// 	var generalSidebarHeight = $sticky.innerHeight();
-// 	// var stickyTop = $('.category-list-container').offset().top;
-// 	var stickyTop = 362.25;
-// 	var stickOffset = 104;
-// 	var stickyStopperPosition = $stickyrStopper.offset().top;
-// 	var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
-// 	var diff = stopPoint + stickOffset;
-
-// 	$(window).scroll(function(){ // scroll event
-// 	var windowTop = $(window).scrollTop(); // returns number
-
-// 		if (stickyTop < windowTop+stickOffset) {
-// 			console.log(stickyTop)
-// 			console.log(windowTop)
-// 			console.log(stickOffset)
-// 			$sticky.css({ position: 'fixed', top: stickOffset });
-// 			$sticky.addClass('content_fixed');
-// 		} else {
-// 			$sticky.css({position: 'absolute', top: 'initial'});
-// 		}
-// 	});
-// }
-
+let list_orders = []
 
 let data_menu = $.parseJSON('<?=json_encode($data_menu)?>')
-console.log(data_menu)
+
 $('.add-item').click(function() {
   let idx = $(this).attr("data-id")
   let _content = $("#summary_order").find(`[menu-id='${idx}']`)
@@ -232,10 +257,79 @@ $('.add-item').click(function() {
       success: function(data) {
         $("#summary_order").prepend(data);
         $(".summary-body").show("slow");
+        update_menu_price(idx,1)
       }
     });
   } else {
-    _content.find(`.price_[${idx}]`)
+    let qty = parseInt(_content.find('.order-qty').text())
+    _content.find('.order-qty').text(qty+1)
+    update_menu_price(idx,qty+1)
   }
+
+  hide_temp_class()
+
 });
+
+const add_order_list = (id, qty, price) => {
+  let data = {
+    id,
+    qty,
+    price:qty*price
+  }
+  objIndex = list_orders.findIndex((obj => obj.id == id))
+  if(list_orders[objIndex]){
+    list_orders[objIndex].qty = qty
+    list_orders[objIndex].price = qty*price
+  }else{
+    list_orders.push(data)
+  }
+  $("#total_price").text()
+  console.log(list_orders)
+  calculate_total_amount(list_orders)
+}
+
+const calculate_total_amount = (_list) => {
+  let sum = _list.reduce((n,{price}) => n + price, 0)
+  $("#total_price").text(`₱${sum.toFixed(2)}`)
+  console.log(sum)
+}
+const close_summary_item = (e) => {
+    console.log(e.closest('.card-body'))
+    $(e).closest('.card-body').hide('slow')
+    setTimeout(function() {
+      $(e).closest('.card-body').remove()
+    }, 1000);
+  }
+
+const dec_qty = (e) => {
+    let idx = $(e).attr("dec-id")
+    let qty = parseInt($(`[order-qty-id='${idx}']`).text())
+    if((qty-1)>=1){
+      $(`[order-qty-id='${idx}']`).text(qty-1)
+      update_menu_price(idx,qty-1)
+    }else{
+      close_summary_item(e)
+    }
+  }
+const inc_qty = (e) => {
+    let idx = $(e).attr("inc-id")
+    let qty = parseInt($(`[order-qty-id='${idx}']`).text())
+    $(`[order-qty-id='${idx}']`).text(qty+1)
+    update_menu_price(idx,qty+1)
+  }
+
+const update_menu_price = (id,qty) => {
+  let orig_price = $(`.orig_price_${id}`)
+  let price = $(`.price_${id}`)
+  let _o_price = parseInt(orig_price.text().replace("₱", ''))
+  let final_price = _o_price*qty
+  price.text(`₱${final_price.toFixed(2)}`)
+  add_order_list(id, qty, _o_price)
+}
+
+const hide_temp_class = () => {
+  $(".temp-body").hide("slow")
+}
+
+
 </script>
