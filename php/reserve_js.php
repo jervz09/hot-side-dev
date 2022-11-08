@@ -7,6 +7,9 @@
 //   }, 0);
 // }
 
+// checking avaialability
+let checked_availability = false
+
 $(function() {
   $('#datetime_picker_reserve').datetimepicker({
     inline: true,
@@ -219,6 +222,10 @@ $("#alt_next_step_3").click(function () {
 
 // Checking available tables
 
+// $("#alt_next_step_3").click(function () {
+//   $("#next_step_3").click()
+// })
+
 $('#check_availability').click(function() {
   $.ajax({
     url: 'php/available_tables.php',
@@ -229,9 +236,10 @@ $('#check_availability').click(function() {
       reserved_time: $("reserved_time").val()
     },
     success: function(data) {
-      console.log(data)
+      checked_availability = true
       $("[data-id='available_tables']").html(data);
       $("[data-id='tr_available_tables']").show("slow");
+      $("#next_step_1").css({"display":"block"})
     }
   });
 

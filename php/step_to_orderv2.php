@@ -32,7 +32,7 @@
             <fieldset>
               <h2 class="head-step">Select Date and Time</h2>
               <?php include('php/step-1.php')?>
-              <input type="button" name="next-step" class="next-step" value="Next Step" />
+              <input type="button" id="next_step_1" name="next-step" class="next-step" value="Next Step" style="display: none"/>
             </fieldset>
             <fieldset>
               <h2 class="head-step">Select Available Tables</h2>
