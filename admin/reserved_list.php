@@ -51,9 +51,17 @@
                                         <td class ='align-center p-1'>" . $row["tbl_name"] . "</td>
                                         <td class ='align-center p-1'>" . $status . "</td>
                                         <td class ='align-center p-1'>
-                                            <a class='btn btn-block btn-success edit_data' data-id='". $row['menu_id'] . "' href='javascript:void(0)'>
-                                                Edit
-                                            </a>
+
+                                            <div class='dropdown'>
+                                                <button class='btn btn-primary btn-block dropdown-toggle' type='button' id='btnGroupDrop1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                                    Action
+                                                </button>
+                                                <div class='dropdown-menu' aria-labelledby='btnGroupDrop1'>
+                                                    <a class='dropdown-item edit_data' data-id='". $row['menu_id'] ."' href='javascript:void(0)'>Edit </a>
+                                                    <a class='dropdown-item delete_data' data-id='". $row['menu_id'] ."' data-name='
+                                                        ". $row['name'] ."' href='javascript:void(0)'>Delete </a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>";
                             }

@@ -65,10 +65,10 @@
                       <td class="text-center p-0"> <?php echo $row['table_no'] ?> </td>
                       <td class="py-0 px-1"> <?php echo $row['name'] ?> </td>
                       <th class="text-center py-0 px-1">
-                      <div class="dropdown">
-                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Action
-                        </button>
+                        <div class="dropdown">
+                          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Action
+                          </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item edit_data" data-id='<?php echo $row['table_id'] ?>' href="javascript:void(0)">Edit </a>
                                 <a class="dropdown-item delete_data" data-id='<?php echo $row['table_id'] ?>' data-name='
