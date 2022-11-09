@@ -57,8 +57,8 @@
                                                     Action
                                                 </button>
                                                 <div class='dropdown-menu' aria-labelledby='btnGroupDrop1'>
-                                                    <a class='dropdown-item edit_data' data-id='". $row['menu_id'] ."' href='javascript:void(0)'>Edit </a>
-                                                    <a class='dropdown-item delete_data' data-id='". $row['menu_id'] ."' data-name='
+                                                    <a class='dropdown-item edit_data' data-id='". $row['reservation_id'] ."' href='javascript:void(0)'>Edit </a>
+                                                    <a class='dropdown-item delete_data' data-id='". $row['reservation_id'] ."' data-name='
                                                         ". $row['name'] ."' href='javascript:void(0)'>Delete </a>
                                                 </div>
                                             </div>

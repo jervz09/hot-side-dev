@@ -76,8 +76,8 @@
     <!-- Page level custom scripts -->
     <script src="../js/chartjs/datatables-demo.js"></script>
     <script src="../js/script.js"></script>
-    
-    
+
+
 
     <!-- <script>
         $('#logout_session').click(function(){
@@ -109,6 +109,9 @@
             break;
             case 'f_plan':
                 include('./include/f_plan_js.php');
+            break;
+            case 'reserved_list':
+                include('./include/reserve_list_js.php');
             break;
             default:
                 include('./include/sales_area_graph.php');

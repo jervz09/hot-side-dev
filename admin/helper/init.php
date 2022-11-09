@@ -159,7 +159,7 @@ Class Actions {
     }
     function delete_reservation(){
         extract($_POST);
-        @$delete = $this->query("DELETE FROM `reservation_list` where reservation_id = '{$id}'");
+        @$delete = $this->mysqli->query("DELETE FROM `reservation_list` where reservation_id = '{$id}'");
         if($delete){
             $resp['status']='success';
             $_SESSION['flashdata']['type'] = 'success';
