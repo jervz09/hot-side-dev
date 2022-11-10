@@ -48,6 +48,7 @@
             </fieldset>
             <fieldset>
               <h2 class="head-step">Review</h2>
+              <?php include('php/step-review.php')?>
               <input type="button" name="previous-step" class="previous-step" value="Previous Step" />
             </fieldset>
           </form>

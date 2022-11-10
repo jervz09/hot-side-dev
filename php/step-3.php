@@ -68,7 +68,7 @@
                         <div class="col-md-12 text-center">
                         </div>
                         <div class="col-md-12 text-center">
-                          <button data-id="'.$row["menu_id"].'" class="add-item btn btn-branding">
+                          <button data-name="'.$row["name"].'" data-id="'.$row["menu_id"].'" class="add-item btn btn-branding">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add </button>
                         </div>
                       </div>

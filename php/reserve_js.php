@@ -254,6 +254,7 @@ let data_menu = $.parseJSON('<?=json_encode($data_menu)?>')
 
 $('.add-item').click(function() {
   let idx = $(this).attr("data-id")
+  let item_name = $(this).attr("data-name")
   let _content = $("#summary_order").find(`[menu-id='${idx}']`)
   if (!_content.length) {
     $.ajax({
@@ -265,27 +266,29 @@ $('.add-item').click(function() {
       success: function(data) {
         $("#summary_order").prepend(data);
         $(".summary-body").show("slow");
-        update_menu_price(idx,1)
+        update_menu_price(idx, item_name ,1)
       }
     });
   } else {
     let qty = parseInt(_content.find('.order-qty').text())
     _content.find('.order-qty').text(qty+1)
-    update_menu_price(idx,qty+1)
+    update_menu_price(idx,item_name,qty+1)
   }
 
   hide_temp_class()
 
 });
 
-const add_order_list = (id, qty, price) => {
+const add_order_list = (id, name, qty, price) => {
   let data = {
     id,
+    name,
     qty,
     price:qty*price
   }
   objIndex = list_orders.findIndex((obj => obj.id == id))
   if(list_orders[objIndex]){
+    list_orders[objIndex].name = name
     list_orders[objIndex].qty = qty
     list_orders[objIndex].price = qty*price
   }else{
@@ -296,6 +299,16 @@ const add_order_list = (id, qty, price) => {
   calculate_total_amount(list_orders)
 }
 
+const remove_order_list = (id) => {
+  objIndex = list_orders.findIndex((obj => obj.id == id))
+
+  if(objIndex == -1){
+    return false
+  }
+  list_orders.splice(objIndex,1)
+  calculate_total_amount(list_orders)
+}
+
 const calculate_total_amount = (_list) => {
   let sum = _list.reduce((n,{price}) => n + price, 0)
   $("#total_price").text(`₱${sum.toFixed(2)}`)
@@ -303,6 +316,7 @@ const calculate_total_amount = (_list) => {
 }
 const close_summary_item = (e) => {
     console.log(e.closest('.card-body'))
+    remove_order_list($(e).attr("data-id"))
     $(e).closest('.card-body').hide('slow')
     setTimeout(function() {
       $(e).closest('.card-body').remove()
@@ -311,28 +325,30 @@ const close_summary_item = (e) => {
 
 const dec_qty = (e) => {
     let idx = $(e).attr("dec-id")
+    let data_name = $(e).attr("data-name")
     let qty = parseInt($(`[order-qty-id='${idx}']`).text())
     if((qty-1)>=1){
       $(`[order-qty-id='${idx}']`).text(qty-1)
-      update_menu_price(idx,qty-1)
+      update_menu_price(idx,data_name,qty-1)
     }else{
       close_summary_item(e)
     }
   }
 const inc_qty = (e) => {
     let idx = $(e).attr("inc-id")
+    let data_name = $(e).attr("data-name")
     let qty = parseInt($(`[order-qty-id='${idx}']`).text())
     $(`[order-qty-id='${idx}']`).text(qty+1)
-    update_menu_price(idx,qty+1)
+      update_menu_price(idx,data_name,qty+1)
   }
 
-const update_menu_price = (id,qty) => {
+const update_menu_price = (id, name, qty) => {
   let orig_price = $(`.orig_price_${id}`)
   let price = $(`.price_${id}`)
   let _o_price = parseInt(orig_price.text().replace("₱", ''))
   let final_price = _o_price*qty
   price.text(`₱${final_price.toFixed(2)}`)
-  add_order_list(id, qty, _o_price)
+  add_order_list(id, name, qty, _o_price)
 }
 
 const hide_temp_class = () => {

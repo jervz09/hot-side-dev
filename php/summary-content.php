@@ -2,7 +2,7 @@
   $data_id = $_POST['data']["id"];
 ?>
 <div class="card-body summary-body" menu-id="<?=$data_id?>" style="display: none;">
-  <span class="float-right clickable close-icon" data-effect="fadeOut" onclick="close_summary_item(this)">
+  <span class="float-right clickable close-icon" data-effect="fadeOut" data-name="<?=$_POST['data']["name"];?>" data-id="<?=$data_id?>"  onclick="close_summary_item(this)">
     <i class="fa fa-times"></i>
   </span>
   <div class="cart_container">
@@ -12,7 +12,7 @@
           <b data-name="" class="h5"><?=$_POST['data']["name"];?></b>
           <!-- <a href="#" class="h5 text-primary">C-770</a> -->
           <div class="d-flex justify-content-start">
-            <span dec-id="<?=$data_id?>" class="fas fa-minus btn text-muted dec-qty" onclick="dec_qty(this)"></span>
+            <span data-name = "<?=$_POST['data']["name"];?>" dec-id="<?=$data_id?>" data-id="<?=$data_id?>" class="fas fa-minus btn text-muted dec-qty" onclick="dec_qty(this)"></span>
             <span order-qty-id = "<?=$data_id?>"class="order-qty">1</span>
             <span inc-id="<?=$data_id?>"class="fas fa-plus btn text-muted inc-qty" onclick="inc_qty(this)"></span>
           </div>
