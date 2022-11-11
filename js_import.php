@@ -36,6 +36,7 @@
 <script>
 let s_table = ""
 let s_date = ""
+let s_table_name = ""
 let timepicker_hour = timepicker_minute = ""
 
 function preventSubmit(e) {

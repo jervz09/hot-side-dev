@@ -9,6 +9,9 @@
 
 // checking avaialability
 let checked_availability = false
+let party_size = ""
+let reserved_date = ""
+let reserved_time = ""
 
 $(function() {
   $('#datetime_picker_reserve').datetimepicker({
@@ -138,6 +141,7 @@ $(function() {
           $("[shape='rect']").removeClass("selected-table")
           $(`[area-id="${data.table_no}"]`).addClass("selected-table");
           s_table = data.table_no
+					s_table_name = data.name
         })
       })
     }
@@ -218,13 +222,16 @@ $(function() {
 
 
 $('#check_availability').click(function() {
+  party_size = $("[data-id='party_size']").val()
+  reserved_date = $("#reserved_date").val()
+  reserved_time = $("#reserved_time").val()
   $.ajax({
     url: 'php/available_tables.php',
     type: "post",
     data: {
-      party_size: $("[data-id='party_size']").val(),
-      reserved_date: $("reserved_date").val(),
-      reserved_time: $("reserved_time").val()
+      party_size,
+      reserved_date,
+      reserved_time
     },
     success: function(data) {
       checked_availability = true
@@ -358,8 +365,15 @@ $("#next_step_3").click(function () {
   let total = ""
   let order_body = ""
   let order_footer = ""
+	console.log(party_size)
+	console.log(reserved_date)
+	console.log(reserved_time)
+	$("#selected_party_size").val(party_size)
+	$("#selected_reserved_date").val(reserved_date)
+	$("#selected_reserved_time").val(reserved_time)
+	$("#selected_table_no").val(s_table_name)
+
   for (let i = 0; i < list_orders.length; i++) {
-    console.log(list_orders[i])
     is_order = true
     order_body +=`<tr>
                     <td class='text-left'>${list_orders[i].name}</td>
@@ -367,6 +381,7 @@ $("#next_step_3").click(function () {
                     <td>₱${list_orders[i].price}</td>
                   </tr>`
   }
+
   if (is_order == true){
     total = list_orders.reduce((n,{price}) => n + price, 0).toFixed(2)
     order_footer = `<tr data-id="tr_ordered">
@@ -376,9 +391,10 @@ $("#next_step_3").click(function () {
               </tr>`
     $("[data-review='review_order_footer']").html(order_footer);
   }
+
   $("[data-review='review_order']").html(order_body);
 
-  console.log(list_orders)
 })
+
 
 </script>
