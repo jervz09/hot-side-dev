@@ -46,19 +46,11 @@
                   <td class="col top-border-brand text-center">Price</td>
               </tr>
             </thead>
-            <tfoot>
-              <tr data-id="tr_ordered">
-                  <td class="col top-border-brand text-left text-bold" style="width:70%"> </th>
-                  <td class="col top-border-brand text-center text-bold">Total :</td>
-                  <td class="col top-border-brand text-center text-bold">₱500.99</td>
-              </tr>
+            <tfoot data-review="review_order_footer">
+              <!-- if order is true -->
             </tfoot>
             <tbody data-review="review_order">
-              <tr>
-                <td class="text-left">Burger Tinapa</td>
-                <td>2</td>
-                <td>₱500.99</td>
-              </tr>
+              <!-- if order is true -->
             </tbody>
           </table>
           <br>

@@ -216,15 +216,6 @@ $(function() {
 
 });
 
-$("#alt_next_step_3").click(function () {
-  $("#next_step_3").click()
-})
-
-// Checking available tables
-
-// $("#alt_next_step_3").click(function () {
-//   $("#next_step_3").click()
-// })
 
 $('#check_availability').click(function() {
   $.ajax({
@@ -355,5 +346,39 @@ const hide_temp_class = () => {
   $(".temp-body").hide("slow")
 }
 
+// Setting up review
+
+$("#alt_next_step_3").click(function () {
+  $("#next_step_3").click()
+})
+
+
+$("#next_step_3").click(function () {
+  let is_order = false
+  let total = ""
+  let order_body = ""
+  let order_footer = ""
+  for (let i = 0; i < list_orders.length; i++) {
+    console.log(list_orders[i])
+    is_order = true
+    order_body +=`<tr>
+                    <td class='text-left'>${list_orders[i].name}</td>
+                    <td>${list_orders[i].qty}</td>
+                    <td>₱${list_orders[i].price}</td>
+                  </tr>`
+  }
+  if (is_order == true){
+    total = list_orders.reduce((n,{price}) => n + price, 0).toFixed(2)
+    order_footer = `<tr data-id="tr_ordered">
+                  <td class="col top-border-brand text-left text-bold" style="width:70%"> </th>
+                  <td class="col top-border-brand text-center text-bold">Total :</td>
+                  <td class="col top-border-brand text-center text-bold">₱${total}</td>
+              </tr>`
+    $("[data-review='review_order_footer']").html(order_footer);
+  }
+  $("[data-review='review_order']").html(order_body);
+
+  console.log(list_orders)
+})
 
 </script>
