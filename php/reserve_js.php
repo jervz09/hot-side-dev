@@ -365,9 +365,6 @@ $("#next_step_3").click(function () {
   let total = ""
   let order_body = ""
   let order_footer = ""
-	console.log(party_size)
-	console.log(reserved_date)
-	console.log(reserved_time)
 	$("#selected_party_size").val(party_size)
 	$("#selected_reserved_date").val(reserved_date)
 	$("#selected_reserved_time").val(reserved_time)
