@@ -1,5 +1,4 @@
 <?php
-
     include("../controllers/db_con.php");
     $tables_count = 0;
     $party_size_cond = "";
@@ -25,9 +24,14 @@
                     datetime BETWEEN '$reserved_date $start_time' AND '$reserved_date $end_time')";
     $qry_available_table = $conn->query($available_table);
     $tables_count = mysqli_num_rows($qry_available_table);
-    // while($row = $qry_available_table->fetch_assoc()):
+    $tbl = array();
+    while($row = $qry_available_table->fetch_assoc()):
+        $tbl[$row['table_id']] = array(
+                                    "id"=>$row['table_id'],
+                                    "table_no"=>$row['table_no'],
+                                    "coordinates"=>$row['coordinates'],
+                                    "name"=>$row['name']
+                                        );
+    endwhile;
+    echo json_encode($tbl);
 ?>
-<tr style="display: none;" data-id="tr_available_tables">
-    <td class="col top-border-brand text-left text-bold" style="width:70%">Available Tables : </th>
-    <td class="col top-border-brand text-center"><?=$tables_count?></td>
-</tr>

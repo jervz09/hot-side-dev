@@ -25,6 +25,10 @@ if(isset($_GET['id'])){
           <td class="ps-4"><?php echo isset($name) ? $name : '' ?> </td>
         </tr>
         <tr>
+          <td class="text-bold">Party Size:</td>
+          <td class="ps-4"><?php echo isset($party_size) ? $party_size : '' ?> </td>
+        </tr>
+        <tr>
           <td class="text-bold">Description:</td>
           <td class="ps-4"><?php echo isset($description) ? $description : '' ?> </td>
         </tr>

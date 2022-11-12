@@ -20,6 +20,10 @@ if(isset($_GET['id'])){
         <input type="text" name="name" id="name" required class="form-control form-control-sm" value="<?php echo isset($name)? $name : '' ?>">
     </div>
     <div class="form-group">
+        <label for="name" class="control-label">Party Size</label>
+        <input type="text" name="party_size" id="party_size" required class="form-control form-control-sm" value="<?php echo isset($party_size)? $party_size : '' ?>">
+    </div>
+    <div class="form-group">
         <label for="description" class="control-label">Description</label>
         <textarea rows="2" name="description" id="description" required class="form-control form-control-sm"><?php echo isset($description)? $description : '' ?></textarea>
     </div>

@@ -17,12 +17,7 @@
         <div class="col-sm-12">
           <!-- <span class="form-label">Available Tables</span> -->
           <table class="table">
-            <tbody>
-              <tr class="">
-                <td class="col top-border-brand text-left text-bold" style="width:70%">Available Tables : </th>
-                <td class="col top-border-brand text-center">4</td>
-              </tr>
-              <!-- <tr><td>Available Tables</td><td>4</td></tr> -->
+            <tbody data-id="available_tables">
             </tbody>
           </table>
         </div>
