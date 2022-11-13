@@ -411,5 +411,9 @@ $("#next_step_3").click(function () {
 
 })
 
+// Success process
 
+$("#start_explore").click(function () {
+	window.location.href = "index.php"
+})
 </script>

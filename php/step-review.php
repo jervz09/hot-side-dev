@@ -55,10 +55,28 @@
           </table>
           <br>
               <div class="form-btn">
-                <button class="submit-btn btn-branding" id="submit_reserved">Reserve</button>
+                <a href="#success_modal" data-toggle="modal" class="submit-btn btn-branding" id="submit_reserved">Reserve</a>
               </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div id="success_modal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="fa fa-check"></i>
+				</div>
+				<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+			</div>
+			<div class="modal-body text-center">
+				<h4>Great!</h4>
+				<p class="text-black-50">Your reservation has been submitted, wait for email notification approval.</p>
+				<a href="index.php" id="start_explore" class="btn btn-branding" data-dismiss="modal">Start Exploring <i class="fa fa-arrow-right"></i></a>
+			</div>
+		</div>
+	</div>
 </div>
