@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-12">
           <!-- <span class="form-label">Available Tables</span> -->
-          <table class="table">
+          <table class="table table-summary-orders" style="display:none">
             <thead>
               <tr data-id="tr_ordered">
                   <td class="col top-border-brand text-left text-bold" style="width:70%">Menu </th>
@@ -55,7 +55,7 @@
           </table>
           <br>
               <div class="form-btn">
-                <a href="#success_modal" data-toggle="modal" class="submit-btn btn-branding" id="submit_reserved">Reserve</a>
+                <button class="submit-btn btn-branding" id="submit_reserved">Reserve</button>
               </div>
         </div>
       </div>

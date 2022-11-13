@@ -420,11 +420,23 @@ $("#next_step_3").click(function () {
                   <td class="col top-border-brand text-center text-bold">₱${total}</td>
               </tr>`
     $("[data-review='review_order_footer']").html(order_footer);
+    $(".table-summary-orders").show("fast")
   }
 
   $("[data-review='review_order']").html(order_body);
+  if(list_orders.length == 0){
+    $(".table-summary-orders").hide("fast")
+  }
 
 })
+
+// Reservation
+
+$("#submit_reserved").click(function () {
+	window.location.href = "index.php"
+})
+
+
 
 // Success process
 
