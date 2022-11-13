@@ -214,6 +214,7 @@ function map_tbls(tbl) {
           $(`[area-id="${data.table_no}"]`).addClass("selected-table");
           s_table = data.table_no
 					s_table_name = data.name
+          $("#next_step_2").css({"display":"block"})
         })
       })
     }
@@ -261,6 +262,14 @@ $('#check_availability').click(function() {
 
 });
 
+// Validate if selected table is exist
+
+// $('#next_step_2').click(function() {
+//   if (!s_table) {
+//       alertify.error("Please select a table");
+//   }
+// })
+
 
 // Ordering and adding on cart
 
@@ -281,6 +290,8 @@ $('.add-item').click(function() {
       },
       success: function(data) {
         $("#summary_order").prepend(data);
+        $("#order_list_container").removeClass("col-lg-9 col-xl-9").addClass("col-lg-6 col-xl-6");
+        $("#summary_order_container").show("slow");
         $(".summary-body").show("slow");
         update_menu_price(idx, item_name ,1)
       }
@@ -291,7 +302,7 @@ $('.add-item').click(function() {
     update_menu_price(idx,item_name,qty+1)
   }
 
-  hide_temp_class()
+  // hide_temp_class()
 
 });
 
@@ -337,6 +348,10 @@ const close_summary_item = (e) => {
     setTimeout(function() {
       $(e).closest('.card-body').remove()
     }, 1000);
+    if(list_orders.length === 0){
+      $("#order_list_container").removeClass("col-lg-6 col-xl-6").addClass("col-lg-9 col-xl-9");
+      $("#summary_order_container").hide("slow");
+    }
   }
 
 const dec_qty = (e) => {
@@ -367,9 +382,9 @@ const update_menu_price = (id, name, qty) => {
   add_order_list(id, name, qty, _o_price)
 }
 
-const hide_temp_class = () => {
-  $(".temp-body").hide("slow")
-}
+// const hide_temp_class = () => {
+//   $(".temp-body").hide("slow")
+// }
 
 // Setting up review
 

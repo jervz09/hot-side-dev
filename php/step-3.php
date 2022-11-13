@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-6 col-xl-6">
+  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-9 col-xl-9" id="order_list_container">
     <?php
             $sql = "SELECT
                       m.menu_id,m.name,m.price,m.type,items.items
@@ -86,15 +86,15 @@
 
   </div>
 
-  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3">
+  <div class="col-md-12 col-sm-12 col-sx-12 col-lg-3 col-xl-3" id="summary_order_container" style="display:none">
     <div class="card-header py-3">
       <h5 class="mb-0">Summary</h5>
     </div>
     <div id="summary_order" class="summary_order card booking-form p-1">
 
       <!-- start summary body -->
-      <div class="card-body summary-body temp-body">
-      </div>
+      <!-- <div class="card-body summary-body temp-body">
+      </div> -->
       <!-- end summary body -->
 
       <div class="card-footer">
@@ -116,7 +116,7 @@
             <div class="font-weight-bold" id="total_price">₱00.00</div>
           </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="alt_next_step_3"> Next Step </button>
+        <button type="button" class="btn btn-branding btn-lg btn-block" id="alt_next_step_3"> Next Step </button>
       </div>
     </div>
   </div>
