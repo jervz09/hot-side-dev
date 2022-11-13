@@ -171,6 +171,59 @@ Class Actions {
         }
         return json_encode($resp);
     }
+
+    function user_reservation(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        // $reservation_ts = strtotime($datetime);
+        // $reservation_ts_end = strtotime($datetime.' +45 minute');
+        // // $sql_chl ="SELECT count(reservation_id) as `count` FROM reservation_list where `table_id` = '{$table_id}' and ('{$reservation_ts}' BETWEEN strftime('%s',`datetime`) and strftime('%s',DATETIME(`datetime`,'+45 minute')) OR '{$reservation_ts_end}' BETWEEN strftime('%s',`datetime`) and strftime('%s',DATETIME(`datetime`,'+45 minute')) ) ".($id > 0 ? " and reservation_id != '{$id}' " : "") ;
+
+        // @$check= $this->query($sql_chl)->fetchArray()['count'];
+        // if(@$check> 0){
+        //     $resp['status'] = 'failed';
+        //     $resp['msg'] = "Table is not available on the selected date and time.";
+        // }else{
+        if(empty($id)){
+            $sql = "INSERT INTO `reservation_list` {$data}";
+        }else{
+            $sql = "UPDATE `reservation_list` set {$data} where reservation_id = '{$id}'";
+        }
+        @$save = $this->mysqli->query($sql);
+        if($save){
+            $resp['status'] = 'success';
+            if(empty($id))
+            $resp['msg'] = 'Reservation Successfully added.';
+            else
+            $resp['msg'] = 'Reservation Details Successfully updated.';
+        $_SESSION['flashdata']['type'] = 'success';
+        $_SESSION['flashdata']['msg'] = $resp['msg'];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+            $resp['sql'] = $sql;
+        }
+        // }
+            return json_encode($resp);
+    }
+
     function update_reservation_status(){
         extract($_POST);
         $get = $this->query("SELECT * FROM `reservation_list` where reservation_id = '{$reservation_id}'");
@@ -212,6 +265,9 @@ switch($a){
     break;
     case 'save_reservation':
         echo $action->save_reservation();
+    break;
+    case 'user_reservation':
+        echo $action->user_reservation();
     break;
     case 'delete_reservation':
         echo $action->delete_reservation();

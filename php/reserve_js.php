@@ -433,7 +433,26 @@ $("#next_step_3").click(function () {
 // Reservation
 
 $("#submit_reserved").click(function () {
-	window.location.href = "index.php"
+    $.ajax({
+        url:'./admin/helper/init.php?a=user_reservation',
+        method:'POST',
+        data:{
+          user_id : 1,
+          datetime : `${reserved_date} ${reserved_time}`,
+          table_id : s_table,
+          id: 0
+        },
+        dataType:'JSON',
+        error:err=>{
+          console.log(err)
+        },
+        success:function(resp){
+          if(resp.status == 'success'){
+            $('#success_modal').modal('show');
+          }
+          console.log(resp)
+        }
+    })
 })
 
 
