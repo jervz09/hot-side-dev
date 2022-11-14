@@ -447,8 +447,30 @@ $("#submit_reserved").click(function () {
           console.log(err)
         },
         success:function(resp){
+
           if(resp.status == 'success'){
-            $('#success_modal').modal('show');
+            // $('#success_modal').modal('show');
+
+            $.ajax({
+              url:'./admin/helper/init.php?a=order_menu',
+              method:'POST',
+              data:{
+                user_id : 1,
+                reservation: resp.reservation_id,
+                list_orders: list_orders
+              },
+              dataType:'JSON',
+              error:err=>{
+                console.log(err)
+              },
+              success:function(resp){
+
+                if(resp.status == 'success'){
+                  $('#success_modal').modal('show');
+                }
+                console.log(resp)
+              }
+          })
           }
           console.log(resp)
         }

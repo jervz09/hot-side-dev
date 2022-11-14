@@ -175,6 +175,7 @@ Class Actions {
     function user_reservation(){
         extract($_POST);
         $data = "";
+        $reservation_id = 0;
         foreach($_POST as $k =>$v){
             if(!in_array($k,array('id'))){
                 if(!is_numeric($v)){
@@ -201,6 +202,58 @@ Class Actions {
         //     $resp['status'] = 'failed';
         //     $resp['msg'] = "Table is not available on the selected date and time.";
         // }else{
+        if(empty($id)){
+            $sql = "INSERT INTO `reservation_list` {$data}";
+        }else{
+            $sql = "UPDATE `reservation_list` set {$data} where reservation_id = '{$id}'";
+            $reservation_id = $id;
+        }
+        // @$save = $this->mysqli->query($sql);
+        $save = true;
+        if($save){
+            $resp['status'] = 'success';
+            $resp['reservation_id'] = $reservation_id;
+            if(empty($id)){
+                $resp['msg'] = 'Reservation Successfully added.';
+            }else{
+                $resp['msg'] = 'Reservation Details Successfully updated.';
+            }
+        $_SESSION['flashdata']['type'] = 'success';
+        $_SESSION['flashdata']['msg'] = $resp['msg'];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+            $resp['sql'] = $sql;
+        }
+        // }
+            return json_encode($resp);
+    }
+
+    function order_menu(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                var_dump($v);
+                if(!is_numeric($v) && !is_array($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(is_array($v)){
+                    $v = implode(", ",$v);
+                }
+                if(empty($id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        echo $data;
         if(empty($id)){
             $sql = "INSERT INTO `reservation_list` {$data}";
         }else{
@@ -274,6 +327,9 @@ switch($a){
     break;
     case 'update_reservation_status':
         echo $action->update_reservation_status();
+    break;
+    case 'order_menu':
+        echo $action->order_menu();
     break;
     default:
     // default action here

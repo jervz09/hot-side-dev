@@ -76,4 +76,11 @@ CREATE TABLE `sales` (
   `is_delete` INTEGER NOT NULL DEFAULT 0
 );
 
-
+CREATE TABLE IF NOT EXISTS `menu_order_list` (
+    `menu_order_list` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `menu_id` int(5) NOT NULL,
+    `qty` int(5) NOT NULL,
+    `reservation_id` int(5) NOT NULL,
+    `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `is_delete` INTEGER NOT NULL DEFAULT 0
+);
