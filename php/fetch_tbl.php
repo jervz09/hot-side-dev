@@ -6,7 +6,8 @@
     $party_size = str_replace(' person', '', str_replace(' people', '', $_POST['party_size']));
     $reserved_date = $_POST['reserved_date'];
     $end_time = $_POST['reserved_time'];
-    $start_time = strtotime('- 45 minute', parse_str($end_time));
+    // $start_time = strtotime('- 45 minute', ($end_time));
+    $start_time = date("H:i", strtotime('- 45 minute', strtotime(strval($end_time))));
     if($party_size){
         $party_size_cond = "party_size = $party_size OR";
     }

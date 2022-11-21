@@ -661,10 +661,15 @@ img {
 
 @media only screen and (max-width: 767px) {
 	.header-area .palatin-main-menu .classy-navbar .menu-btn {
-		margin-left: 30px;
-		border: 2px solid #ffffff;
-		margin-top: 30px;
+		/* margin-left: 30px; */
+		/* border: 2px solid #ffffff; */
+		/* margin-top: 30px; */
 		display: inline-block;
+		width: 100%;
+		margin: 0px;
+	}
+	button#dropdownMenuButton {
+		width: 100%;
 	}
 }
 
@@ -933,6 +938,8 @@ img {
 	position: relative;
 	z-index: 1;
 	top: -75px;
+	width: 83%;
+    margin-left: 11%;
 }
 
 .book-now-form form {
@@ -2333,7 +2340,7 @@ img {
 
   #calendar {
     /* min-height: 700px; */
-    min-width: 375px;
+    min-width: 300px;
     position: relative;
   }
 
@@ -2589,3 +2596,9 @@ tr.text-muted td{
 }
 
 #continental:target { scroll-margin-top: 140px; }
+
+@media screen and (max-width: 540px) {
+    .book-now-form {
+		margin: 0;
+	}
+}

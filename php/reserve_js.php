@@ -229,6 +229,7 @@ $('#check_availability').click(function() {
   party_size = $("[data-id='party_size']").val()
   reserved_date = $("#reserved_date").val()
   reserved_time = $("#reserved_time").val()
+  console.log(reserved_time)
   $.ajax({
     url: 'php/available_tables.php',
     type: "post",
@@ -238,6 +239,7 @@ $('#check_availability').click(function() {
       reserved_time
     },
     success: function(data) {
+      console.log(data)
       checked_availability = true
       $("[data-id='available_tables']").html(data);
       $("[data-id='tr_available_tables']").show("slow");
