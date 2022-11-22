@@ -443,7 +443,7 @@ $("#submit_reserved").click(function () {
         url:'./admin/helper/init.php?a=user_reservation',
         method:'POST',
         data:{
-          user_id : 1,
+          user_id : <?= $_SESSION['id'] ?>,
           datetime : `${reserved_date} ${reserved_time}`,
           table_id : s_table
         },
