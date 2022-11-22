@@ -27,7 +27,7 @@
             $sql = "SELECT
                       m.menu_id,m.name,m.price,m.type,items.items
                     FROM
-                        `hot-side`.menu_list m
+                        menu_list m
                     INNER JOIN
                         (select count(*) as items, type from menu_list group by type) items on items.type = m.type
                     ORDER BY m.type";

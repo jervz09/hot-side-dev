@@ -1,10 +1,10 @@
 <?php
 Class Actions {
     public $que;
-    private $servername='localhost';
-    private $username='root';
-    private $password='root';
-    private $dbname='hot-side';
+    private $servername='remotemysql.com';
+    private $username='9lZjUwbAal';
+    private $password='2oAcKpH3X1';
+    private $dbname='9lZjUwbAal';
     private $result=array();
     private $mysqli='';
 
