@@ -1,10 +1,10 @@
 <?php
 Class Actions {
     public $que;
-    private $servername='remotemysql.com';
-    private $username='9lZjUwbAal';
-    private $password='2oAcKpH3X1';
-    private $dbname='9lZjUwbAal';
+    private $servername='localhost';
+    private $username='root';
+    private $password='root';
+    private $dbname='hot-side';
     private $result=array();
     private $mysqli='';
 
@@ -193,26 +193,17 @@ Class Actions {
         if(isset($columns) && isset($values)){
             $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
         }
-        // $reservation_ts = strtotime($datetime);
-        // $reservation_ts_end = strtotime($datetime.' +45 minute');
-        // // $sql_chl ="SELECT count(reservation_id) as `count` FROM reservation_list where `table_id` = '{$table_id}' and ('{$reservation_ts}' BETWEEN strftime('%s',`datetime`) and strftime('%s',DATETIME(`datetime`,'+45 minute')) OR '{$reservation_ts_end}' BETWEEN strftime('%s',`datetime`) and strftime('%s',DATETIME(`datetime`,'+45 minute')) ) ".($id > 0 ? " and reservation_id != '{$id}' " : "") ;
-
-        // @$check= $this->query($sql_chl)->fetchArray()['count'];
-        // if(@$check> 0){
-        //     $resp['status'] = 'failed';
-        //     $resp['msg'] = "Table is not available on the selected date and time.";
-        // }else{
         if(empty($id)){
             $sql = "INSERT INTO `reservation_list` {$data}";
         }else{
             $sql = "UPDATE `reservation_list` set {$data} where reservation_id = '{$id}'";
             $reservation_id = $id;
         }
-        // @$save = $this->mysqli->query($sql);
-        $save = true;
+        @$save = $this->mysqli->query($sql);
+        // $save = true;
         if($save){
             $resp['status'] = 'success';
-            $resp['reservation_id'] = $reservation_id;
+            $resp['reservation_id'] = $this->mysqli->insert_id;
             if(empty($id)){
                 $resp['msg'] = 'Reservation Successfully added.';
             }else{
@@ -225,8 +216,7 @@ Class Actions {
             $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
             $resp['sql'] = $sql;
         }
-        // }
-            return json_encode($resp);
+        return json_encode($resp);
     }
 
     function order_menu(){
@@ -234,7 +224,6 @@ Class Actions {
         $data = "";
         foreach($_POST as $k =>$v){
             if(!in_array($k,array('id'))){
-                var_dump($v);
                 if(!is_numeric($v) && !is_array($v)){
                     $v = $this->mysqli->real_escape_string($v);
                 }
@@ -253,17 +242,16 @@ Class Actions {
         if(isset($columns) && isset($values)){
             $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
         }
-        echo $data;
         if(empty($id)){
-            $sql = "INSERT INTO `reservation_list` {$data}";
+            $sql = "INSERT INTO `menu_order_list` {$data}";
         }else{
-            $sql = "UPDATE `reservation_list` set {$data} where reservation_id = '{$id}'";
+            $sql = "UPDATE `menu_order_list` set {$data} where reservation_id = '{$id}'";
         }
         @$save = $this->mysqli->query($sql);
         if($save){
             $resp['status'] = 'success';
             if(empty($id))
-            $resp['msg'] = 'Reservation Successfully added.';
+            $resp['msg'] = 'Order Successfully added.';
             else
             $resp['msg'] = 'Reservation Details Successfully updated.';
         $_SESSION['flashdata']['type'] = 'success';
@@ -274,7 +262,7 @@ Class Actions {
             $resp['sql'] = $sql;
         }
         // }
-            return json_encode($resp);
+        return json_encode($resp);
     }
 
     function update_reservation_status(){

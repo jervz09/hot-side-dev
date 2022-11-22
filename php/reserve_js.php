@@ -441,40 +441,42 @@ $("#submit_reserved").click(function () {
         data:{
           user_id : 1,
           datetime : `${reserved_date} ${reserved_time}`,
-          table_id : s_table,
-          id: 0
+          table_id : s_table
         },
         dataType:'JSON',
         error:err=>{
           console.log(err)
         },
         success:function(resp){
-
-          if(resp.status == 'success'){
+          if(resp.status == 'success' && list_orders.length){
             // $('#success_modal').modal('show');
+            for (let i = 0; i < list_orders.length; i++) {
 
-            $.ajax({
-              url:'./admin/helper/init.php?a=order_menu',
-              method:'POST',
-              data:{
-                user_id : 1,
-                reservation: resp.reservation_id,
-                list_orders: list_orders
-              },
-              dataType:'JSON',
-              error:err=>{
-                console.log(err)
-              },
-              success:function(resp){
-
-                if(resp.status == 'success'){
-                  $('#success_modal').modal('show');
+              $.ajax({
+                url:'./admin/helper/init.php?a=order_menu',
+                method:'POST',
+                data:{
+                  menu_id : list_orders[i].id,
+                  qty : list_orders[i].qty,
+                  reservation_id: resp.reservation_id,
+                },
+                success:function(response){
+                  $('.preloader').fadeOut('slow', function () {
+                      $(this).remove();
+                  });
+                  let r = JSON.parse(response)
+                  if(r.status == 'success'){
+                    $('#success_modal').modal('show');
+                  }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  console.log("Status: " + textStatus); alert("Error: " + errorThrown);
                 }
-                console.log(resp)
-              }
-          })
+              })
+            }
+
           }
-          console.log(resp)
+          // console.log(resp)
         }
     })
 })

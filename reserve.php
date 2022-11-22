@@ -8,6 +8,10 @@
   <?php include('php/preloader.php')?>
   <!-- Preloader End -->
 
+  <!-- Freeze Load Start -->
+    <?php include('php/freezeload.php')?>
+  <!-- Freeze Load End -->
+
   <!-- ##### Header Area Start ##### -->
   <?php include('php/header_nav.php')?>
   <!-- ##### Header Area End ##### -->
