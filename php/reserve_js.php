@@ -243,7 +243,11 @@ $('#check_availability').click(function() {
       checked_availability = true
       $("[data-id='available_tables']").html(data);
       $("[data-id='tr_available_tables']").show("slow");
-      $("#next_step_1").css({"display":"block"})
+      if($("#tables_count").text() != 0 || $("#tables_count").text() != '0'){
+        $("#next_step_1").css({"display":"block"})
+      }else{
+        alertify.error("<b>No Available tables</b>,<br /> Please select another date and time.");
+      }
     }
   });
 

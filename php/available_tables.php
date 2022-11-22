@@ -30,5 +30,5 @@
 ?>
 <tr style="display: none;" data-id="tr_available_tables">
     <td class="col top-border-brand text-left text-bold" style="width:70%">Available Tables : </th>
-    <td class="col top-border-brand text-center"><?=$tables_count?></td>
+    <td id="tables_count" class="col top-border-brand text-center"><?=$tables_count?></td>
 </tr>

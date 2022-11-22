@@ -22,7 +22,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <span class="form-label">Date</span>
-            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="2022-10-01" required>
+            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="<?= date('Y-m-d'); ?>" required>
           </div>
         </div>
         <div class="col-sm-6">
