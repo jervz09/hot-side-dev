@@ -10,10 +10,10 @@
     $calendar_page = "#calendar_area";
     $about_us_page = "#about_us_area";
     $contact_page = "#contact_area";
-    $not_signed_user = 'style="visibility: hidden;"';
+    $not_signed_user = true;
     if(@$_SESSION['id']){
         $signed_user = 'style="visibility: hidden;"'; //Hide btn-reservation
-        $not_signed_user = "";
+        $not_signed_user = false;
         //redirect index(Landing Page)
         $index_page = "index.php";
         $calendar_page = "index.php#calendar_area";

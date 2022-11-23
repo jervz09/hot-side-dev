@@ -44,4 +44,9 @@ function preventSubmit(e) {
   // someBug();
   return false;
 }
+
+
+$('#toggleLogout').click(function () {
+        $('#logoutModal').modal('show')
+    });
 </script>
