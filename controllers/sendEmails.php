@@ -13,7 +13,7 @@ require_once './vendor/autoload.php';
  */
 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
     ->setUsername("hotsiderestobar@gmail.com") //official email
-    ->setPassword("qysjhgunwmyfqqda"); //generated token password from gmail
+    ->setPassword("ssnntgqmfjjgpeyu"); //generated token password from gmail
 
 // Create the Mailer using your created Transport
 $mailer = new Swift_Mailer($transport);

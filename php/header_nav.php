@@ -54,7 +54,7 @@
                   <!-- <a href="#" class="btn palatin-btn"><i class="fa fa-user"></i> Hotside User</a> -->
                   <button class="btn palatin-btn dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="top: -25px;">
-                    <i class="fa fa-user"></i> Hotside User
+                    <i class="fa fa-user"></i> <?= $_SESSION['username']?>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item text-secondary" href="#">Profile Settings</a>

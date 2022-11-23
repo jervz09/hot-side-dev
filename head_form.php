@@ -1,6 +1,10 @@
 <?php
 	if(@$_SESSION['id'] && @$_SESSION['verified']){
-		header('location: index.php');
+		if($_SESSION['is_admin']){
+			header('location: admin/index.php');
+		}else{
+			header('location: index.php');
+		}
 	}elseif(@$_SESSION['id'] && !@$_SESSION['verified'] && $_SERVER['REQUEST_URI'] != "/hotside-dev/verify_check.php"){
 		header('location: verify_check.php');
 	}

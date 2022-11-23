@@ -115,6 +115,7 @@ if (isset($_POST['login-btn'])) {
                     $_SESSION['address'] = $user['address'];
                     $_SESSION['landmark'] = $user['landmark'];
                     $_SESSION['verified'] = $user['verified'];
+                    $_SESSION['is_admin'] = $user['role_id'];
                     $_SESSION['message'] = 'You are logged in!';
                     $_SESSION['type'] = 'alert-success';
                     header('location: verify_check.php');
