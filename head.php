@@ -12,6 +12,9 @@
     $contact_page = "#contact_area";
     $not_signed_user = true;
     if(@$_SESSION['id']){
+      if(!$_SESSION['verified']){
+        header('location: verify_check.php');
+      }
         $signed_user = 'style="visibility: hidden;"'; //Hide btn-reservation
         $not_signed_user = false;
         //redirect index(Landing Page)

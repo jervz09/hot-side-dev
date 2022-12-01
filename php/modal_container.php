@@ -235,8 +235,8 @@
     </div>
 </div>
 
-<div id="success_modal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
+<div id="success_modal" class="modal fade" role='dialog'>
+	<div class="modal-dialog modal-confirm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="icon-box">

@@ -13,24 +13,24 @@ if(isset($_GET['id'])){
     <input type="hidden" name="coordinates" value="<?php echo isset($coordinates)? $coordinates : "{$_GET['x']}, {$_GET['y']}, {$_GET['w']}, {$_GET['h']}" ?>">
     <div class="form-group">
         <label for="table_no" class="control-label">Table Number</label>
-        <input type="Number" name="table_no" id="table_no" required class="form-control form-control-sm" value="<?php echo isset($table_no)? $table_no : '' ?>">
+        <input type="Number" name="table_no" id="table_no" required class="form-control" value="<?php echo isset($table_no)? $table_no : '' ?>">
     </div>
     <div class="form-group">
         <label for="name" class="control-label">Name</label>
-        <input type="text" name="name" id="name" required class="form-control form-control-sm" value="<?php echo isset($name)? $name : '' ?>">
+        <input type="text" name="name" id="name" required class="form-control" value="<?php echo isset($name)? $name : '' ?>">
     </div>
     <div class="form-group">
         <label for="name" class="control-label">Party Size</label>
-        <input type="text" name="party_size" id="party_size" required class="form-control form-control-sm" value="<?php echo isset($party_size)? $party_size : '' ?>">
+        <input type="text" name="party_size" id="party_size" required class="form-control" value="<?php echo isset($party_size)? $party_size : '' ?>">
     </div>
     <div class="form-group">
         <label for="description" class="control-label">Description</label>
-        <textarea rows="2" name="description" id="description" required class="form-control form-control-sm"><?php echo isset($description)? $description : '' ?></textarea>
+        <textarea rows="2" name="description" id="description" required class="form-control"><?php echo isset($description)? $description : '' ?></textarea>
     </div>
     <?php if(isset($status)): ?>
     <div class="form-group">
         <label for="status" class="control-label">Status</label>
-        <select name="status" id="status" class="form-control form-select form-select-sm">
+        <select name="status" id="status" class="form-control form-select">
             <option value="1" <?php echo (isset($status) && $status == 1 ) ? 'selected' : '' ?>>Available</option>
             <option value="0" <?php echo (isset($status) && $status == 0 ) ? 'selected' : '' ?>>Unavailable</option>
         </select>

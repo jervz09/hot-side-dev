@@ -28,7 +28,7 @@
                         </tr>
                     </tfoot> -->
                     <tbody>
-                        <?php 
+                        <?php
                             $sql = "SELECT * FROM menu_list";
                             $result = $conn->query($sql);
 
@@ -39,10 +39,17 @@
                                         <td class ='align-center p-1'>" . $row["type"] . "</td>
                                         <td class ='align-center p-1'>" . $row["name"] . "</td>
                                         <td class ='align-center p-1'>" . $row["price"] . "</td>
-                                        <td class ='align-center p-1'>
-                                            <a class='btn btn-block btn-success edit_data' data-id='". $row['menu_id'] . "' href='javascript:void(0)'>
-                                                Edit
-                                            </a>
+                                        <td class ='text-center p-1'>
+                                            <div class='dropdown'>
+                                                <button class='btn btn-primary btn-block dropdown-toggle' type='button' id='btnGroupDrop1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                                    Action
+                                                </button>
+                                                <div class='dropdown-menu' aria-labelledby='btnGroupDrop1'>
+                                                    <a class='dropdown-item edit_data' data-id='". $row['menu_id'] ."' href='javascript:void(0)'><i class='fa fa-edit'></i> Update </a>
+                                                    <a class='dropdown-item delete_data' data-id='". $row['menu_id'] ."' data-name='
+                                                        ". $row['name'] ."' href='javascript:void(0)'><i class='fa fa-trash'></i> Delete </a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>";
                             }

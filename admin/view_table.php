@@ -38,11 +38,11 @@ if(isset($_GET['id'])){
             <span id="status">
               <?php if($status == 0): ?>
 
-              <a href="#" class="btn btn-warning btn-sm">
+              <a href="#" class="btn btn-warning">
                 <i class="fas fa-exclamation-circle"></i> Unavailable
               </a>
               <?php else: ?>
-              <a href="#" class="btn btn-success btn-sm">
+              <a href="#" class="btn btn-success">
                 <i class="fas fa-check"></i> Available
               </a>
               <?php endif; ?>
@@ -54,7 +54,7 @@ if(isset($_GET['id'])){
     </div>
     <div class="row justify-content-end mx-3">
       <div class="col-1">
-        <div class="btn btn btn-dark btn-sm" type="button" data-dismiss="modal">Close</div>
+        <div class="btn btn btn-dark" type="button" data-dismiss="modal">Close</div>
       </div>
     </div>
   </div>

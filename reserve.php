@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include('head.php')?>
+<?php
+  include('head.php');
+  if(!$_SESSION['id']){
+    header('location: login.php');
+  }
+?>
 <link rel="stylesheet" href="css/reserve.css">
 
 <body>

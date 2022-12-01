@@ -30,9 +30,6 @@
         <a class="nav-link" href="index.php?page=reserved_list">
             <i class="fas fa-fw fa-list"></i>
             <span>Reservation List</span></a>
-        <a class="nav-link" href="index.php?page=reserved_list">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Reservation List</span></a>
     </li>
 
     <!-- Divider -->

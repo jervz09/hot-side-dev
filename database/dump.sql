@@ -84,3 +84,5 @@ CREATE TABLE IF NOT EXISTS `menu_order_list` (
     `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `is_delete` INTEGER NOT NULL DEFAULT 0
 );
+
+ALTER TABLE `reservation_list` CHANGE `datetime` `datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;

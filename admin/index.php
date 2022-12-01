@@ -113,6 +113,10 @@
             case 'reserved_list':
                 include('./include/reserve_list_js.php');
             break;
+            case 'menu_list':
+                // include('./include/reserve_list_js.php');
+                echo "No JS Load";
+            break;
             default:
                 include('./include/sales_area_graph.php');
                 include('./include/menu_type_pie.php');

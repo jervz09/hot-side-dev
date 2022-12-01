@@ -1,0 +1,12 @@
+TODO :
+    MENU LIST
+        ADD MENU
+        EDIT USER
+        DELETE MENU
+    USER :
+        ADD USER
+        DELETE USER
+        EDIT USER
+
+    DASHBOARD:
+        PIE GRAPH

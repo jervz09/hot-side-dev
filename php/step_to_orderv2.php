@@ -14,7 +14,6 @@
 <style>
   .modal-confirm {
 		color: #434e65;
-		width: 525px;
 		margin: 30px auto;
 	}
 	.modal-confirm .modal-content {

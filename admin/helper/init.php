@@ -267,27 +267,43 @@ Class Actions {
 
     function update_reservation_status(){
         extract($_POST);
-        $get = $this->query("SELECT * FROM `reservation_list` where reservation_id = '{$reservation_id}'");
-        $update = $this->query("UPDATE `reservation_list` set `status` = '{$status}' where reservation_id = '{$reservation_id}'");
-        if($update){
-            $resp['status'] = 'success';
-            $resp['msg'] = "Reservation Status successfully updated";
-            $resp['return_status'] = $status;
-            $res= $get->fetchArray();
-            if($status == 2){
-                $this->query("UPDATE `table_list` set `status` = 0  where table_id = '{$res['table_id']}'");
-            }else{
-                $now =strtotime(date("Y-m-d H:i"));
-                $check = $this->query("SELECT count(reservation_id) FROM reservation_list where table_id =  '{$res['table_id']}' and ('{$now}' BETWEEN strftime('%s',`datetime`) and strftime('%s',DATETIME(`datetime`,'+3 hours')) ) and reservation_id != '{$reservation_id}' ")->fetchArray()[0];
-                if($check > 0){
-                    $this->query("UPDATE `table_list` set `status` = 0  where table_id = '{$res['table_id']}'");
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($reservation_id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
                 }else{
-                    $this->query("UPDATE `table_list` set `status` = 1  where table_id = '{$res['table_id']}'");
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
                 }
             }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        $check_sql = "SELECT * FROM `reservation_list` where reservation_id = '{$reservation_id}'";
+        $check= $this->mysqli->query($check_sql);
+        $check = mysqli_num_rows($check);
+        if($check< 0){
+            $resp['status'] = 'failed';
+            $resp['msg'] = "Reservation Not Found.";
         }else{
-            $resp['status'] ='failed';
-            $resp['msg'] = "An error occured while updating data. Error: ".$this->lastErrorMsg();
+            $sql = "UPDATE `reservation_list` set {$data} where reservation_id = '{$reservation_id}'";
+            @$save = $this->mysqli->query($sql);
+            if($save){
+                $resp['status'] = 'success';
+                $resp['msg'] = 'Reservation Successfully updated.';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = $resp['msg'];
+            }else{
+                $resp['status'] = 'failed';
+                $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+                $resp['sql'] = $sql;
+            }
         }
         return json_encode($resp);
     }
