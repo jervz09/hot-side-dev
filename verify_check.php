@@ -4,6 +4,8 @@
     session_start();
 	include 'controllers/authController.php';
 	include 'head_form.php';
+
+	// sendVerificationEmail($_SESSION["email"], $otp);
 ?>
 <link rel="stylesheet/less" type="text/css" href="./css/verify_checker.less" />
 <body class="bg-gradient-primary">

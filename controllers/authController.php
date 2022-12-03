@@ -5,7 +5,7 @@ $email = "";
 $errors = [];
 
 include 'db_con.php';
-
+$otp = random_int(100000, 999999);
 // SIGN UP USER
 if (isset($_POST['signup-btn'])) {
     if (empty($_POST['username'])) {

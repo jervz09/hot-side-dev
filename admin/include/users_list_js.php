@@ -4,15 +4,15 @@ $('.delete_data').click(function(){
 })
 
 $('.view_order').click(function(){
-    universal_modal('Order Details',"view_ordered.php?id="+$(this).attr('data-id'))
+    universal_modal('User Details',"view_ordered.php?id="+$(this).attr('data-id'))
 })
 
 $('.edit_data').click(function(){
-    universal_modal('Menu Details',"edit_menu.php?id="+$(this).attr('data-id'))
+    universal_modal('User Details',"user_details.php?id="+$(this).attr('data-id'))
 })
 
 $('#add_menu').click(function(){
-    universal_modal('Add Menu Details',"add_menu.php")
+    universal_modal('Add User Details',"user_details.php")
 })
 
 

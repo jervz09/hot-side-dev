@@ -1,4 +1,7 @@
 <?php
+	if(!@$_SESSION['id'] && $_SERVER['REQUEST_URI'] == "/hotside-dev/verify_check.php"){
+		header('location: index.php');
+	}
 	if(@$_SESSION['id'] && @$_SESSION['verified']){
 		if($_SESSION['is_admin']){
 			header('location: admin/index.php');

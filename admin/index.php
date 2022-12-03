@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+
+    session_start();
     require_once("../controllers/db_con.php");
     include("head_admin.php");
     include("helper/main.php");
     $db = new database();
     $tbl = "";
+    $errors = [];
+    $session_username = isset($_SESSION['username']) ? $_SESSION['username'] : "admin";
 ?>
 <body id="page-top">
-<?php include('../php/preloader.php')?>
+<?php //include('../php/preloader.php')?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -114,8 +118,16 @@
                 include('./include/reserve_list_js.php');
             break;
             case 'menu_list':
-                // include('./include/reserve_list_js.php');
-                echo "No JS Load";
+                include('./include/menu_list_js.php');
+            break;
+            case 'users':
+                include('./include/users_list_js.php');
+            break;
+            case 'a_users':
+                include('./include/users_list_js.php');
+            break;
+            case 'ad_users':
+                include('./include/users_list_js.php');
             break;
             default:
                 include('./include/sales_area_graph.php');

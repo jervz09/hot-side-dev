@@ -30,6 +30,7 @@
                         menu_list m
                     INNER JOIN
                         (select count(*) as items, type from menu_list group by type) items on items.type = m.type
+                    where m.is_delete = 0
                     ORDER BY m.type";
             $result = $conn->query($sql);
             // echo($conn->errno . ' ' . $conn->error);

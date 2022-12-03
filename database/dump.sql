@@ -86,3 +86,5 @@ CREATE TABLE IF NOT EXISTS `menu_order_list` (
 );
 
 ALTER TABLE `reservation_list` CHANGE `datetime` `datetime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `users` CHANGE `contact_no` `contact_no` BIGINT(12) NULL DEFAULT NULL;

@@ -307,6 +307,162 @@ Class Actions {
         }
         return json_encode($resp);
     }
+
+    function add_menu(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($menu_id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        $check_sql = "SELECT * FROM `menu_list` where menu_id = '{$menu_id}'";
+        $check= $this->mysqli->query($check_sql);
+        $check = mysqli_num_rows($check);
+        if($check< 0){
+            $resp['status'] = 'failed';
+            $resp['msg'] = "Reservation Not Found.";
+        }else{
+            $sql = "UPDATE `menu_list` set {$data} where menu_id = '{$menu_id}'";
+            @$save = $this->mysqli->query($sql);
+            if($save){
+                $resp['status'] = 'success';
+                $resp['msg'] = 'Reservation Successfully updated.';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = $resp['msg'];
+            }else{
+                $resp['status'] = 'failed';
+                $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+                $resp['sql'] = $sql;
+            }
+        }
+        return json_encode($resp);
+    }
+
+    function update_menu(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($menu_id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        if(empty($menu_id)){
+            $sql = "INSERT INTO `menu_list` {$data}";
+        }else{
+            $sql = "UPDATE `menu_list` set {$data} where menu_id = '{$menu_id}'";
+        }
+        @$save = $this->mysqli->query($sql);
+        if($save){
+            $resp['status'] = 'success';
+            $resp['msg'] = 'Reservation Successfully recorded.';
+        $_SESSION['flashdata']['type'] = 'success';
+        $_SESSION['flashdata']['msg'] = $resp['msg'];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+            $resp['sql'] = $sql;
+        }
+        return json_encode($resp);
+    }
+
+    function delete_menu(){
+        extract($_POST);
+        @$delete = $this->mysqli->query("DELETE FROM `menu_list` where menu_id = '{$id}'");
+        if($delete){
+            $resp['status']='success';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = 'Menu successfully deleted.';
+
+        }else{
+            $resp['status']='failed';
+            $resp['msg'] = 'An error occure. Error: '.$this->lastErrorMsg();
+        }
+        return json_encode($resp);
+    }
+
+
+    function update_user(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($user_id)){
+                    if($k == "password"){
+                        $v = password_hash($v, PASSWORD_DEFAULT);
+                    }
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        if(empty($user_id)){
+            $sql = "INSERT INTO `users` {$data}";
+        }else{
+            $sql = "UPDATE `users` set {$data} where user_id = '{$user_id}'";
+        }
+        // echo $sql;
+        @$save = $this->mysqli->query($sql);
+        if($save){
+            $resp['status'] = 'success';
+            $resp['msg'] = 'Reservation Successfully recorded.';
+        $_SESSION['flashdata']['type'] = 'success';
+        $_SESSION['flashdata']['msg'] = $resp['msg'];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+            $resp['sql'] = $sql;
+        }
+        return json_encode($resp);
+    }
+
+    function delete_user(){
+        extract($_POST);
+        @$delete = $this->mysqli->query("DELETE FROM `users` where user_id = '{$id}'");
+        if($delete){
+            $resp['status']='success';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = 'Menu successfully deleted.';
+
+        }else{
+            $resp['status']='failed';
+            $resp['msg'] = 'An error occure. Error: '.$this->lastErrorMsg();
+        }
+        return json_encode($resp);
+    }
 }
 $a = isset($_GET['a']) ?$_GET['a'] : '';
 $action = new Actions();
@@ -334,6 +490,21 @@ switch($a){
     break;
     case 'order_menu':
         echo $action->order_menu();
+    break;
+    case 'add_menu':
+        echo $action->add_menu();
+    break;
+    case 'update_menu':
+        echo $action->update_menu();
+    break;
+    case 'delete_menu':
+        echo $action->delete_menu();
+    break;
+    case 'update_user':
+        echo $action->update_user();
+    break;
+    case 'delete_user':
+        echo $action->delete_user();
     break;
     default:
     // default action here
