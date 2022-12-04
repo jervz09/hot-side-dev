@@ -161,7 +161,7 @@ if (isset($_POST['verify-btn'])) {
     }
 }
 
-if($_GET['resend']){
+if(@$_GET['resend']){
     $_user_id = $_SESSION['id'];
     $query = "UPDATE users SET otp='$otp' WHERE user_id= $_user_id";
         if (mysqli_query($conn, $query)) {
