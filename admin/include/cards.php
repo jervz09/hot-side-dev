@@ -73,14 +73,6 @@
     $all_sales = $conn->query($all_months_sql,MYSQLI_USE_RESULT);
     $arr_sales = array();
     $sales_every_month = $all_sales->fetch_row();
-
-
-    $db->select_raw("SELECT COUNT(type) as count, type FROM `menu_list` GROUP by type");
-    $db_category = $db->sql;
-    $db_categories = array();
-    while($row = $db_category->fetch_assoc()) {
-        $db_categories[$row['type']] = $row['count'];
-    }
 ?>
 <div class="row">
         <!-- Sales (Monthly) Card -->
