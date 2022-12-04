@@ -4,7 +4,6 @@
     session_start();
 	include 'controllers/authController.php';
 	include 'head_form.php';
-
 	// sendVerificationEmail($_SESSION["email"], $otp);
 ?>
 <link rel="stylesheet/less" type="text/css" href="./css/verify_checker.less" />
@@ -57,6 +56,7 @@
 												</div>
 											</div>
 										</div>
+										Didn't receive an email? <a href="verify_check.php?resend=true" id="resend_email">resend it now</a>
 									</form>
 								</div>
 							</div>
@@ -82,6 +82,11 @@
 	<!-- <script src="./js/hotside-admin-2.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/less" ></script>
 	<script>
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const resend_email = urlParams.get('resend')
+		console.log(resend_email);
+
 		function isNumber(evt) {
 			evt = (evt) ? evt : window.event;
 			var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -95,6 +100,7 @@
 				$(this).next('.digit').focus();
 			}
 		});
+
 	</script>
 </body>
 

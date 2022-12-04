@@ -36,7 +36,7 @@
 
     <!-- ##### Contact Area Start ##### -->
     <?php
-      // include('php/contact_map.php')
+      include('php/contact_map.php')
     ?>
     <!-- ##### Contact Area End ##### -->
 

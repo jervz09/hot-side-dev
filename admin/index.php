@@ -9,6 +9,7 @@
     $db = new database();
     $tbl = "";
     $errors = [];
+    $user_profile_img = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : "./uploads/default_profile.png";
     $session_username = isset($_SESSION['username']) ? $_SESSION['username'] : "admin";
 ?>
 <body id="page-top">
@@ -108,6 +109,10 @@
     </script> -->
     <?php
         switch($page){
+            case 'dashboard':
+                include('./include/sales_area_graph.php');
+                include('./include/menu_type_pie.php');
+            break;
             case 't_settings':
                 include('./include/manage_table_js.php');
             break;
@@ -130,8 +135,7 @@
                 include('./include/users_list_js.php');
             break;
             default:
-                include('./include/sales_area_graph.php');
-                include('./include/menu_type_pie.php');
+                echo "<script>console.log('None Import')</script>";
             break;
         }
     ?>

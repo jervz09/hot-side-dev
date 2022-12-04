@@ -8,7 +8,7 @@
 		}else{
 			header('location: index.php');
 		}
-	}elseif(@$_SESSION['id'] && !@$_SESSION['verified'] && $_SERVER['REQUEST_URI'] != "/hotside-dev/verify_check.php"){
+	}elseif(@$_SESSION['id'] && !@$_SESSION['verified'] && strpos($_SERVER['REQUEST_URI'], "verify_check.php") === false){
 		header('location: verify_check.php');
 	}
 ?>

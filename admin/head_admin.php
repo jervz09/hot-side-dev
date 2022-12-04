@@ -24,6 +24,7 @@
 
 <link rel="stylesheet" href="../vendor/select2/css/select2.min.css">
 <link rel="stylesheet" href="../vendor/summernote/summernote-lite.css">
+<link href="../css/cropper/cropper.css" rel="stylesheet">
 <link href="../css/hotside-admin.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://ajax.googleapis.cofont-size:1rem;m/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">

@@ -3,14 +3,21 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+let _labels = []
+let _datas = []
+let pie_data_raw = <?=json_encode($db_categories)?>;
+$.each( pie_data_raw, function (key, val) {
+  _labels.push(key)
+  _datas.push(val)
+});
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Silog Meal", "Continental", "Milktea", "Burger"],
+    labels: _labels,
     datasets: [{
-      data: [55, 30, 15, 10],
+      data: _datas,
       backgroundColor: ['#2b898b', '#1cc88a', '#36b9cc', '#36b9c2'],
       hoverBackgroundColor: ['#0f4748', '#17a673', '#2c9faf', '#36b9c2'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

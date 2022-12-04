@@ -5,7 +5,7 @@
             <div class="about-2-content text-center wow fadeInUp" data-wow-delay="300ms">
               <div class="section-heading text-center">
                 <div class="line-"></div>
-                <h2>What Are You Waiting For?</h2>
+                <h2 class="text-white">What Are You Waiting For?</h2>
                 <p>Bring Out Your Family, LoveOnes, Barkada, Tropa, Work Mates At Kapitbahay Na Mga Ka - 𝖧𝗈𝗍𝗌𝗊𝗎𝖺𝖽.</p>
               </div>
               <div class="row">

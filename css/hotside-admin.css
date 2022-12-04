@@ -10151,12 +10151,12 @@ a:focus {
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
-  height: 2rem;
-  width: 2rem;
+  height: 40px;
+  width: auto;
 }
 
 .topbar {
-  height: 4.375rem;
+  height: 6rem;
 }
 
 .topbar #sidebarToggleTop {

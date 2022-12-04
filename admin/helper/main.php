@@ -44,13 +44,20 @@
 
         public $sql;
 
-        public function select($table,$rows="*",$where = null){
+        public function select($table,$rows="*",$where = null, $group_by = null){
             if ($where != null) {
                 $sql="SELECT $rows FROM $table WHERE $where";
             }else{
                 $sql="SELECT $rows FROM $table";
             }
+            if ($group_by != null) {
+                $sql .= "GROUP BY ";
+            }
 
+            $this->sql = $result = $this->mysqli->query($sql);
+        }
+
+        public function select_raw($sql){
             $this->sql = $result = $this->mysqli->query($sql);
         }
 

@@ -1,10 +1,7 @@
 TODO :
-    DASHBOARD:
-        PIE GRAPH
-
-    Verify Checker:
-        Resend Button
 
     User Profile:
-        admin
         user
+
+    Privacy Settings:
+        admin

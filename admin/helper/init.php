@@ -1,4 +1,5 @@
 <?php
+session_start();
 Class Actions {
     public $que;
     private $servername='localhost';
@@ -438,13 +439,16 @@ Class Actions {
         @$save = $this->mysqli->query($sql);
         if($save){
             $resp['status'] = 'success';
-            $resp['msg'] = 'Reservation Successfully recorded.';
+            $resp['msg'] = 'User Successfully recorded.';
         $_SESSION['flashdata']['type'] = 'success';
         $_SESSION['flashdata']['msg'] = $resp['msg'];
         }else{
             $resp['status'] = 'failed';
             $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
             $resp['sql'] = $sql;
+        }
+        if($_SESSION['id'] == $user_id){
+            $_SESSION['profile_img'] = $profile_img;
         }
         return json_encode($resp);
     }

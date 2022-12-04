@@ -1,0 +1,70 @@
+#wrapper {
+	 font-size: 1.5rem;
+	 text-align: center;
+	 box-sizing: border-box;
+	 color: #333;
+}
+ #wrapper #dialog {
+	 display: inline-block;
+	 overflow: hidden;
+	 position: relative;
+	 max-width: 650px;
+}
+ #wrapper #dialog h3 {
+	 margin: 0 0 10px;
+	 padding: 0;
+	 line-height: 1.25;
+}
+ #wrapper #dialog span {
+	 font-size: 50%;
+}
+ #wrapper #dialog #form {
+	 max-width: 550px;
+	 margin: 25px auto 0;
+}
+ #wrapper #dialog #form input {
+	 margin: 0 5px;
+	 text-align: center;
+	 line-height: 60px;
+	 font-size: 50px;
+	 border: solid 1px #ccc;
+	 box-shadow: 0 0 5px #ccc inset;
+	 outline: none;
+	 width: 11%;
+	 transition: all .2s ease-in-out;
+	 border-radius: 3px;
+}
+ #wrapper #dialog #form input:focus {
+	 border-color: #2b898b;
+	 box-shadow: 0 0 5px #2b898b inset;
+}
+ #wrapper #dialog #form input::selection {
+	 background: transparent;
+}
+ #wrapper #dialog #form button {
+	 margin: 30px 0 50px;
+	 width: 80%;
+	 padding: 6px;
+	 background-color: #2b898b;
+	 border: none;
+	 text-transform: uppercase;
+}
+ #wrapper #dialog button.close {
+	 border: solid 2px;
+	 border-radius: 30px;
+	 line-height: 19px;
+	 font-size: 120%;
+	 width: 22px;
+	 position: absolute;
+	 right: 5px;
+	 top: 5px;
+}
+ #wrapper #dialog div {
+	 position: relative;
+	 z-index: 1;
+}
+ #wrapper #dialog img {
+	 position: absolute;
+	 bottom: -70px;
+	 right: -63px;
+}

@@ -160,6 +160,14 @@ if (isset($_POST['verify-btn'])) {
         $errors['otp_failed'] = "Incorrect OTP";
     }
 }
+
+if($_GET['resend']){
+    $_user_id = $_SESSION['id'];
+    $query = "UPDATE users SET otp='$otp' WHERE user_id= $_user_id";
+        if (mysqli_query($conn, $query)) {
+            sendVerificationEmail($_SESSION["email"], $otp);
+        }
+}
 function hintEmail($email){
     $stars = 4; // Min Stars to use
 	$at = strpos($email,'@');
