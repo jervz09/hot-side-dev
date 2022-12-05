@@ -58,7 +58,7 @@
                       <i class="fa fa-user"></i> <?= $_SESSION['username']?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item text-secondary" href="#">Profile Settings</a>
+                      <a class="dropdown-item text-secondary" href="profile_setting.php">Profile Settings</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-secondary" id="toggleLogout" href="#">Logout</a>
                     </div>
