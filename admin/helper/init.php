@@ -381,8 +381,8 @@ Class Actions {
         if($save){
             $resp['status'] = 'success';
             $resp['msg'] = 'Reservation Successfully recorded.';
-        $_SESSION['flashdata']['type'] = 'success';
-        $_SESSION['flashdata']['msg'] = $resp['msg'];
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = $resp['msg'];
         }else{
             $resp['status'] = 'failed';
             $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
@@ -406,10 +406,47 @@ Class Actions {
         return json_encode($resp);
     }
 
+    function validate_update_password(){
+        extract($_POST);
+        $is_success = false;
+        if($current_password == $password){
+            $resp['status']='failed';
+            $resp['msg'] = 'Password must differ from old password.';
+            return json_encode($resp);
+        }
+        if($re_password !== $password){
+            $resp['status']='failed';
+            $resp['msg'] = 'Your password and re-type password must match.';
+            return json_encode($resp);
+        }
+        @$user = $this->mysqli->query("SELECT * FROM users WHERE user_id = $user_id");
+        $check = mysqli_fetch_assoc($user);
+        if (password_verify($current_password, $check['password'])) {
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $save = $this->mysqli->query("UPDATE `users` set `password` = '$password' where user_id = '$user_id'");
+            if($save){
+                $resp['status'] = 'success';
+                $resp['msg'] = 'Update password.';
+                $_SESSION['flashdata']['type'] = 'success';
+                $_SESSION['flashdata']['msg'] = $resp['msg'];
+            }else{
+                $resp['status'] = 'failed';
+                $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+                $resp['sql'] = $sql;
+            }
+            return json_encode($resp);
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'Incorrect current password.';
+        }
+        return json_encode($resp);
+    }
+
 
     function update_user(){
         extract($_POST);
         $data = "";
+        @$profile_img = $_SESSION['profile_img'] ?? "";
         foreach($_POST as $k =>$v){
             if(!in_array($k,array('id'))){
                 if(!is_numeric($v)){
@@ -440,15 +477,19 @@ Class Actions {
         if($save){
             $resp['status'] = 'success';
             $resp['msg'] = 'User Successfully recorded.';
-        $_SESSION['flashdata']['type'] = 'success';
-        $_SESSION['flashdata']['msg'] = $resp['msg'];
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = $resp['msg'];
+            $_SESSION['first_name'] = isset($first_name) ? $first_name : $_SESSION['first_name'];
+            $_SESSION['last_name'] = isset($last_name) ? $last_name : $_SESSION['last_name'];
+            $_SESSION['username'] = isset($username) ? $username : $_SESSION['username'];
+            $_SESSION['contact_no'] = isset($contact_no) ? $contact_no : $_SESSION['contact_no'];
         }else{
             $resp['status'] = 'failed';
             $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
             $resp['sql'] = $sql;
         }
-        if($_SESSION['id'] == $user_id){
-            $_SESSION['profile_img'] = $profile_img;
+        if($_SESSION['id'] == $user_id && $profile_img){
+            $_SESSION['profile_img'] = isset($profile_img) ?: $profile_img;
         }
         return json_encode($resp);
     }
@@ -509,6 +550,9 @@ switch($a){
     break;
     case 'delete_user':
         echo $action->delete_user();
+    break;
+    case 'validate_update_password':
+        echo $action->validate_update_password();
     break;
     default:
     // default action here
