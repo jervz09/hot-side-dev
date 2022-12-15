@@ -29,7 +29,7 @@ if(isset($_GET['id'])){
 if(isset($_GET['id'])){ ?>
     <input type="hidden" name="user_id" value="<?php echo isset($user_id)? $user_id : '' ?>">
 <?php } ?>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
       <tr>
         <td class="text-bold" style="width:40%">Username:</td>
         <td class="ps-4"><input class="form-control" type="text" name="username"

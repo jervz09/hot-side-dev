@@ -15,7 +15,7 @@ if(isset($_GET['id'])){
 <div class="container-fluid">
   <div class="col-12">
     <div class="row">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-hover">
         <tr>
           <td class="text-bold">Table No:</td>
           <td class="ps-4"># <?php echo isset($table_no) ? $table_no : '' ?> </td>

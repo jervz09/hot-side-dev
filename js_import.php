@@ -34,6 +34,19 @@
 
 <!-- <script src="vendor/sticky-plugin.js"></script> -->
 <script>
+
+$('.view_order').click(function(){
+    universal_modal('Order Details',"admin/view_ordered.php?id="+$(this).attr('data-id'))
+})
+
+$('.view_reservation').click(function(){
+    universal_modal('Reservation Details',"php/view_reservation.php?id="+$(this).attr('data-id'))
+})
+
+$('.cancel_reservation').click(function(){
+    universal_modal('Cancellation Details',"php/cancel_reservation.php?id="+$(this).attr('data-id'))
+})
+
 let s_table = ""
 let s_date = ""
 let s_table_name = ""

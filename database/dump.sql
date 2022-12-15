@@ -90,3 +90,14 @@ ALTER TABLE `reservation_list` CHANGE `datetime` `datetime` TIMESTAMP NOT NULL D
 ALTER TABLE `users` CHANGE `contact_no` `contact_no` BIGINT(12) NULL DEFAULT NULL;
 
 ALTER TABLE `users` ADD `profile_img` LONGTEXT NOT NULL DEFAULT './uploads/default_profile.png' AFTER `contact_no`;
+
+ALTER TABLE `reservation_list` ADD `reason` TEXT DEFAULT NULL AFTER `status`;
+ALTER TABLE `reservation_list` ADD `other_reason` TEXT DEFAULT NULL AFTER `reason`;
+
+CREATE TABLE `reasons` (
+  `reason_id` int(11) NOT NULL,
+  `reason` text NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `reasons` (`reason_id`, `reason`, `date_created`) VALUES (NULL, 'Change of Plan', current_timestamp()), (NULL, 'Duplicate Booking', current_timestamp()),(NULL, 'Other destination preferred', current_timestamp()), (NULL, 'Change of Time and Date', current_timestamp());

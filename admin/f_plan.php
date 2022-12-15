@@ -9,7 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Floor Plan</h1>
         <div class="card-tools align-middle">
-            <button type="button" id="update_fp" class="btn btn-primary btn-sm btn-icon-split">
+            <button type="button" id="update_fp" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-file-upload"></i>
                 </span>

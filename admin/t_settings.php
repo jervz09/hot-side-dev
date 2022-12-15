@@ -66,7 +66,7 @@
                       <td class="py-0 px-1"> <?php echo $row['name'] ?> </td>
                       <th class="text-center py-0 px-1">
                         <div class="dropdown">
-                          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button class="btn btn-primary btn-block dropdown-toggle" type="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Action
                           </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">

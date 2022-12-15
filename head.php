@@ -12,7 +12,8 @@
     $contact_page = "#contact_area";
     $not_signed_user = true;
     $errors = [];
-    if(@$_SESSION['id']){
+    @$session_user = $_SESSION['id'];
+    if(@$session_user){
       if(!$_SESSION['verified']){
         header('location: verify_check.php');
       }

@@ -3,18 +3,18 @@ $('.delete_data').click(function(){
     _conf("Are you sure to delete <b>"+$(this).attr('data-name')+"</b> from list?",'delete_data',[$(this).attr('data-id')])
 })
 
-$('.view_order').click(function(){
-    universal_modal('Order Details',"view_ordered.php?id="+$(this).attr('data-id'))
+$('.edit_data').click(function(){
+    universal_modal('Reason Details',"edit_reason.php?id="+$(this).attr('data-id'))
 })
 
-$('.edit_data').click(function(){
-    universal_modal('Reservation Details',"edit_reservation.php?id="+$(this).attr('data-id'))
+$('.add_data').click(function(){
+    universal_modal('Reason Details',"edit_reason.php")
 })
 
 let delete_data = ($id) => {
             $('#confirm_modal button').attr('disabled',true)
             $.ajax({
-                url:'././helper/init.php?a=delete_reservation',
+                url:'././helper/init.php?a=delete_reason',
                 method:'POST',
                 data:{id:$id},
                 dataType:'JSON',

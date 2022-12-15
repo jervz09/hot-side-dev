@@ -442,7 +442,6 @@ Class Actions {
         return json_encode($resp);
     }
 
-
     function update_user(){
         extract($_POST);
         $data = "";
@@ -508,6 +507,61 @@ Class Actions {
         }
         return json_encode($resp);
     }
+
+    function update_reason(){
+        extract($_POST);
+        $data = "";
+        foreach($_POST as $k =>$v){
+            if(!in_array($k,array('id'))){
+                if(!is_numeric($v)){
+                    $v = $this->mysqli->real_escape_string($v);
+                }
+                if(empty($reason_id)){
+                    $columns[] = "`{$k}`";
+                    $values[] = "'{$v}'";
+                }else{
+                    if(!empty($data)) $data .= ", ";
+                    $data .= " `{$k}` = '{$v}'";
+                }
+            }
+        }
+        if(isset($columns) && isset($values)){
+            $data = "(".(implode(",",$columns)).") VALUES (".(implode(",",$values)).")";
+        }
+        if(empty($reason_id)){
+            $sql = "INSERT INTO `reasons` {$data}";
+        }else{
+            $sql = "UPDATE `reasons` set {$data} where reason_id = '{$reason_id}'";
+        }
+        // echo $sql;
+        @$save = $this->mysqli->query($sql);
+        if($save){
+            $resp['status'] = 'success';
+            $resp['msg'] = 'Reason Successfully recorded.';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = $resp['msg'];
+        }else{
+            $resp['status'] = 'failed';
+            $resp['msg'] = 'An error occured. Error: '.$this->lastErrorMsg();
+            $resp['sql'] = $sql;
+        }
+        return json_encode($resp);
+    }
+
+    function delete_reason(){
+        extract($_POST);
+        @$delete = $this->mysqli->query("DELETE FROM `reasons` where reason_id = '{$id}'");
+        if($delete){
+            $resp['status']='success';
+            $_SESSION['flashdata']['type'] = 'success';
+            $_SESSION['flashdata']['msg'] = 'Reason successfully deleted.';
+
+        }else{
+            $resp['status']='failed';
+            $resp['msg'] = 'An error occure. Error: '.$this->lastErrorMsg();
+        }
+        return json_encode($resp);
+    }
 }
 $a = isset($_GET['a']) ?$_GET['a'] : '';
 $action = new Actions();
@@ -550,6 +604,12 @@ switch($a){
     break;
     case 'delete_user':
         echo $action->delete_user();
+    break;
+    case 'update_reason':
+        echo $action->update_reason();
+    break;
+    case 'delete_reason':
+        echo $action->delete_reason();
     break;
     case 'validate_update_password':
         echo $action->validate_update_password();

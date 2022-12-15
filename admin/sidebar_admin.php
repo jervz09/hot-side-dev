@@ -88,6 +88,12 @@
     </div>
 
     <li class="nav-item">
+        <a class="nav-link" href="index.php?page=reason_settings">
+            <i class="fas fa-fw fa-comment"></i>
+            <span>Reason Settings</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="index.php?page=t_settings">
             <i class="fas fa-fw fa-cogs"></i>
             <span>Table Settings</span></a>

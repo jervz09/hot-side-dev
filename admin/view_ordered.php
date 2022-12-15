@@ -25,7 +25,7 @@ if(isset($_GET['id'])){
 <div class="container-fluid">
   <div class="col-12">
     <div class="row">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <th class="text-center">Type</th>

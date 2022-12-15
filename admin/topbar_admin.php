@@ -24,7 +24,7 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile Setting
                 </a>
-                <a class="dropdown-item" href="index.php?page=privacy_setting">
+                <a class="dropdown-item" href="index.php?page=privacy_settings">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Privacy Setting
                 </a>

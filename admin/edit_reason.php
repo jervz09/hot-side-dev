@@ -1,57 +1,40 @@
 <?php
 include('../controllers/db_con.php');
-$disabled = $enabled = "";
+$accepted = $no_action = $declined = "";
 if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT * from menu_list where menu_id = '{$_GET['id']}'");
+    $qry = $conn->query("SELECT * FROM reasons WHERE reason_id = '{$_GET['id']}'");
         foreach(mysqli_fetch_assoc($qry) as $k => $v){
             $$k = $v;
         }
     }
 
-    if(isset($is_delete)){
-      if($is_delete == '0'){
-        $enabled = "selected";
-      }elseif($is_delete == 1){
-        $disabled = "selected";
+    if(isset($status)){
+      if($status == '0'){
+        $no_action = "selected";
+      }elseif($status == 1){
+        $accepted = "selected";
+      }else{
+        $declined = "selected";
       }
     }
 ?>
 
 <div class="container-fluid">
-  <form method="" style="width: 100%" id="update_menu_form">
-
-  <input type="hidden" name="menu_id" value="<?php echo isset($menu_id)? $menu_id : '' ?>">
+  <form method="" style="width: 100%" id="update_reserve_form">
+  <?php if(isset($reason_id)){?>
+  <input type="hidden" name="reason_id" value="<?php echo isset($reason_id)? $reason_id : '' ?>">
+  <?php } ?>
     <table class="table table-bordered table-hover">
       <tr>
-        <td class="text-bold" style="width:40%">Name:</td>
-        <td class="ps-4"><input class="form-control" type="text" name="name"
-          value="<?php echo isset($name) ? $name : '' ?>"></td>
-      </tr>
-      <tr>
-        <td class="text-bold">Type:</td>
-        <td class="ps-4"><input class="form-control" type="text" name="type"
-          value="<?php echo isset($type) ? $type : '' ?>"></td>
-      </tr>
-      <tr>
-        <td class="text-bold">Price:</td>
-        <td class="ps-4"><input class="form-control" type="number" name="price"
-          value="<?php echo isset($price) ? $price : '' ?>"></td>
-      </tr>
-      <tr>
-        <td class="text-bold">Status:</td>
-        <td class="ps-4">
-          <select name="is_delete" id="status" class="form-control form-select">
-            <option value="0" <?= $enabled?>>Enabled</option>
-            <option value="1" <?= $disabled?>>Disabled</option>
-          </select>
-        </td>
+        <td class="text-bold" style="width:40%">Reason:</td>
+        <td class="ps-4"><textarea name="reason" class="form-control" style="height: 50px;width: 100%;" required><?php echo isset($reason)? $reason : '' ?></textarea></td>
       </tr>
     </table>
   </form>
 </div>
 <script>
     $(function(){
-        $('#update_menu_form').submit(function(e){
+        $('#update_reserve_form').submit(function(e){
             e.preventDefault();
             $('.pop_msg').remove()
             var _this = $(this)
@@ -59,8 +42,9 @@ if(isset($_GET['id'])){
                 _el.addClass('pop_msg')
             $('#universal_modal button').attr('disabled',true)
             $('#universal_modal button[type="submit"]').text('submitting form...')
+            console.log(new FormData($(this)[0]))
             $.ajax({
-                url:'./helper/init.php?a=update_menu',
+                url:'./helper/init.php?a=update_reason',
                 data: new FormData($(this)[0]),
                 cache: false,
                 contentType: false,

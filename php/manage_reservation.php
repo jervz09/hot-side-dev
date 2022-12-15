@@ -8,7 +8,7 @@ if(isset($_GET['table_id'])){
     }
 ?>
 <div class="container-fluid">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
         <tr>
           <td class="details_tbl text-bold">Table No:</td>
           <td class="details_tbl"># <?php echo isset($table_no) ? $table_no : '' ?> </td>

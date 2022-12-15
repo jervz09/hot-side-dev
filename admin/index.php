@@ -116,6 +116,9 @@
             case 't_settings':
                 include('./include/manage_table_js.php');
             break;
+            case 'reason_settings':
+                include('./include/reason_settings_js.php');
+            break;
             case 'f_plan':
                 include('./include/f_plan_js.php');
             break;

@@ -1641,10 +1641,13 @@ img {
 
 /* :: 13.0 Footer Area CSS */
 .footer-area {
-	position: relative;
+	/* position: relative; */
+	position: absolute;
 	z-index: 1;
 	background-color: #363636;
 	padding-bottom: 10px;
+    margin: 0;
+    width: 100%;
 }
 
 .footer-area .footer-widget-area p {
@@ -2380,8 +2383,14 @@ img {
 	opacity: 1;
   }
 
-  .box-shadow-hover:hover{
-	box-shadow: #505050 0 0 10px 0px;
+  .box-shadow-hover:hover .box-shadow-hover:focus{
+	box-shadow: #767676 0 0 2px 0px;
+    -webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+  }
+  .box-shadow-hover{
+	padding: 10px;
+	box-shadow: #505050 0 0 2px 0px;
     -webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
   }
@@ -2661,11 +2670,16 @@ tr.text-muted td{
 
 input.form-control, select.form-control, textarea.form-control {
     font-size: 14px;
-	padding: 10px;
-    height: calc(2.25rem + 10px);
+	padding: 0 10px;
+    height: calc(2rem + 10px);
     border-radius: 15px;
 }
 
 .disabled {
     cursor: not-allowed;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+	outline: thin solid #178c8d;
 }

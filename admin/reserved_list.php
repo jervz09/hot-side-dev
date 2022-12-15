@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="text-center">Datetime</th>
@@ -43,7 +43,7 @@
                                             INNER JOIN
                                         users u ON u.user_id = rl.user_id
                                             INNER JOIN
-                                        table_list tl ON tl.table_id = rl.table_id;
+                                        table_list tl ON tl.table_no = rl.table_id;
                                     ";
                             $result = $conn->query($sql);
 

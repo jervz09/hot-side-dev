@@ -5,7 +5,7 @@ include('../controllers/db_con.php');
 <div class="container-fluid">
   <form method="" style="width: 100%" id="update_menu_form">
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
       <tr>
         <td class="text-bold" style="width:40%">Name:</td>
         <td class="ps-4"><input class="form-control" type="text" name="name"

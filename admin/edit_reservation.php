@@ -9,7 +9,7 @@ if(isset($_GET['id'])){
                                 INNER JOIN
                             users u ON u.user_id = rl.user_id
                                 INNER JOIN
-                            table_list tl ON tl.table_id = rl.table_id
+                            table_list tl ON tl.table_no = rl.table_id
                             WHERE rl.reservation_id = '{$_GET['id']}'");
         foreach(mysqli_fetch_assoc($qry) as $k => $v){
             $$k = $v;
@@ -31,7 +31,8 @@ if(isset($_GET['id'])){
   <form method="" style="width: 100%" id="update_reserve_form">
 
   <input type="hidden" name="reservation_id" value="<?php echo isset($reservation_id)? $reservation_id : '' ?>">
-    <table class="table table-bordered">
+  <input type="hidden" name="reason" id="reason">
+    <table class="table table-bordered table-hover">
       <tr>
         <td class="text-bold" style="width:40%">Username:</td>
         <td class="ps-4"><?php echo isset($username) ? $username : '' ?> </td>
@@ -67,6 +68,10 @@ if(isset($_GET['id'])){
                 _el.addClass('pop_msg')
             $('#universal_modal button').attr('disabled',true)
             $('#universal_modal button[type="submit"]').text('submitting form...')
+            if($('#status').val() == 2){
+              $('#reason').val('Declined by Admin')
+            }
+            console.log(new FormData($(this)[0]))
             $.ajax({
                 url:'./helper/init.php?a=update_reservation_status',
                 data: new FormData($(this)[0]),
