@@ -39,10 +39,11 @@
                 $db_category = $db->sql;
                 $db_categories = array();
                 while($row = $db_category->fetch_assoc()) {
-                    $db_categories[$row['type']] = $row['count'];
+                    $rand_colors = '#' . dechex(rand(256,16777215));
+                    $db_categories[$row['type']] = $row['count'].'-'.$rand_colors;
             ?>
             <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> <?=$row['type']?> </span>
+              <i class="fas fa-circle" style="color: <?=$rand_colors?>;"></i> <?=$row['type']?> </span>
               <?php } ?>
           </div>
         </div>

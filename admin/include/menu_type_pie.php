@@ -5,10 +5,14 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 let _labels = []
 let _datas = []
+let _colors = []
+let count_colors = []
 let pie_data_raw = <?=json_encode($db_categories)?>;
 $.each( pie_data_raw, function (key, val) {
   _labels.push(key)
-  _datas.push(val)
+  count_colors = val.split('-')
+  _datas.push(count_colors[0])
+  _colors.push(count_colors[1])
 });
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
@@ -18,7 +22,7 @@ var myPieChart = new Chart(ctx, {
     labels: _labels,
     datasets: [{
       data: _datas,
-      backgroundColor: ['#2b898b', '#1cc88a', '#36b9cc', '#36b9c2'],
+      backgroundColor: _colors,
       hoverBackgroundColor: ['#0f4748', '#17a673', '#2c9faf', '#36b9c2'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
