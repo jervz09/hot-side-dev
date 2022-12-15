@@ -29,7 +29,7 @@
                             </tr>
                         </thead>";
 
-    $zero_result = "<tr><td>0 result</td></tr>";
+    $zero_result = "<tr><td colspan='8' class='text-center'>No records to show</td></tr>";
 
     function data_row($row,$is_cancelled_row=false){
         $cancelled_row = "";

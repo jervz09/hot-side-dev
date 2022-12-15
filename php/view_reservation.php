@@ -8,7 +8,7 @@ if(isset($_GET['id'])){
                                 INNER JOIN
                             users u ON u.user_id = rl.user_id
                                 INNER JOIN
-                            table_list tl ON tl.table_id = rl.table_id
+                            table_list tl ON tl.table_no = rl.table_id
                         WHERE
                             rl.reservation_id = '{$_GET['id']}';");
 
@@ -45,15 +45,15 @@ if(isset($_GET['id'])){
         <thead>
           <tbody>
             <tr>
-              <td class="text-center">Table No.</td>
+              <td class="text-center">Table No. :</td>
               <td class="text-center"><?= $tbl_name?></td>
             </tr>
             <tr>
-              <td class="text-center">Reserved Time.</td>
+              <td class="text-center">Reserved Time :</td>
               <td class="text-center"><?= $reserved_time?></td>
             </tr>
             <tr>
-              <td class="text-center">Reserved Time.</td>
+              <td class="text-center">Status :</td>
               <td class="text-center"><?=status_cheker($status)?></td>
             </tr>
           </tbody>

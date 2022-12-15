@@ -8,7 +8,7 @@ if(isset($_GET['id'])){
                                 INNER JOIN
                             users u ON u.user_id = rl.user_id
                                 INNER JOIN
-                            table_list tl ON tl.table_id = rl.table_id
+                            table_list tl ON tl.table_no = rl.table_id
                         WHERE
                             rl.reservation_id = '{$_GET['id']}';");
 
@@ -73,43 +73,50 @@ if(isset($_GET['id'])){
         var _this = $('#cancel_form')
         var _el = $('<div>')
             _el.addClass('pop_msg')
-        $('#universal_modal button').attr('disabled',true)
-        $('#universal_modal button[type="submit"]').text('submitting form...')
-        console.log($('#reservation_id').val())
-        $.ajax({
-            url:'./admin/helper/init.php?a=update_reservation_status',
-            data: new FormData($('#cancel_form')[0]),
-            cache: false,
-            contentType: false,
-            processData: false,
-            method: 'POST',
-            type: 'POST',
-            dataType: 'json',
-            error:err=>{
-                console.log(err)
-                _el.addClass('alert alert-danger')
-                _el.text("An error occurred.")
-                _this.prepend(_el)
-                _el.show('slow')
-                  $('#universal_modal button').attr('disabled',false)
-                  $('#universal_modal button[type="submit"]').text('Save')
-            },
-            success:function(resp){
-                if(resp.status == 'success'){
-                    _el.addClass('alert alert-success')
-                    setTimeout(function(){location.reload();}, 1500)
-                }else{
-                    _el.addClass('alert alert-danger')
-                }
-                _el.text(resp.msg)
+        if(!$('#reason_cancelation').val()){
+          _el.addClass('alert alert-danger')
+          _el.text("Reason is required.")
+          _this.prepend(_el)
+          _el.show('slow')
+        }else{
+          $('#universal_modal button').attr('disabled',true)
+          $('#universal_modal button[type="submit"]').text('submitting form...')
+          console.log($('#reservation_id').val())
+          $.ajax({
+              url:'./admin/helper/init.php?a=update_reservation_status',
+              data: new FormData($('#cancel_form')[0]),
+              cache: false,
+              contentType: false,
+              processData: false,
+              method: 'POST',
+              type: 'POST',
+              dataType: 'json',
+              error:err=>{
+                  console.log(err)
+                  _el.addClass('alert alert-danger')
+                  _el.text("An error occurred.")
+                  _this.prepend(_el)
+                  _el.show('slow')
+                    $('#universal_modal button').attr('disabled',false)
+                    $('#universal_modal button[type="submit"]').text('Save')
+              },
+              success:function(resp){
+                  if(resp.status == 'success'){
+                      _el.addClass('alert alert-success')
+                      setTimeout(function(){location.reload();}, 1500)
+                  }else{
+                      _el.addClass('alert alert-danger')
+                  }
+                  _el.text(resp.msg)
 
-                _el.hide()
-                _this.prepend(_el)
-                _el.show('slow')
-                  $('#universal_modal button').attr('disabled',false)
-                  $('#universal_modal button[type="submit"]').text('Save')
-            }
-        })
+                  _el.hide()
+                  _this.prepend(_el)
+                  _el.show('slow')
+                    $('#universal_modal button').attr('disabled',false)
+                    $('#universal_modal button[type="submit"]').text('Save')
+              }
+          })
+        }
     })
   })
 </script>
