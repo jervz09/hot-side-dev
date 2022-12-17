@@ -8,7 +8,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-info">Menu List</h6>
         </div>
-        <button class="btn btn-lg btn-primary m-3" id="add_menu" style="width:20%">
+        <button class="btn btn-lg btn-primary m-3" id="add_menu" style="max-width: 12rem;">
             <i class="fa fa-plus"></i> Add Menu
         </button>
         <div class="card-body">
