@@ -2,8 +2,11 @@
 <html lang="en">
 <?php
     session_start();
-	include 'controllers/authController.php';
 	include 'head_form.php';
+	include 'controllers/authController.php';
+	if(!isset($_GET['params'])){
+		header('location: login.php');
+	}
 ?>
 
 <body class="bg-gradient-primary">
@@ -21,13 +24,13 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="p-5">
-									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+									<div class="text-center mb-4">
+										<h1 class="h4 text-gray-900">Reset Password</h1>
 									</div>
-									<form action="login.php" class="user" method="post" autocomplete="OFF">
+									<form action="<?=$_SERVER['REQUEST_URI']?>" class="user" method="post" autocomplete="OFF">
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
-										<div class="alert alert-danger error-message">
+										<div class="alert alert-<?=$_alert['type']?> error-message">
 										<?php foreach ($errors as $error): ?>
 										<li>
 											<?php echo $error; ?>
@@ -37,20 +40,20 @@
 									<?php endif;?>
 
 										<div class="form-group">
-											<label class="form-label" for="username">Username or Email Address</label>
-											<input name="username" type="text" id="username"
+											<label class="form-label" for="username">New Password</label>
+											<input name="new_password" type="password" id="new_password"
+												class="form-control form-control-user focus-brand" required />
+										<hr>
+											<label class="form-label" for="username">Confirm Password</label>
+											<input name="conf_password" type="password" id="conf_password"
 												class="form-control form-control-user focus-brand" required />
 										</div>
-										<div class="form-group">
-											<label class="form-label" for="password">Password</label>
-											<input name="password" type="password" id="password" class="form-control form-control-user focus-brand" required/>
-										</div>
-										<button type="submit" name="login-btn" class="btn btn-primary btn-user btn-block">Login</button>
+										<button type="submit" name="resetpassword-btn" id="resetpassword-btn" class="btn btn-primary btn-user btn-block">Reset Password</button>
 										<hr>
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgot_password.php">Forgot Password?</a>
+										<a class="small" href="login.php">Already have an account? Login!</a>
 									</div>
 									<div class="text-center">
 										<a class="small" href="register.php">Create an Account!</a>

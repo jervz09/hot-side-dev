@@ -1,48 +1,6 @@
 <?php
-require_once './vendor/autoload.php';
-require_once 'email_content_forgot.php';
-
-// Create the Transport
-/*
- * Example:
- * <code>
- * $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'tls'))
- *   ->setAuthMode('XOAUTH2')
- *   ->setUsername('YOUR_EMAIL_ADDRESS')
- *   ->setPassword('YOUR_ACCESS_TOKEN');
- * </code>
- */
-$transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-    ->setUsername("hotsiderestobar@gmail.com") //official email
-    ->setPassword("nnyqlvidcmfcpepa"); //generated token password from gmail
-
-// Create the Mailer using your created Transport
-$mailer = new Swift_Mailer($transport);
-
-function sendForgotPassword($userEmail,$forget_link)
-{
-    global $mailer;
-    $body = emailContentForget($forget_link);
-    // Create a message
-    $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
-    ->setFrom("hotsiderestobar@gmail.com")
-    ->setTo($userEmail)
-    ->setBody($body, 'text/html');
-
-    // Send the message
-    $result = $mailer->send($message);
-
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function sendVerificationEmail($userEmail, $verification_code)
-{
-    global $mailer;
-    $body = '<!DOCTYPE html>
+function emailContentForget($forget_link){
+  return'<!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 
     <head>
@@ -81,6 +39,26 @@ function sendVerificationEmail($userEmail, $verification_code)
         overflow: hidden;
       }
 
+      .hotside-btn {
+        background-color: #2b898b;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        min-width: 123px;
+        height: 53px;
+        color: #ffffff;
+        border: none;
+        border-radius: 0;
+        padding: 0 30px;
+        font-size: 16px;
+        line-height: 53px;
+        text-transform: capitalize;
+        text-decoration: none;
+        margin-bottom: 30px;
+
+    }
       @media (max-width:660px) {
         .desktop_hide table.icons-inner,
         .social_block.desktop_hide .social-table {
@@ -224,7 +202,9 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
                                         <div align="center" class="alignment" style="line-height:10px"><img alt="Hotside" src="https://iili.io/stHbl1.md.jpg" style="display: block; height: auto; border: 0; width: 149px; max-width: 100%;" title="hotside" width="149" /></div>
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>Activate your account with the activation code</strong></span></p>
+                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;">
+                                        <strong>Trouble signing in?</strong>
+                                        </span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -236,7 +216,7 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px; color: #555555; line-height: 1.5;">
                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 22.5px;">
-                                          <span style="color:#808389;font-size:15px;">We just need to verify your email address before you can access hotside.</span></p>
+                                          <span style="color:#808389;font-size:15px;">Just press the button below and follow the instructions. Well have you up and running in no time.</span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -290,32 +270,9 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="text-align: center;font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><a href="'.$forget_link.'" class="hotside-btn">Click Here</a></td>
                                         </tr>
                                       </table>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                              <table border="0" cellpadding="0" cellspacing="0" class="text_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                <tr>
-                                  <td class="pad" style="padding-bottom:5px;padding-left:10px;padding-right:10px;padding-top:10px;">
-                                    <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#2b303a;font-size:18px;"><strong>Use this Code</strong></span></p>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                              <table border="0" cellpadding="0" cellspacing="0" class="text_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                <tr>
-                                  <td class="pad" style="padding-bottom:32px;">
-                                    <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#1aa19c;font-size:38px;"><span style=""><strong>'. $verification_code .'</strong></span></span>
-                                        </p>
-                                      </div>
                                     </div>
                                   </td>
                                 </tr>
@@ -431,19 +388,5 @@ function sendVerificationEmail($userEmail, $verification_code)
     </body>
 
     </html>';
-
-    // Create a message
-    $message = (new Swift_Message('Verify your email'))
-        ->setFrom("hotsiderestobar@gmail.com")
-        ->setTo($userEmail)
-        ->setBody($body, 'text/html');
-
-    // Send the message
-    $result = $mailer->send($message);
-
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
 }
+    ?>

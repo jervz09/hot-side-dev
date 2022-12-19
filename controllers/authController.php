@@ -1,8 +1,10 @@
 <?php
+require_once 'helper.php';
 require_once 'sendEmails.php';
 $username = "";
 $email = "";
 $errors = [];
+$_alert = [];
 
 include 'db_con.php';
 $otp = random_int(100000, 999999);
@@ -48,6 +50,12 @@ if (isset($_POST['signup-btn'])) {
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         $errors['email'] = "Email already exists";
+    }
+
+    $_sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($conn, $_sql);
+    if (mysqli_num_rows($result) > 0) {
+        $errors['username'] = "Username already exists";
     }
 
     if (count($errors) === 0) {
@@ -158,6 +166,32 @@ if (isset($_POST['verify-btn'])) {
         }
     } else {
         $errors['otp_failed'] = "Incorrect OTP";
+    }
+}
+
+
+if (isset($_POST['forgotpassword-btn'])) {
+    $user_email = $_POST["email"];
+    $encrypt_email = let_crypt($user_email,true);
+    $_alert['type'] = "success";
+    $errors['success_send'] = "We have emailed the password reset, you can check your email address at <strong>".hintEmail($_POST['email'])."</strong>";
+    $recovery_link = "hotside-restobar.rf.gd/reset_password.php?params=$encrypt_email";
+    sendForgotPassword($user_email,$recovery_link);
+}
+
+if (isset($_POST['resetpassword-btn']) and $_GET['params']){
+    // echo let_crypt("bverna1@epa.gov",true);
+    $decrypt_email = let_crypt($_GET['params']);
+    $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT); //encrypt password
+    $query = "UPDATE users SET password='$password' WHERE email = '$decrypt_email'";
+    if (mysqli_query($conn, $query)) {
+        $_alert['type'] = "success";
+        $errors['otp_failed'] = "Successfully update, please login.";
+        echo "<script>window.alert('Successfully update, please login.');
+            setTimeout(function(){window.location.href = 'login.php';}, 1500)</script>";
+    }else{
+        $_alert['type'] = "danger";
+        $errors['sql'] = mysqli_error($conn);
     }
 }
 

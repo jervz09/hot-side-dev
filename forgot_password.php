@@ -21,13 +21,14 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="p-5">
-									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+									<div class="text-center mb-4">
+										<h1 class="h4 text-gray-900">Forgot your password?</h1>
+										<span class="small text-gray-700">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</span>
 									</div>
-									<form action="login.php" class="user" method="post" autocomplete="OFF">
+									<form action="forgot_password.php" class="user" method="post" autocomplete="OFF">
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
-										<div class="alert alert-danger error-message">
+										<div class="alert alert-<?=$_alert['type']?> error-message">
 										<?php foreach ($errors as $error): ?>
 										<li>
 											<?php echo $error; ?>
@@ -37,20 +38,16 @@
 									<?php endif;?>
 
 										<div class="form-group">
-											<label class="form-label" for="username">Username or Email Address</label>
-											<input name="username" type="text" id="username"
-												class="form-control form-control-user focus-brand" required />
+											<!-- <label class="form-label" for="username">Email Address</label> -->
+											<input name="email" type="email" id="email"
+												class="form-control form-control-user focus-brand" placeholder="Email Address" required />
 										</div>
-										<div class="form-group">
-											<label class="form-label" for="password">Password</label>
-											<input name="password" type="password" id="password" class="form-control form-control-user focus-brand" required/>
-										</div>
-										<button type="submit" name="login-btn" class="btn btn-primary btn-user btn-block">Login</button>
+										<button type="submit" name="forgotpassword-btn" class="btn btn-primary btn-user btn-block">Send login link</button>
 										<hr>
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgot_password.php">Forgot Password?</a>
+										<a class="small" href="login.php">Already have an account? Login!</a>
 									</div>
 									<div class="text-center">
 										<a class="small" href="register.php">Create an Account!</a>
