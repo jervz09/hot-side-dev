@@ -62,6 +62,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-secondary" href="profile_setting.php">Profile Settings</a>
                       <div class="dropdown-divider"></div>
+                      <?=$admin_dropdown_header?>
                       <a class="dropdown-item text-secondary" id="toggleLogout" href="#">Logout</a>
                     </div>
                   </div>

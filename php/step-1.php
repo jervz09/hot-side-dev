@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col col-md-6">
+  <div class="col-xl-6 col-sm-12 col-md-6 col-lg-6">
     <div class="booking-form">
       <!-- <form> -->
       <div class="row">
@@ -38,7 +38,7 @@
       <!-- </form> -->
     </div>
   </div>
-  <div class="col col-md-6 float-right">
+  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 float-right">
     <div class="booking-form">
       <div class="row">
         <div class="col-sm-12">

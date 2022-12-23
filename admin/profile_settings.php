@@ -38,7 +38,7 @@
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                         </div>
                         <div class="alert" role="alert"></div>
-                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         </div>
-                    <img src="<?=$_SESSION['profile_img']?>" id="avatar" width="100%" height="auto">
+                    <img src="<?=$profile_img?>" id="avatar" width="100%" height="auto">
                 </div>
                 <div class="col-lg-9">
                     <div class="p-5">
@@ -99,7 +99,7 @@
                                     placeholder="Contact No" value="<?=$_SESSION['contact_no']?>">
                             </div>
                             <div class="form-group">
-                            <textarea  name="profile_img" id="profile_img" class="form-control d-none"><?=$_SESSION['profile_img']?></textarea>
+                            <textarea  name="profile_img" id="profile_img" class="form-control d-none"><?=$profile_img?></textarea>
                                 <!-- <input type="text" name="profile_img" id="profile_img" class="form-control form-control-user focus-brand"
                                     placeholder="profile img" value="?=$_SESSION['profile_img']?>"> -->
                             </div>

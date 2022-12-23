@@ -8,7 +8,7 @@ $('.view_order').click(function(){
 })
 
 $('.edit_data').click(function(){
-    universal_modal('Menu Details',"edit_menu.php?id="+$(this).attr('data-id'))
+    universal_modal('Menu Details',"add_menu.php?id="+$(this).attr('data-id'))
 })
 
 $('#add_menu').click(function(){

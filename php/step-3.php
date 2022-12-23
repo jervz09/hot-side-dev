@@ -25,7 +25,7 @@
   <div class="col-md-12 col-sm-12 col-sx-12 col-lg-9 col-xl-9" id="order_list_container">
     <?php
             $sql = "SELECT
-                      m.menu_id,m.name,m.price,m.type,items.items
+                      m.menu_id,m.name,m.price,m.type,items.items,m.base_menu_image
                     FROM
                         menu_list m
                     INNER JOIN
@@ -39,12 +39,16 @@
             $last_m_type = "";
             while($row = $result->fetch_assoc()) {
               $formated_price = number_format((float)$row['price'], 2, '.', '');
+              $base_menu_image = './img/food-img/default_menu.jpg';
               $data_menu[$row['menu_id']] = array(
                 "id"=>$row['menu_id'],
                 "type"=>$row['type'],
                 "name"=>$row['name'],
                 "price"=>$formated_price
               );
+              if($row['base_menu_image']){
+                $base_menu_image = $row['base_menu_image'];
+              }
               if(!$last_m_type || $last_m_type != $row['type']){
                 if($last_m_type){
                   echo '</div>';
@@ -59,12 +63,15 @@
                 echo '
                 <div class="card-body bb-1 pb-3">
                   <div class="row">
-                    <div class="col-md-9 col-7">
+                    <div class="col-md-3 col-4">
+                      <img class="menu-image" src="'.$base_menu_image.'" width="200px">
+                    </div>
+                    <div class="col-md-7 col-5">
                       <h2 class="item-name text-left">'.$row["name"].'</h2>
                       <p class="item-para mb-2 text-left"></p>
                       <h3 class="item-price text-left">₱ '.$formated_price.'</h3>
                     </div>
-                    <div class="col-md-3 col-5 price-area mb-2">
+                    <div class="col-md-2 col-3 price-area mb-2">
                       <div class="row  align-items-center">
                         <div class="col-md-12 text-center">
                         </div>

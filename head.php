@@ -12,6 +12,8 @@
     $contact_page = "#contact_area";
     $not_signed_user = true;
     $errors = [];
+    $admin_dropdown_header = '<a class="dropdown-item text-secondary" href="admin/index.php">Admin Page</a>
+                              <div class="dropdown-divider"></div>';
     @$session_user = $_SESSION['id'];
     if(@$session_user){
       if(!$_SESSION['verified']){

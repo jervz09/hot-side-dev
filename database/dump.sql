@@ -101,3 +101,5 @@ CREATE TABLE `reasons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `reasons` (`reason_id`, `reason`, `date_created`) VALUES (NULL, 'Change of Plan', current_timestamp()), (NULL, 'Duplicate Booking', current_timestamp()),(NULL, 'Other destination preferred', current_timestamp()), (NULL, 'Change of Time and Date', current_timestamp());
+
+ALTER TABLE `menu_list` ADD `base_menu_image` LONGTEXT NULL AFTER `price`;

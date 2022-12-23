@@ -356,7 +356,7 @@ Class Actions {
         extract($_POST);
         $data = "";
         foreach($_POST as $k =>$v){
-            if(!in_array($k,array('id'))){
+            if(!in_array($k,array('menu_id'))){
                 if(!is_numeric($v)){
                     $v = $this->mysqli->real_escape_string($v);
                 }

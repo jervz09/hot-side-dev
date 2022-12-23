@@ -2683,3 +2683,8 @@ input.form-control, select.form-control, textarea.form-control {
     border-color: #e9ecef #e9ecef #dee2e6;
 	outline: thin solid #178c8d;
 }
+
+.menu-image{
+	border-radius: 20px;
+    box-shadow: 1px 1px 5px 1px grey;
+}

@@ -7,9 +7,17 @@
     include("head_admin.php");
     include("helper/main.php");
     $db = new database();
+
+    $db->select("users","*","user_id=".$_SESSION['id']);
+    $result = $db->sql;
+    if ($result->num_rows > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $profile_img = $row['profile_img'];
+    }
+    }
     $tbl = "";
     $errors = [];
-    $user_profile_img = isset($_SESSION['profile_img']) ? $_SESSION['profile_img'] : "./uploads/default_profile.png";
+    $user_profile_img = isset($profile_img) ? $profile_img : "./uploads/default_profile.png";
     $session_username = isset($_SESSION['username']) ? $_SESSION['username'] : "admin";
 ?>
 <body id="page-top">

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-12 col-sm-6 col-md-6 float-right">
+  <div class="col-xl-6 col-sm-12 col-md-6 col-lg-6">
     <div class="booking-form">
       <div class="row align-items-start">
         <div class="col-md-12" id="floor-plan-container">
@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="col col-md-6 float-right">
+  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 float-right">
     <div class="booking-form">
       <div class="row">
         <div class="col-sm-12">
