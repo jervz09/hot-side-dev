@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover" id="reserveDataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="text-center">Datetime</th>
@@ -59,7 +59,7 @@
                                 }
 
                                 echo "<tr>
-                                        <td class ='text-center p-1'>" . $row["datetime"] . "</td>
+                                        <td data-sort='". date('d-m-Y',strtotime($row["datetime"]))."' class ='text-center p-1'>" . $row["datetime"] . "</td>
                                         <td class ='text-center p-1'>" . $row["username"] . "</td>
                                         <td class ='text-center p-1'>" . $row["tbl_name"] . "</td>
                                         <td class ='text-center p-1'><a class='view_order' id='view_order' data-id='". $row['reservation_id'] ."' href='#'>View Order</a></td>

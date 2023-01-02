@@ -3,7 +3,7 @@ include('../controllers/db_con.php');
 $accepted = $no_action = $declined = "";
 if(isset($_GET['id'])){
     $qry = $conn->query("SELECT
-                            rl.*, u.username, tl.name as tbl_name, tl.party_size
+                            rl.*, u.username, u.contact_no, u.email, tl.name as tbl_name, tl.party_size
                         FROM
                             reservation_list rl
                                 INNER JOIN
@@ -15,6 +15,11 @@ if(isset($_GET['id'])){
             $$k = $v;
         }
     }
+
+    $username = $username;
+    $customer_no = $contact_no;
+    $customer_email = $email;
+    $reserved_time = $datetime;
 
     if(isset($status)){
       if($status == '0'){
@@ -63,13 +68,17 @@ if(isset($_GET['id'])){
         $('#update_reserve_form').submit(function(e){
             e.preventDefault();
             $('.pop_msg').remove()
+            let _reserve_status = ""
             var _this = $(this)
             var _el = $('<div>')
                 _el.addClass('pop_msg')
             $('#universal_modal button').attr('disabled',true)
             $('#universal_modal button[type="submit"]').text('submitting form...')
             if($('#status').val() == 2){
+              _reserve_status = "Declined"
               $('#reason').val('Declined by Admin')
+            }else if($('#status').val() == 1){
+              _reserve_status = "Accepted"
             }
             console.log(new FormData($(this)[0]))
             $.ajax({
@@ -94,7 +103,6 @@ if(isset($_GET['id'])){
                 success:function(resp){
                     if(resp.status == 'success'){
                         _el.addClass('alert alert-success')
-                        setTimeout(function(){location.reload();}, 1500)
                     }else{
                         _el.addClass('alert alert-danger')
                     }
@@ -105,6 +113,26 @@ if(isset($_GET['id'])){
                     _el.show('slow')
                      $('#universal_modal button').attr('disabled',false)
                      $('#universal_modal button[type="submit"]').text('Save')
+                     $.ajax({
+                      url: '../controllers/send_email_notification.php',
+                      type: "post",
+                      data: {
+                        party_size: "<?=$party_size?>",
+                        reservation_dt: "<?=$reserved_time?>",
+                        restaurant_no: "(049) 536 4331",
+                        customer_name: "<?=$username?>",
+                        customer_number: "<?=$customer_no?>",
+                        customer_email: "<?=$customer_email?>",
+                        reservation_status: _reserve_status
+                      },
+                      success: function(response) {
+                        setTimeout(function(){location.reload();}, 1500)
+                        console.log(response)
+                      },
+                      error:err=>{
+                        console.log(err)
+                      }
+                    });
                 }
             })
         })

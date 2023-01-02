@@ -1,3 +1,24 @@
+<style>
+    area.fw-bolder.text-muted:hover{
+    box-shadow: 1px 1px 3px 0px #032e2e;
+    -webkit-transition-duration: 500ms;
+	  transition-duration: 500ms;
+  }
+  area.fw-bolder.text-muted.available-color {
+    background-color: #1383854d;
+  }
+  area.fw-bolder.text-muted.available-color:hover {
+    color: #256e6e !important;
+  }
+
+  area.fw-bolder.text-muted.unavailable-color {
+    background-color: #85131373;
+    color: #d9d9d9 !important;
+  }
+  area.fw-bolder.text-muted.unavailable-color:hover {
+    color: #fff !important;
+  }
+</style>
 <div class="row">
   <div class="col-xl-6 col-sm-12 col-md-6 col-lg-6">
     <div class="booking-form">

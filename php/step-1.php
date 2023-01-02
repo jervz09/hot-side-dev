@@ -7,12 +7,12 @@
           <div class="form-group">
             <span class="form-label">Party Size</span>
             <select class="form-control" data-id="party_size">
-              <option>1 person</option>
-              <option>2 people</option>
-              <option>3 people</option>
-              <option>4 people</option>
-              <option>5 people</option>
-              <option>6 people</option>
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5 people</option>
+              <option value="6">6 people</option>
             </select>
             <span class="select-arrow"></span>
           </div>
@@ -22,7 +22,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <span class="form-label">Date</span>
-            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="<?= date('Y-m-d'); ?>" required>
+            <input class="form-control" name="reserved_date" id="reserved_date" type="date" min="<?= date('Y-m-d'); ?>" value="<?= date('Y-m-d'); ?>" required>
           </div>
         </div>
         <div class="col-sm-6">

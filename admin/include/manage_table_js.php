@@ -32,7 +32,7 @@
                     var height = ($('#fp-img').height() * perc[3]) - y;
                     area.attr('coords',x+", "+y+", "+width+", "+height)
                     area.text("#"+data.table_no)
-                    area.addClass('fw-bolder text-muted')
+                    area.addClass('fw-bolder text-muted ' + data.table_color)
                     area.css({
                         'position':'absolute',
                         'height':height+'px',

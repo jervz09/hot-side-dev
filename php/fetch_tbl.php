@@ -16,6 +16,7 @@
             FROM
                 table_list
             WHERE
+                status > 0 AND
                 table_id NOT IN (SELECT
                     table_id
                 FROM

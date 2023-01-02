@@ -1,65 +1,7 @@
 <?php
-require_once './vendor/autoload.php';
-require_once 'email_content_forgot.php';
-
-// Create the Transport
-/*
- * Example:
- * <code>
- * $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'tls'))
- *   ->setAuthMode('XOAUTH2')
- *   ->setUsername('YOUR_EMAIL_ADDRESS')
- *   ->setPassword('YOUR_ACCESS_TOKEN');
- * </code>
- */
-$transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-    ->setUsername("hotsiderestobar@gmail.com") //official email
-    ->setPassword("nnyqlvidcmfcpepa"); //generated token password from gmail
-
-// Create the Mailer using your created Transport
-$mailer = new Swift_Mailer($transport);
-
-function sendForgotPassword($userEmail,$forget_link)
-{
-    global $mailer;
-    $body = emailContentForget($forget_link);
-    // Create a message
-    $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
-    ->setFrom("hotsiderestobar@gmail.com")
-    ->setTo($userEmail)
-    ->setBody($body, 'text/html');
-
-    // Send the message
-    $result = $mailer->send($message);
-
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function sendEmailNotification($userEmail, $body){
-
-  global $mailer;
-  $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
-  ->setFrom("hotsiderestobar@gmail.com")
-  ->setTo($bodyuserEmail)
-  ->setBody($body, 'text/html');
-
-  // Send the message
-  $result = $mailer->send($message);
-
-  if ($result > 0) {
-      return true;
-  } else {
-      return false;
-  }
-}
-function sendVerificationEmail($userEmail, $verification_code)
-{
-    global $mailer;
-    $body = '<!DOCTYPE html>
+function emailContentNotif($title_content, $header_content, $body_content, $footer_content){
+  return'
+  <!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 
     <head>
@@ -69,6 +11,9 @@ function sendVerificationEmail($userEmail, $verification_code)
       <style>
       * {
         box-sizing: border-box;
+        font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
+        font-size: 12px;
+        color: #808389;
       }
 
       body {
@@ -98,6 +43,26 @@ function sendVerificationEmail($userEmail, $verification_code)
         overflow: hidden;
       }
 
+      .hotside-btn {
+        background-color: #2b898b;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        min-width: 123px;
+        height: 53px;
+        color: #ffffff;
+        border: none;
+        border-radius: 0;
+        padding: 0 30px;
+        font-size: 16px;
+        line-height: 53px;
+        text-transform: capitalize;
+        text-decoration: none;
+        margin-bottom: 30px;
+
+    }
       @media (max-width:660px) {
         .desktop_hide table.icons-inner,
         .social_block.desktop_hide .social-table {
@@ -241,7 +206,9 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
                                         <div align="center" class="alignment" style="line-height:10px"><img alt="Hotside" src="https://iili.io/stHbl1.md.jpg" style="display: block; height: auto; border: 0; width: 149px; max-width: 100%;" title="hotside" width="149" /></div>
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>Activate your account with the activation code</strong></span></p>
+                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;">
+                                        <strong style="font-size:40px;color:#006864;">'.$title_content.'</strong>
+                                        </span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -253,7 +220,7 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px; color: #555555; line-height: 1.5;">
                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 22.5px;">
-                                          <span style="color:#808389;font-size:15px;">We just need to verify your email address before you can access hotside.</span></p>
+                                          <span style="color:#808389;font-size:15px;">'.$header_content.'</span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -306,33 +273,8 @@ function sendVerificationEmail($userEmail, $verification_code)
                                   <td class="pad" style="padding-top:25px;">
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                        <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
-                                        </tr>
+                                        '.$body_content.'
                                       </table>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                              <table border="0" cellpadding="0" cellspacing="0" class="text_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                <tr>
-                                  <td class="pad" style="padding-bottom:5px;padding-left:10px;padding-right:10px;padding-top:10px;">
-                                    <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#2b303a;font-size:18px;"><strong>Use this Code</strong></span></p>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                              <table border="0" cellpadding="0" cellspacing="0" class="text_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                <tr>
-                                  <td class="pad" style="padding-bottom:32px;">
-                                    <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#1aa19c;font-size:38px;"><span style=""><strong>'. $verification_code .'</strong></span></span>
-                                        </p>
-                                      </div>
                                     </div>
                                   </td>
                                 </tr>
@@ -357,6 +299,7 @@ function sendVerificationEmail($userEmail, $verification_code)
                                 <tr>
                                   <td class="pad" style="padding-left:10px;padding-right:10px;padding-top:40px;text-align:center;">
                                     <div align="center" class="alignment">
+                                      '.$footer_content.'
                                     </div>
                                   </td>
                                 </tr>
@@ -382,61 +325,10 @@ function sendVerificationEmail($userEmail, $verification_code)
                   </tr>
                 </tbody>
               </table>
-              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-7" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #1aa19c; color: #000000; width: 100%;" width="100%">
                 <tbody>
                   <tr>
-                    <td>
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f8f8f9; color: #000000; width: 640px;" width="640">
-                        <tbody>
-                          <tr>
-                            <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                              <table border="0" cellpadding="20" cellspacing="0" class="divider_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                <tr>
-                                  <td class="pad">
-                                    <div align="center" class="alignment">
-                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                        <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
-                                        </tr>
-                                      </table>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                <tbody>
-                  <tr>
-                    <td>
-                      <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #2b303a; color: #000000; width: 640px;" width="640">
-                        <tbody>
-                          <tr>
-                            <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 0px; padding-bottom: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                              <table border="0" cellpadding="0" cellspacing="0" class="divider_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                <tr>
-                                  <td class="pad">
-                                    <div align="center" class="alignment">
-                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                        <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
-                                        </tr>
-                                      </table>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
+                    <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span>&hairsp;</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -448,19 +340,40 @@ function sendVerificationEmail($userEmail, $verification_code)
     </body>
 
     </html>';
-
-    // Create a message
-    $message = (new Swift_Message('Verify your email'))
-        ->setFrom("hotsiderestobar@gmail.com")
-        ->setTo($userEmail)
-        ->setBody($body, 'text/html');
-
-    // Send the message
-    $result = $mailer->send($message);
-
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
 }
+function prepareEmailContentNotif($party_size,$reservation_dt,$restaurant_number,
+                                  $customer_name,$customer_number,$customer_email,
+                                  $reservation_status="Accepted", $reason_cancellation=""){
+
+  $title_content = "Hello $customer_name!";
+  $body_content ="<tr><td class='divider_inner' style='text-align: left; font-size: 14px'>
+                    Name: $customer_name
+                  </td></tr>
+                  <tr><td class='divider_inner' style='text-align: left; font-size: 14px'>
+                    Phone Number: $customer_number
+                  </td></tr>
+                  <tr><td class='divider_inner' style='text-align: left; font-size: 14px'>
+                    Email: $customer_email
+                  </td></tr>
+                  <tr><td class='divider_inner' style='text-align: left; font-size: 14px'>
+                    Party Size: $party_size
+                  </td></tr>
+                  <tr><td class='divider_inner' style='text-align: left; font-size: 14px'>
+                    Booking Date: $reservation_dt
+                  </td></tr>";
+  $footer_content = "<i>We look forward to serving you, please don't hesitate to contact us for any questions or inquiries. </br></br>
+                    Thank you for your reservation and supporting HotSite</i>";
+  if($reservation_status == "Accepted"){
+    $header_content = "We have accepted your reservation at HotSide Restobar for $party_size people on $reservation_dt is confirmed.
+  For any changes please call $restaurant_number .";
+  }else if($reservation_status == "Cancelled"){
+    $header_content = "This email confirms that your reservation with Hotside Restobar has been cancelled with the reason $reason_cancellation.
+                        Please retain this cancellation information for your records.";
+  }else{
+    $header_content = "We have declined your reservation $reservation_dt. We're sorry the your reservation is currently unavailable.
+                      Thank you for your understanding and choosing us!";
+  }
+  return emailContentNotif($title_content, $header_content, $body_content, $footer_content);
+  }
+  // echo prepareEmailContentNotif(12,"12","12","12","12","12","cancel")
+?>

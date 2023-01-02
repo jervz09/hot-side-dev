@@ -7,13 +7,15 @@
     include("head_admin.php");
     include("helper/main.php");
     $db = new database();
-
+    if (!$_SESSION['id']){
+        header('location: ../login.php');
+    }
     $db->select("users","*","user_id=".$_SESSION['id']);
     $result = $db->sql;
     if ($result->num_rows > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $profile_img = $row['profile_img'];
-    }
+        while ($row = mysqli_fetch_assoc($result)) {
+            $profile_img = $row['profile_img'];
+        }
     }
     $tbl = "";
     $errors = [];

@@ -9,8 +9,8 @@
         <h2>Contact Info</h2>
         <!-- <p>HotSide Resto and Bar is an upscale yet affordable Asian restaurant and bar. Hot Side serves wide.</p> -->
     </div>
-    <h4 class="wow fadeInUp" data-wow-delay="300ms">San Pablo City, Philippines, 4000</h4>
-    <h5 class="wow fadeInUp" data-wow-delay="400ms">(049) 536 4331</h5>
+    <h4 class="wow fadeInUp" data-wow-delay="300ms"><?=$restaurant_address?></h4>
+    <h5 class="wow fadeInUp" data-wow-delay="400ms"><?=$restaurant_no?></h5>
     <h5 class="wow fadeInUp" data-wow-delay="500ms">hotside@yahoo.com</h5>
     <!-- Social Info -->
     <div class="social-info mt-50 wow fadeInUp" data-wow-delay="600ms">

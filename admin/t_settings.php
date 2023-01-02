@@ -1,12 +1,22 @@
 <style>
-  area.fw-bolder.text-muted {
-    background-color: #1383854d;
-  }
-  area.fw-bolder.text-muted:hover {
-    color: #256e6e !important;
+  area.fw-bolder.text-muted:hover{
     box-shadow: 1px 1px 3px 0px #032e2e;
     -webkit-transition-duration: 500ms;
 	  transition-duration: 500ms;
+  }
+  area.fw-bolder.text-muted.available-color {
+    background-color: #1383854d;
+  }
+  area.fw-bolder.text-muted.available-color:hover {
+    color: #256e6e !important;
+  }
+
+  area.fw-bolder.text-muted.unavailable-color {
+    background-color: #85131373;
+    color: #d9d9d9 !important;
+  }
+  area.fw-bolder.text-muted.unavailable-color:hover {
+    color: #fff !important;
   }
 </style>
 <div class="container-fluid">
@@ -55,12 +65,18 @@
                     $qry = $conn->query($sql);
                     $tbl = array();
                         while($row = $qry->fetch_assoc()):
+                          if($row["status"] == 0):
+                            $table_color = "unavailable-color";
+                          else:
+                            $table_color = "available-color";
+                          endif;
                             $tbl[$row['table_id']] = array(
                                                         "id"=>$row['table_id'],
                                                         "table_no"=>$row['table_no'],
                                                         "coordinates"=>$row['coordinates'],
-                                                        "name"=>$row['name']
-                                                            );
+                                                        "name"=>$row['name'],
+                                                        "table_color"=>$table_color
+                                                        );
                     ?> <tr>
                       <td class="text-center p-0"> <?php echo $row['table_no'] ?> </td>
                       <td class="py-0 px-1"> <?php echo $row['name'] ?> </td>

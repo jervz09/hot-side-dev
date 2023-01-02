@@ -111,7 +111,7 @@ $(function() {
   var currentTime = _date.getHours() + ':' + _date.getMinutes();
   currentTime = _date.toTimeString().substring(0, 5);
   // document.getElementsByName("reserved_date")[0].setAttribute('min', today);
-  $('#reserved_date').val(today)
+  // $('#reserved_date').val(today)
   $('#reserved_time').val(currentTime)
   $('.category-list a').click(function(e) {
     $('.category-list a.active').removeClass('active');

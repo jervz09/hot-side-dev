@@ -1,5 +1,5 @@
 <?php
-        $sql = "SELECT * FROM `table_list` order by table_no asc";
+        $sql = "SELECT * FROM `table_list` where status > 0 order by table_no asc";
         $qry = $conn->query($sql);
         $tbl = array();
             while($row = $qry->fetch_assoc()):

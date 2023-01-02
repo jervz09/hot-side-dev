@@ -9,9 +9,10 @@
             table_list tl ON tl.table_no = rl.table_id
             WHERE u.user_id = $session_user";
 
-    $on_going_sql = "$sql AND DATE(rl.datetime) = CURDATE() AND rl.status < 2";
-    $complete_res_sql = "$sql AND DATE(rl.datetime) < CURDATE() AND rl.status = 1";
-    $cancelled_res_sql = "$sql AND rl.status > 1";
+    $on_going_sql = "$sql AND DATE(rl.datetime) = CURDATE() AND rl.status < 2 ORDER BY date_created DESC";
+    $complete_res_sql = "$sql AND DATE(rl.datetime) < CURDATE() AND rl.status = 1 ORDER BY date_created DESC";
+    $cancelled_res_sql = "$sql AND rl.status > 1 ORDER BY date_created DESC";
+    $sql .= " ORDER BY date_created DESC";
     $result = $conn->query($sql);
     $ongoing_result = $conn->query($on_going_sql);
     $complete_result = $conn->query($complete_res_sql);

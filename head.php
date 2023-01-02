@@ -11,21 +11,26 @@
     $about_us_page = "#about_us_area";
     $contact_page = "#contact_area";
     $not_signed_user = true;
+    $restaurant_no = "(049) 536 4331";
+    $restaurant_address = "San Pablo City, Philippines, 4000";
     $errors = [];
-    $admin_dropdown_header = '<a class="dropdown-item text-secondary" href="admin/index.php">Admin Page</a>
-                              <div class="dropdown-divider"></div>';
+    $admin_dropdown_header = '';
     @$session_user = $_SESSION['id'];
     if(@$session_user){
       if(!$_SESSION['verified']){
         header('location: verify_check.php');
       }
-        $signed_user = 'style="visibility: hidden;"'; //Hide btn-reservation
-        $not_signed_user = false;
-        //redirect index(Landing Page)
-        $index_page = "index.php";
-        $calendar_page = "index.php#calendar_area";
-        $about_us_page = "index.php#about_us_area";
-        $contact_page = "index.php#contact_area";
+      if($_SESSION['is_admin']){
+        $admin_dropdown_header = '<a class="dropdown-item text-secondary" href="admin/index.php">Admin Page</a>
+        <div class="dropdown-divider"></div>';
+      }
+      $signed_user = 'style="visibility: hidden;"'; //Hide btn-reservation
+      $not_signed_user = false;
+      //redirect index(Landing Page)
+      $index_page = "index.php";
+      $calendar_page = "index.php#calendar_area";
+      $about_us_page = "index.php#about_us_area";
+      $contact_page = "index.php#contact_area";
     }
 ?>
 

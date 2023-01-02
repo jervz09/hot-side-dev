@@ -1125,13 +1125,13 @@ img {
 }
 
 .book-now-form .nice-select .current {
-	font-size: 24px;
+	font-size: 20px;
 	line-height: 1;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.book-now-form .nice-select .current {
-		font-size: 18px;
+		font-size: 16px;
 	}
 }
 
