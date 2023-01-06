@@ -172,20 +172,44 @@ if (isset($_POST['verify-btn'])) {
 
 if (isset($_POST['forgotpassword-btn'])) {
     $user_email = $_POST["email"];
+    $otp = $_GET['s'];
+    $decrypt_otp = let_crypt($otp);
     $sql = "SELECT * FROM users WHERE email='$user_email' LIMIT 1";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        $encrypt_email = let_crypt($user_email,true);
+        $user = mysqli_fetch_assoc($result);
+        // $encrypt_email = let_crypt($user_email,true);
         $_alert['type'] = "success";
-        $errors['success_send'] = "We have emailed the password reset, you can check your email address at <strong>".hintEmail($_POST['email'])."</strong>";
-        $recovery_link = "hotside-restobar.rf.gd/reset_password.php?params=$encrypt_email";
-        sendForgotPassword($user_email,$recovery_link);
+        $errors['success_send'] = "We sent your code to: </br><strong>".hintEmail($_POST['email'])."</strong>";
+        // $recovery_link = "hotside-restobar.rf.gd/reset_password.php?params=$encrypt_email";
+        // sendForgotPassword($user_email,$recovery_link);
+        setcookie("user_h_email", $user_email, time() + 3600);
+        sendVerificationEmail($user_email, "Hotside - ".$decrypt_otp,
+                                $subject="Hotside Restobar - Recovery Code",
+                                $header_msg="Hello " .$user['username']. "!",
+                                $body_msg="We received a request to reset your Hotside Password.");
     }else{
         $_alert['type'] = "danger";
         $errors['success_send'] = "Couldn't find your hotside account.";
-
     }
 }
+
+
+if (isset($_POST['verifyforgotpassword-btn'])) {
+    $encrypt_otp = $_GET['s'];
+    $user_otp = $_POST['email_code'];
+    $user_email = $_POST["email"];
+
+    if (let_crypt($encrypt_otp) == $user_otp){
+        $encrypt_email = let_crypt($user_email,true);
+        header("location: reset_password.php?params=$encrypt_email");
+    }else{
+        $_alert['type'] = "danger";
+        $errors['success_send'] = "The number you entered doesn’t match your code. Please try again.";
+    }
+}
+
+
 if (isset($_POST['resetpassword-btn']) and $_GET['params']){
     $decrypt_email = let_crypt($_GET['params']);
     $sql = "SELECT * FROM users WHERE email='$decrypt_email' LIMIT 1";

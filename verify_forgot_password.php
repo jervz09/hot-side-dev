@@ -23,9 +23,9 @@
 								<div class="p-5">
 									<div class="text-center mb-4">
 										<h1 class="h4 text-gray-900">Forgot your password?</h1>
-										<span class="small text-gray-700">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</span>
+										<span class="small text-gray-700">Please check your email for a message with your code. </br>Your code is 6 numbers long.</span>
 									</div>
-									<form action="verify_forgot_password.php?s=<?=let_crypt(random_int(100000, 999999),true);?>" class="user" method="post" autocomplete="OFF">
+									<form action="<?=$_SERVER['REQUEST_URI']?>" class="user" method="post" autocomplete="OFF">
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
 										<div class="alert alert-<?=$_alert['type']?> error-message">
@@ -37,12 +37,18 @@
 										</div>
 									<?php endif;?>
 
+										<input type="hidden" name="email" value="<?=$_COOKIE["user_h_email"];?>"/>
 										<div class="form-group">
-											<!-- <label class="form-label" for="username">Email Address</label> -->
-											<input name="email" type="email" id="email"
-												class="form-control form-control-user focus-brand" placeholder="Email Address" required />
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="email_code-addon1">Hotside - </span>
+												</div>
+												<input name="email_code" type="text" id="email_code"
+												class="form-control form-control-user focus-brand" placeholder="Enter Code"
+												minlength="6" maxlength="6" aria-describedby="email_code-addon1" required />
+											</div>
 										</div>
-										<button type="submit" name="forgotpassword-btn" class="btn btn-primary btn-user btn-block">Send login link</button>
+										<button type="submit" name="verifyforgotpassword-btn" class="btn btn-primary btn-user btn-block">Verify</button>
 										<hr>
 									</form>
 									<hr>

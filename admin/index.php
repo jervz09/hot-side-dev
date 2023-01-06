@@ -23,7 +23,7 @@
     $session_username = isset($_SESSION['username']) ? $_SESSION['username'] : "admin";
 ?>
 <body id="page-top">
-<?php //include('../php/preloader.php')?>
+<?php include('../php/preloader.php')?>
     <!-- Page Wrapper -->
     <div id="wrapper">
 

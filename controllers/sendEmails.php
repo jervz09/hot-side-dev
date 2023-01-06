@@ -56,7 +56,10 @@ function sendEmailNotification($userEmail, $body){
       return false;
   }
 }
-function sendVerificationEmail($userEmail, $verification_code)
+function sendVerificationEmail($userEmail, $verification_code,
+                              $subject="Hotside Restobar - Email Verification",
+                              $header_msg="Activate your account with the activation code",
+                              $body_msg="We just need to verify your email address before you can access hotside portal")
 {
     global $mailer;
     $body = '<!DOCTYPE html>
@@ -241,7 +244,7 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
                                         <div align="center" class="alignment" style="line-height:10px"><img alt="Hotside" src="https://iili.io/stHbl1.md.jpg" style="display: block; height: auto; border: 0; width: 149px; max-width: 100%;" title="hotside" width="149" /></div>
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>Activate your account with the activation code</strong></span></p>
+                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>'. $header_msg .'</strong></span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -253,7 +256,7 @@ function sendVerificationEmail($userEmail, $verification_code)
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px; color: #555555; line-height: 1.5;">
                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 22.5px;">
-                                          <span style="color:#808389;font-size:15px;">We just need to verify your email address before you can access hotside.</span></p>
+                                          <span style="color:#808389;font-size:15px;">'. $body_msg .'</span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -450,7 +453,7 @@ function sendVerificationEmail($userEmail, $verification_code)
     </html>';
 
     // Create a message
-    $message = (new Swift_Message('Verify your email'))
+    $message = (new Swift_Message($subject))
         ->setFrom("hotsiderestobar@gmail.com")
         ->setTo($userEmail)
         ->setBody($body, 'text/html');
