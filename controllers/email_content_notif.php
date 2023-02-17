@@ -328,7 +328,7 @@ function emailContentNotif($title_content, $header_content, $body_content, $foot
               <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #1aa19c; color: #000000; width: 100%;" width="100%">
                 <tbody>
                   <tr>
-                    <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span>&hairsp;</span></td>
+                    <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"></td>
                   </tr>
                 </tbody>
               </table>
@@ -362,7 +362,7 @@ function prepareEmailContentNotif($party_size,$reservation_dt,$restaurant_number
                     Booking Date: $reservation_dt
                   </td></tr>";
   $footer_content = "<i>We look forward to serving you, please don't hesitate to contact us for any questions or inquiries. </br></br>
-                    Thank you for your reservation and supporting HotSite</i>";
+                    Thank you for your reservation and supporting HotSide</i>";
   if($reservation_status == "Accepted"){
     $header_content = "We have accepted your reservation at HotSide Restobar for $party_size people on $reservation_dt is confirmed.
   For any changes please call $restaurant_number .";
@@ -370,8 +370,8 @@ function prepareEmailContentNotif($party_size,$reservation_dt,$restaurant_number
     $header_content = "This email confirms that your reservation with Hotside Restobar has been cancelled with the reason $reason_cancellation.
                         Please retain this cancellation information for your records.";
   }else{
-    $header_content = "We have declined your reservation $reservation_dt. We're sorry the your reservation is currently unavailable.
-                      Thank you for your understanding and choosing us!";
+    $header_content = "We have declined your reservation $reservation_dt. We're sorry that your reservation is currently unavailable.
+                      Thank you for your understanding and for choosing us!";
   }
   return emailContentNotif($title_content, $header_content, $body_content, $footer_content);
   }
