@@ -23,24 +23,21 @@
 
         <!-- Display messages -->
         <?php if (isset($_SESSION['message'])): ?>
-        <div class="alert <?php echo $_SESSION['type'] ?>">
-          <?php
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-            unset($_SESSION['type']);
-          ?>
+        <div class="alert <?= htmlspecialchars((string) ($_SESSION['type'] ?? 'alert-info'), ENT_QUOTES, 'UTF-8') ?>">
+          <?= htmlspecialchars((string) $_SESSION['message'], ENT_QUOTES, 'UTF-8') ?>
+          <?php unset($_SESSION['message'], $_SESSION['type']); ?>
         </div>
         <?php endif;?>
 
-        <h4>Welcome, <?php echo $_SESSION['username']; ?></h4>
+        <h4>Welcome, <?= htmlspecialchars((string) ($_SESSION['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h4>
         <a href="logout.php" style="color: red">Logout</a>
-        <?php if (!$_SESSION['verified']): ?>
+        <?php if (empty($_SESSION['verified'])): ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             You need to verify your email address!
             Sign into your email account and click
             on the verification link we just emailed you
             at
-            <strong><?php echo $_SESSION['email']; ?></strong>
+            <strong><?= htmlspecialchars((string) ($_SESSION['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></strong>
           </div>
         <?php else: ?>
           <button class="btn btn-lg btn-primary btn-block">I'm verified!!!</button>

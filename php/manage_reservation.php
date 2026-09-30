@@ -1,11 +1,18 @@
 <?php
 require_once("../controllers/db_con.php");
-if(isset($_GET['table_id'])){
-    $qry = $conn->query("SELECT * FROM `table_list` where table_id = '{$_GET['table_id']}'");
-        foreach(mysqli_fetch_assoc($qry) as $k => $v){
+if(isset($_GET['table_id']) && is_numeric($_GET['table_id'])){
+    $stmt = $conn->prepare("SELECT * FROM `table_list` where table_id = ? LIMIT 1");
+    $table_id = (int) $_GET['table_id'];
+    $stmt->bind_param('i', $table_id);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    if ($row) {
+        foreach ($row as $k => $v) {
             $$k = $v;
         }
     }
+}
 ?>
 <div class="container-fluid">
     <table class="table table-bordered table-hover">

@@ -1,7 +1,7 @@
 <?php
 include('../controllers/db_con.php');
-if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    $stmt = $conn->prepare("SELECT
                             mol.menu_id,
                             mol.qty,
                             mol.reservation_id,
@@ -13,9 +13,12 @@ if(isset($_GET['id'])){
                         INNER JOIN menu_list ml ON
                             mol.menu_id = ml.menu_id
                         WHERE
-                            mol.reservation_id = '{$_GET['id']}';");
-
-    }
+                            mol.reservation_id = ?");
+    $id = (int) $_GET['id'];
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $qry = $stmt->get_result();
+}
 ?>
 <style>
   #universal_modal .modal-footer {

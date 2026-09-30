@@ -2,9 +2,7 @@
 <html lang="en">
   <?php
     include('head.php');
-    if(!$_SESSION['id']){
-      header('location: login.php');
-    }
+    require_verified_login('');
   ?>
   <style>
     #profile_top_title {

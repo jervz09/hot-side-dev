@@ -27,15 +27,16 @@
 									<div class="text-center mb-4">
 										<h1 class="h4 text-gray-900">Reset Password</h1>
 									</div>
-									<form action="<?=$_SERVER['REQUEST_URI']?>" class="user" method="post" autocomplete="OFF">
+									<form action="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="user" method="post" autocomplete="OFF">
+									<?= csrf_field() ?>
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
-										<div class="alert alert-<?=$_alert['type']?> error-message">
+										<div class="alert alert-<?=htmlspecialchars((string) ($_alert['type'] ?? 'danger'), ENT_QUOTES, 'UTF-8')?> error-message">
+										<ul>
 										<?php foreach ($errors as $error): ?>
-										<li>
-											<?php echo $error; ?>
-										</li>
+											<li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
 										<?php endforeach;?>
+										</ul>
 										</div>
 									<?php endif;?>
 

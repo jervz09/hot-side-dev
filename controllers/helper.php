@@ -1,34 +1,45 @@
 <?php
 
-	function decamelize($string) {
-		return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', preg_replace('/\s+/', '', $string)));
-	}
+declare(strict_types=1);
 
-	function let_crypt($string, $encrypt = false){
+require_once __DIR__ . '/../config.php';
 
-		// Store the cipher method
-		$ciphering = "AES-128-CTR";
+function decamelize(string $string): string
+{
+    return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', preg_replace('/\s+/', '', $string)));
+}
 
-		// Use OpenSSl Encryption method
-		$iv_length = openssl_cipher_iv_length($ciphering);
-		$options = 0;
+/**
+ * AES-128-CTR encrypt/decrypt helper used for password-reset links.
+ *
+ * Ciphertext format: base64(IV . ciphertext) so every encryption
+ * produces a different output for the same input.
+ */
+function let_crypt(string $string, bool $encrypt = false): string
+{
+    $ciphering = 'AES-128-CTR';
 
-		// Non-NULL Initialization Vector for encryption
-		$crypt_iv = '1234567891011121';
+    if ($encrypt) {
+        $iv = random_bytes(openssl_cipher_iv_length($ciphering));
+        $encrypted = openssl_encrypt($string, $ciphering, CRYPT_KEY, 0, $iv);
 
-		// Store the encryption key
-		$crypt_key = "h0ts1d3R3sT0b4R";
-		// echo openssl_decrypt(base64_decode("aEt0Z2hHTnV2Q2hlQ0p4NWZoZWxmT3FycFI4Q3NadjNlSEFFY29WTWh2MEJxQkJR"), $ciphering,
-		// $crypt_key, $options, $crypt_iv);
-		if($encrypt){
-		// Use openssl_encrypt() function to encrypt the data
-			return base64_encode(openssl_encrypt($string, $ciphering,
-					$crypt_key, $options, $crypt_iv));
-		}else{
-		// Use openssl_decrypt() function to decrypt the data
-			return openssl_decrypt(base64_decode($string), $ciphering,
-				$crypt_key, $options, $crypt_iv);
-		}
-	}
+        return $encrypted === false ? '' : base64_encode($iv . $encrypted);
+    }
 
-?>
+    $raw = base64_decode($string, true);
+    if ($raw === false) {
+        return '';
+    }
+
+    $ivLength = openssl_cipher_iv_length($ciphering);
+    if (strlen($raw) <= $ivLength) {
+        return '';
+    }
+
+    $iv = substr($raw, 0, $ivLength);
+    $cipherText = substr($raw, $ivLength);
+
+    $decrypted = openssl_decrypt($cipherText, $ciphering, CRYPT_KEY, 0, $iv);
+
+    return $decrypted === false ? '' : $decrypted;
+}

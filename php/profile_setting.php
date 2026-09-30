@@ -43,29 +43,29 @@
                 <!-- Display if exists error. or  other msg alert-->
                 <?php if (count($errors) > 0): ?>
                     <div class="alert alert-danger error-message">
+                    <ul>
                     <?php foreach ($errors as $error): ?>
-                    <li>
-                        <?php echo $error; ?>
-                    </li>
+                        <li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
                     <?php endforeach;?>
+                    </ul>
                     </div>
                 <?php endif;?>
-                <input type="hidden" name="user_id" id="user_id" value="<?=$_SESSION['id']?>"/>
+                <input type="hidden" name="user_id" id="user_id" value="<?= (int) $_SESSION['id'] ?>"/>
                 <div class="form-group ">
                     <label class="form-label" for="username">Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="Username" value="<?=$_SESSION['username']?>" required/>
+                    <input type="text" name="username" class="form-control" placeholder="Username" value="<?= htmlspecialchars((string) ($_SESSION['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required/>
                 </div>
                 <div class="row ">
                     <div class="col">
                     <div class="form-group">
                         <label class="form-label" for="first_name">First name</label>
-                        <input type="text" name="first_name" class="form-control"  placeholder="First name" value="<?=$_SESSION['first_name']?>" required/>
+                        <input type="text" name="first_name" class="form-control"  placeholder="First name" value="<?= htmlspecialchars((string) ($_SESSION['first_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required/>
                     </div>
                     </div>
                     <div class="col">
                     <div class="form-group">
                         <label class="form-label" for="last_name">Last name</label>
-                        <input type="text" name="last_name" class="form-control"  placeholder="Last name" value="<?=$_SESSION['last_name']?>" required/>
+                        <input type="text" name="last_name" class="form-control"  placeholder="Last name" value="<?= htmlspecialchars((string) ($_SESSION['last_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required/>
                     </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <!-- Email input -->
                     <div class="form-group ">
                         <label class="form-label" for="email">Email</label>
-                        <input type="email" name="email" class="form-control disabled"  placeholder="Email" value="<?=$_SESSION['email']?>" readonly required/>
+                        <input type="email" name="email" class="form-control disabled"  placeholder="Email" value="<?= htmlspecialchars((string) ($_SESSION['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" readonly required/>
                     </div>
                     </div>
                     <div class="col">
@@ -83,7 +83,7 @@
                     <!-- Number input -->
                     <div class="form-group ">
                         <label class="form-label" for="contact_no">Phone</label>
-                        <input type="number" name="contact_no" class="form-control"  placeholder="09xxxxxxxx" value="<?=$_SESSION['contact_no']?>" required/>
+                        <input type="number" name="contact_no" class="form-control"  placeholder="09xxxxxxxx" value="<?= htmlspecialchars((string) ($_SESSION['contact_no'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" required/>
                     </div>
                     </div>
                 </div>
@@ -102,14 +102,14 @@
                 <!-- Display if exists error. or  other msg alert-->
                 <?php if (count($errors) > 0): ?>
                     <div class="alert alert-danger error-message">
+                    <ul>
                     <?php foreach ($errors as $error): ?>
-                    <li>
-                        <?php echo $error; ?>
-                    </li>
+                        <li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
                     <?php endforeach;?>
+                    </ul>
                     </div>
                 <?php endif;?>
-                <input type="hidden" name="user_id" value="<?=$_SESSION['id']?>"/>
+                <input type="hidden" name="user_id" value="<?= (int) $_SESSION['id'] ?>"/>
 
                 <div class="row ">
                     <div class="col">

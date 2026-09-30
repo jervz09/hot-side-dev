@@ -25,14 +25,15 @@
 										<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 									</div>
 									<form action="login.php" class="user" method="post" autocomplete="OFF">
+									<?= csrf_field() ?>
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
 										<div class="alert alert-danger error-message">
+										<ul>
 										<?php foreach ($errors as $error): ?>
-										<li>
-											<?php echo $error; ?>
-										</li>
+											<li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
 										<?php endforeach;?>
+										</ul>
 										</div>
 									<?php endif;?>
 

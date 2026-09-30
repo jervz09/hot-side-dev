@@ -1,7 +1,7 @@
 <?php
 include('../controllers/db_con.php');
-if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    $stmt = $conn->prepare("SELECT
                             rl.*, u.username, tl.name as tbl_name
                         FROM
                             reservation_list rl
@@ -10,9 +10,12 @@ if(isset($_GET['id'])){
                                 INNER JOIN
                             table_list tl ON tl.table_no = rl.table_id
                         WHERE
-                            rl.reservation_id = '{$_GET['id']}';");
-
-    }
+                            rl.reservation_id = ?");
+    $id = (int) $_GET['id'];
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $qry = $stmt->get_result();
+}
     while($row = $qry->fetch_assoc()) {
       $reservation_id = $row['reservation_id'];
       $reserved_time = $row['datetime'];

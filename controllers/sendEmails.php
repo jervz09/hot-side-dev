@@ -1,67 +1,63 @@
 <?php
-require_once './vendor/autoload.php';
-require_once 'email_content_forgot.php';
 
-// Create the Transport
-/*
- * Example:
- * <code>
- * $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'tls'))
- *   ->setAuthMode('XOAUTH2')
- *   ->setUsername('YOUR_EMAIL_ADDRESS')
- *   ->setPassword('YOUR_ACCESS_TOKEN');
- * </code>
- */
-$transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
-    ->setUsername("hotsiderestobar@gmail.com") //official email
-    ->setPassword("nnyqlvidcmfcpepa"); //generated token password from gmail
+declare(strict_types=1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/email_content_forgot.php';
+
+// Create the Transport (credentials come from environment / config.php)
+$transport = (new Swift_SmtpTransport(SMTP_HOST, SMTP_PORT, SMTP_ENCRYPTION))
+    ->setUsername(SMTP_USERNAME)
+    ->setPassword(SMTP_PASSWORD);
 
 // Create the Mailer using your created Transport
 $mailer = new Swift_Mailer($transport);
 
-function sendForgotPassword($userEmail,$forget_link)
+function sendForgotPassword(string $userEmail, string $forget_link): bool
 {
     global $mailer;
-    $body = emailContentForget($forget_link);
-    // Create a message
-    $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
-    ->setFrom("hotsiderestobar@gmail.com")
-    ->setTo($userEmail)
-    ->setBody($body, 'text/html');
 
-    // Send the message
+    $body = emailContentForget($forget_link);
+
+    $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
+        ->setFrom(MAIL_FROM)
+        ->setTo($userEmail)
+        ->setBody($body, 'text/html');
+
     $result = $mailer->send($message);
 
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return $result > 0;
 }
 
-function sendEmailNotification($userEmail, $body){
-
-  global $mailer;
-  $message = (new Swift_Message('Hotside Restobar - Forgot Password'))
-  ->setFrom("hotsiderestobar@gmail.com")
-  ->setTo($bodyuserEmail)
-  ->setBody($body, 'text/html');
-
-  // Send the message
-  $result = $mailer->send($message);
-
-  if ($result > 0) {
-      return true;
-  } else {
-      return false;
-  }
-}
-function sendVerificationEmail($userEmail, $verification_code,
-                              $subject="Hotside Restobar - Email Verification",
-                              $header_msg="Activate your account with the activation code",
-                              $body_msg="We just need to verify your email address before you can access hotside portal")
+function sendEmailNotification(string $userEmail, string $subject_email, string $body): bool
 {
     global $mailer;
+
+    $message = (new Swift_Message('Hotside Restobar - ' . $subject_email))
+        ->setFrom(MAIL_FROM)
+        ->setTo($userEmail)
+        ->setBody($body, 'text/html');
+
+    $result = $mailer->send($message);
+
+    return $result > 0;
+}
+
+function sendVerificationEmail(
+    string $userEmail,
+    string $verification_code,
+    string $subject = 'Hotside Restobar - Email Verification',
+    string $header_msg = 'Activate your account with the activation code',
+    string $body_msg = 'We just need to verify your email address before you can access hotside portal'
+): bool {
+    global $mailer;
+
+    // Escape everything interpolated into the HTML email body
+    $header_msg = htmlspecialchars($header_msg, ENT_QUOTES, 'UTF-8');
+    $body_msg = htmlspecialchars($body_msg, ENT_QUOTES, 'UTF-8');
+    $verification_code = htmlspecialchars($verification_code, ENT_QUOTES, 'UTF-8');
+
     $body = '<!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 
@@ -158,7 +154,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -189,7 +185,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -218,7 +214,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -231,7 +227,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -242,9 +238,9 @@ function sendVerificationEmail($userEmail, $verification_code,
                                 <tr>
                                   <td class="pad" style="padding-bottom:10px;padding-left:40px;padding-right:40px;padding-top:10px;">
                                     <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
+                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.4px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
                                         <div align="center" class="alignment" style="line-height:10px"><img alt="Hotside" src="https://iili.io/stHbl1.md.jpg" style="display: block; height: auto; border: 0; width: 149px; max-width: 100%;" title="hotside" width="149" /></div>
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>'. $header_msg .'</strong></span></p>
+                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="font-size:30px;color:#2b303a;"><strong>' . $header_msg . '</strong></span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -256,7 +252,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div style="font-family: sans-serif">
                                       <div class="" style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px; color: #555555; line-height: 1.5;">
                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 22.5px;">
-                                          <span style="color:#808389;font-size:15px;">'. $body_msg .'</span></p>
+                                          <span style="color:#808389;font-size:15px;">' . $body_msg . '</span></p>
                                       </div>
                                     </div>
                                   </td>
@@ -268,7 +264,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -297,7 +293,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -310,7 +306,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -321,7 +317,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                 <tr>
                                   <td class="pad" style="padding-bottom:5px;padding-left:10px;padding-right:10px;padding-top:10px;">
                                     <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
+                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.4px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
                                         <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#2b303a;font-size:18px;"><strong>Use this Code</strong></span></p>
                                       </div>
                                     </div>
@@ -332,8 +328,8 @@ function sendVerificationEmail($userEmail, $verification_code,
                                 <tr>
                                   <td class="pad" style="padding-bottom:32px;">
                                     <div style="font-family: sans-serif">
-                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#1aa19c;font-size:38px;"><span style=""><strong>'. $verification_code .'</strong></span></span>
+                                      <div class="" style="font-size: 12px; mso-line-height-alt: 14.4px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
+                                        <p style="margin: 0; font-size: 16px; text-align: center; mso-line-height-alt: 19.2px;"><span style="color:#1aa19c;font-size:38px;"><span style=""><strong>' . $verification_code . '</strong></span></span>
                                         </p>
                                       </div>
                                     </div>
@@ -370,7 +366,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -399,7 +395,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -428,7 +424,7 @@ function sendVerificationEmail($userEmail, $verification_code,
                                     <div align="center" class="alignment">
                                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                                         <tr>
-                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
+                                          <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 4px solid #1AA19C;"><span> </span></td>
                                         </tr>
                                       </table>
                                     </div>
@@ -452,18 +448,12 @@ function sendVerificationEmail($userEmail, $verification_code,
 
     </html>';
 
-    // Create a message
     $message = (new Swift_Message($subject))
-        ->setFrom("hotsiderestobar@gmail.com")
+        ->setFrom(MAIL_FROM)
         ->setTo($userEmail)
         ->setBody($body, 'text/html');
 
-    // Send the message
     $result = $mailer->send($message);
 
-    if ($result > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return $result > 0;
 }

@@ -19,16 +19,16 @@
                         <form action="" id="update_privacy_setting" method="post">
                             <!-- Display if exists error. or  other msg alert-->
                             <?php if (count($errors) > 0): ?>
-                                <div class="alert <?=$_SESSION['type']?> error-message">
+                                <div class="alert <?= htmlspecialchars((string) ($_SESSION['type'] ?? 'danger'), ENT_QUOTES, 'UTF-8') ?> error-message">
+                                <ul>
                                 <?php foreach ($errors as $error): ?>
-                                <li>
-                                    <?php echo $error; ?>
-                                </li>
+                                    <li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
                                 <?php endforeach;?>
+                                </ul>
                                 </div>
                             <?php endif;?>
 
-                            <input type="hidden" name="user_id" value="<?=$_SESSION['id']?>">
+                            <input type="hidden" name="user_id" value="<?= (int) $_SESSION['id'] ?>">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Current Password <span class="text-danger">*</span></label>

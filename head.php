@@ -15,10 +15,11 @@
     $restaurant_address = "San Pablo City, Philippines, 4000";
     $errors = [];
     $admin_dropdown_header = '';
-    @$session_user = $_SESSION['id'];
-    if(@$session_user){
+    $session_user = isset($_SESSION['id']) ? (int) $_SESSION['id'] : 0;
+    if($session_user){
       if(!$_SESSION['verified']){
         header('location: verify_check.php');
+        exit;
       }
       if($_SESSION['is_admin']){
         $admin_dropdown_header = '<a class="dropdown-item text-secondary" href="admin/index.php">Admin Page</a>

@@ -1,1 +1,16 @@
-controllers/sendEmails.php
+# Dependencies (installed via composer install)
+vendor/
+cropperjs/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+.vs/

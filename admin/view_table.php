@@ -1,11 +1,18 @@
 <?php
 include('../controllers/db_con.php');
-if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT * FROM `table_list` where table_id = '{$_GET['id']}'");
-        foreach(mysqli_fetch_assoc($qry) as $k => $v){
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    $stmt = $conn->prepare("SELECT * FROM `table_list` where table_id = ? LIMIT 1");
+    $id = (int) $_GET['id'];
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    if ($row) {
+        foreach ($row as $k => $v) {
             $$k = $v;
         }
     }
+}
 ?>
 <style>
   #universal_modal .modal-footer {

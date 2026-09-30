@@ -25,19 +25,20 @@
 										<h1 class="h4 text-gray-900">Forgot your password?</h1>
 										<span class="small text-gray-700">Please check your email for a message with your code. </br>Your code is 6 numbers long.</span>
 									</div>
-									<form action="<?=$_SERVER['REQUEST_URI']?>" class="user" method="post" autocomplete="OFF">
+									<form action="<?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="user" method="post" autocomplete="OFF">
+									<?= csrf_field() ?>
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
-										<div class="alert alert-<?=$_alert['type']?> error-message">
+										<div class="alert alert-<?=htmlspecialchars((string) ($_alert['type'] ?? 'danger'), ENT_QUOTES, 'UTF-8')?> error-message">
+										<ul>
 										<?php foreach ($errors as $error): ?>
-										<li>
-											<?php echo $error; ?>
-										</li>
+											<li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
 										<?php endforeach;?>
+										</ul>
 										</div>
 									<?php endif;?>
 
-										<input type="hidden" name="email" value="<?=$_COOKIE["user_h_email"];?>"/>
+										<input type="hidden" name="email" value="<?= htmlspecialchars((string) ($_COOKIE["user_h_email"] ?? ''), ENT_QUOTES, 'UTF-8') ?>"/>
 										<div class="form-group">
 											<div class="input-group mb-3">
 												<div class="input-group-prepend">

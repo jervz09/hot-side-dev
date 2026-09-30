@@ -26,14 +26,15 @@
 										<span class="small text-gray-700">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</span>
 									</div>
 									<form action="verify_forgot_password.php?s=<?=let_crypt(random_int(100000, 999999),true);?>" class="user" method="post" autocomplete="OFF">
+									<?= csrf_field() ?>
 									<!-- Display if exists error. or  other msg alert-->
 									<?php if (count($errors) > 0): ?>
-										<div class="alert alert-<?=$_alert['type']?> error-message">
+										<div class="alert alert-<?=htmlspecialchars((string) ($_alert['type'] ?? 'danger'), ENT_QUOTES, 'UTF-8')?> error-message">
+										<ul>
 										<?php foreach ($errors as $error): ?>
-										<li>
-											<?php echo $error; ?>
-										</li>
+											<li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
 										<?php endforeach;?>
+										</ul>
 										</div>
 									<?php endif;?>
 

@@ -27,7 +27,7 @@
 <link href="../css/cropper/cropper.css" rel="stylesheet">
 <link href="../css/hotside-admin.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://ajax.googleapis.cofont-size:1rem;m/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
 
 
 </head>

@@ -67,15 +67,15 @@
                             <!-- Display if exists error. or  other msg alert-->
                             <?php if (count($errors) > 0): ?>
                                 <div class="alert alert-danger error-message">
+                                <ul>
                                 <?php foreach ($errors as $error): ?>
-                                <li>
-                                    <?php echo $error; ?>
-                                </li>
+                                    <li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
                                 <?php endforeach;?>
+                                </ul>
                                 </div>
                             <?php endif;?>
 
-                            <input type="hidden" name="user_id" value="<?=$_SESSION['id']?>">
+                            <input type="hidden" name="user_id" value="<?= (int) $_SESSION['id'] ?>">
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control form-control-user focus-brand"
                                         placeholder="Username" value="<?=$_SESSION['username']?>">

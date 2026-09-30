@@ -25,23 +25,24 @@
 										<h1 class="h4 text-gray-900 mb-4"></h1>
 									</div>
 									<form action="verify_check.php" class="user" method="post" autocomplete="OFF">
+										<?= csrf_field() ?>
 
 										<!-- Display if exists error. or  other msg alert-->
-										<?php if (count($errors) > 0): ?>
-											<div class="alert alert-danger error-message">
-											<?php foreach ($errors as $error): ?>
-											<li>
-												<?php echo $error; ?>
-											</li>
-											<?php endforeach;?>
-											</div>
-										<?php endif;?>
+									<?php if (count($errors) > 0): ?>
+										<div class="alert alert-danger error-message">
+										<ul>
+										<?php foreach ($errors as $error): ?>
+											<li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
+										<?php endforeach;?>
+										</ul>
+										</div>
+									<?php endif;?>
 
 										<div id="wrapper">
 											<div id="dialog">
 												<h3>Please enter the 6-digit verification code we sent via Email:</h3>
 												<span>We want to make sure it's really you. In order to further verify you
-													identity, enter the verification code that was sent to <?=hintEmail($_SESSION['email'])?></span>
+													identity, enter the verification code that was sent to <?= htmlspecialchars(hintEmail((string) ($_SESSION['email'] ?? '')), ENT_QUOTES, 'UTF-8') ?></span>
 												<div id="form">
 													<input type="text" class="digit" name="dig-1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" onkeypress="return isNumber(event)" required />
 													<input type="text" class="digit" name="dig-2" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" onkeypress="return isNumber(event)" required />

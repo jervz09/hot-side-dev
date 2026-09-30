@@ -1,8 +1,8 @@
 <?php
 include('../controllers/db_con.php');
 $accepted = $no_action = $declined = "";
-if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    $stmt = $conn->prepare("SELECT
                             rl.*, u.username, u.contact_no, u.email, tl.name as tbl_name, tl.party_size
                         FROM
                             reservation_list rl
@@ -10,11 +10,18 @@ if(isset($_GET['id'])){
                             users u ON u.user_id = rl.user_id
                                 INNER JOIN
                             table_list tl ON tl.table_no = rl.table_id
-                            WHERE rl.reservation_id = '{$_GET['id']}'");
-        foreach(mysqli_fetch_assoc($qry) as $k => $v){
+                            WHERE rl.reservation_id = ? LIMIT 1");
+    $id = (int) $_GET['id'];
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    if ($row) {
+        foreach ($row as $k => $v) {
             $$k = $v;
         }
     }
+}
 
     $username = $username;
     $customer_no = $contact_no;

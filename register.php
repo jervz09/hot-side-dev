@@ -20,33 +20,34 @@
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <form action="register.php" method="post" class="user">
+                                <?= csrf_field() ?>
                                 <!-- Display if exists error. or  other msg alert-->
                                 <?php if (count($errors) > 0): ?>
                                     <div class="alert alert-danger error-message">
+                                    <ul>
                                     <?php foreach ($errors as $error): ?>
-                                    <li>
-                                        <?php echo $error; ?>
-                                    </li>
+                                        <li><?= htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8') ?></li>
                                     <?php endforeach;?>
+                                    </ul>
                                     </div>
                                 <?php endif;?>
                                 <div class="form-group">
                                     <input type="text" name="username" class="form-control form-control-user focus-brand"
-                                            placeholder="Username">
+                                            placeholder="Username" value="<?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="first_name" class="form-control form-control-user focus-brand"
-                                            placeholder="First Name">
+                                            placeholder="First Name" value="<?= htmlspecialchars($first_name ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" name="last_name" class="form-control form-control-user focus-brand"
-                                            placeholder="Last Name">
+                                            placeholder="Last Name" value="<?= htmlspecialchars($last_name ?? '', ENT_QUOTES, 'UTF-8') ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control form-control-user focus-brand"
-                                        placeholder="Email Address">
+                                        placeholder="Email Address" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="contact_no" class="form-control form-control-user focus-brand"
