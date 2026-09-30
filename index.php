@@ -26,18 +26,10 @@
     <?php include('php/extra_about_us.php')?>
     <!-- ##### Extra About Us Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
-    <?php 
-      // include('php/contact_map.php')
-    ?>
-    <!-- ##### Contact Area End ##### -->
-
-    <!-- ##### Footer Area Start ##### -->
     <?php include('php/footer.php')?>
     <!-- ##### Footer Area End ##### -->
     
     <?php include('js_import.php')?>
-
     <script>
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {

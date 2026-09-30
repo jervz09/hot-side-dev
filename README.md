@@ -31,12 +31,52 @@
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-
 * [![PHP][PHP.com]][PHP-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+
+## Getting Started
+
+### Prerequisites
+
+* PHP 8.0+ with `mysqli`
+* MySQL/MariaDB
+* Composer
+
+### Installation
+
+1. Clone the repo and install dependencies
+
+   ```bash
+   composer install
+   ```
+
+2. Create the database
+
+   ```bash
+   mysql -u root -e "CREATE DATABASE \`hot-side\`;"
+   mysql -u root hot-side < database/dump.sql
+   ```
+
+3. Configure environment variables (SMTP credentials, app URL)
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then either `export` the variables from `.env` into your environment, or
+   set them in your web server / PHP-FPM pool config. Required variables:
+
+   | Variable | Description |
+   |----------|-------------|
+   | `SMTP_USERNAME` | Gmail address used as the sender |
+   | `SMTP_PASSWORD` | Gmail **App Password** (never your real password) |
+   | `MAIL_FROM` | From address shown in emails (defaults to `SMTP_USERNAME`) |
+   | `APP_URL` | Base URL used in verification links |
+
+   > **Note:** `vendor/` is no longer committed. Run `composer install` after cloning.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

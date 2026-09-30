@@ -30,24 +30,26 @@ include 'controllers/authController.php' ?>
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
               <form action="register.php" method="post"> 
 
+              <?= csrf_field() ?>
+
               <?php if (count($errors) > 0): ?> 
                 <div class="alert alert-danger error-message"> 
+                  <ul>
                   <?php foreach ($errors as $error): ?> 
-                  <li> 
-                    <?php echo $error; ?> 
-                  </li> 
+                    <li><?php echo htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8'); ?></li> 
                   <?php endforeach;?> 
+                  </ul>
                 </div> 
               <?php endif;?> 
 
                 
               
                 <div class="form-outline mb-4">
-                  <input name="username" type="text" id="username" class="form-control form-control-lg" />
+                  <input name="username" type="text" id="username" class="form-control form-control-lg" value="<?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>" />
                   <label class="form-label" for="username">Username</label>
                 </div>
                 <div class="form-outline mb-4">
-                  <input name="email" type="email" id="email" class="form-control form-control-lg" />
+                  <input name="email" type="email" id="email" class="form-control form-control-lg" value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>" />
                   <label class="form-label" for="email">Email</label>
                 </div>
                 <div class="form-outline mb-4">
@@ -61,8 +63,7 @@ include 'controllers/authController.php' ?>
                 <div class="pt-1 mb-4">
                   <button type="submit" name="signup-btn" class="btn btn-lg btn-block palatin-btn">Register</button>
                 </div>
-                  <p>Already have an account? <a href="login.php">Login</a></p>
-                </p>
+                <p>Already have an account? <a href="login.php">Login</a></p>
               </form>
             </div>
           </div>

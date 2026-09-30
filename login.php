@@ -29,17 +29,19 @@ include 'controllers/authController.php' ?>
             <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
               <form action="login.php" method="post"> 
 
+              <?= csrf_field() ?>
+
               <?php if (count($errors) > 0): ?> 
                 <div class="alert alert-danger error-message"> 
+                  <ul>
                   <?php foreach ($errors as $error): ?> 
-                  <li> 
-                    <?php echo $error; ?> 
-                  </li> 
+                    <li><?php echo htmlspecialchars((string) $error, ENT_QUOTES, 'UTF-8'); ?></li> 
                   <?php endforeach;?> 
+                  </ul>
                 </div> 
               <?php endif;?> 
                 <div class="form-outline mb-4">
-                  <input name="username" type="email" id="email" class="form-control form-control-lg" />
+                  <input name="username" type="email" id="email" class="form-control form-control-lg" value="<?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>" />
                   <label class="form-label" for="email">Email address</label>
                 </div>
                 <div class="form-outline mb-4">
